@@ -1,13 +1,30 @@
 :root {
     --bg-main: #2f2f2f;
     --bg-darker: #252525;
-    --mint: #64ffda;
-    --mint-dim: rgba(100, 255, 218, 0.1);
+    --bg-nav: rgba(47, 47, 47, 0.9);
+    --bg-card: rgba(255, 255, 255, 0.02);
+    --bg-card-hover: rgba(255, 255, 255, 0.03);
+    --border-light: rgba(255, 255, 255, 0.1);
+    --border-dim: rgba(255, 255, 255, 0.05);
+    --mint: #ff6300;
+    --mint-dim: rgba(255, 99, 0, 0.1);
     --text-light: #e6f1ff;
     --text-dim: #8892b0;
-    --font-sans: 'Inter', sans-serif;
-    --font-mono: 'JetBrains Mono', monospace;
-    --font-tech: 'Rajdhani', sans-serif;
+    --font-sans: 'Plus Jakarta Sans', sans-serif;
+    --font-mono: 'Plus Jakarta Sans', sans-serif;
+    --font-tech: 'Plus Jakarta Sans', sans-serif;
+}
+
+[data-theme="light"] {
+    --bg-main: #f4f4f4;
+    --bg-darker: #ffffff;
+    --bg-nav: rgba(255, 255, 255, 0.9);
+    --bg-card: rgba(0, 0, 0, 0.03);
+    --bg-card-hover: rgba(0, 0, 0, 0.05);
+    --border-light: rgba(0, 0, 0, 0.1);
+    --border-dim: rgba(0, 0, 0, 0.05);
+    --text-light: #1a202c;
+    --text-dim: #4a5568;
 }
 
 * {
@@ -35,8 +52,8 @@ body {
     width: 100%;
     height: 100%;
     background-image: 
-        linear-gradient(rgba(100, 255, 218, 0.02) 1px, transparent 1px),
-        linear-gradient(90deg, rgba(100, 255, 218, 0.02) 1px, transparent 1px);
+        linear-gradient(rgba(255, 99, 0, 0.02) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(255, 99, 0, 0.02) 1px, transparent 1px);
     background-size: 40px 40px;
     z-index: -2;
     pointer-events: none;
@@ -46,7 +63,7 @@ body {
     position: absolute;
     width: 500px;
     height: 500px;
-    background: radial-gradient(circle, rgba(100, 255, 218, 0.06) 0%, rgba(0,0,0,0) 70%);
+    background: radial-gradient(circle, rgba(255, 99, 0, 0.06) 0%, rgba(0,0,0,0) 70%);
     border-radius: 50%;
     z-index: -1;
     pointer-events: none;
@@ -79,7 +96,7 @@ ul { list-style: none; }
     width: 100%;
     height: 100px;
     z-index: 9999;
-    background: linear-gradient(0deg, rgba(0,0,0,0) 0%, rgba(100, 255, 218, 0.03) 50%, rgba(0,0,0,0) 100%);
+    background: linear-gradient(0deg, rgba(0,0,0,0) 0%, rgba(255, 99, 0, 0.03) 50%, rgba(0,0,0,0) 100%);
     opacity: 0.1;
     position: fixed;
     bottom: 100%;
@@ -101,10 +118,10 @@ ul { list-style: none; }
     position: fixed;
     width: 100%;
     top: 0;
-    background: rgba(47, 47, 47, 0.9);
+    background: var(--bg-nav);
     backdrop-filter: blur(10px);
     z-index: 100;
-    border-bottom: 1px solid rgba(100, 255, 218, 0.1);
+    border-bottom: 1px solid rgba(255, 99, 0, 0.1);
 }
 
 .logo {
@@ -126,6 +143,26 @@ ul { list-style: none; }
 }
 
 .nav-links a:hover { color: var(--mint); }
+
+/* Theme Toggle */
+.theme-toggle {
+    background: transparent;
+    border: none;
+    cursor: pointer;
+    color: var(--text-light);
+    padding: 5px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: color 0.3s;
+    margin-left: 20px;
+}
+.theme-toggle:hover { color: var(--mint); }
+.theme-toggle svg { width: 22px; height: 22px; }
+.sun-icon { display: none; }
+.moon-icon { display: block; }
+[data-theme="light"] .sun-icon { display: block; }
+[data-theme="light"] .moon-icon { display: none; }
 
 /* Hamburger Menu */
 .hamburger {
@@ -327,7 +364,7 @@ main {
 }
 
 .skill-card {
-    background: rgba(100, 255, 218, 0.1);
+    background: rgba(255, 99, 0, 0.1);
     border: 1px solid var(--mint);
     color: var(--mint);
     padding: 10px 18px;
@@ -387,10 +424,10 @@ main {
 }
 
 .experience-card {
-    background: rgba(255, 255, 255, 0.03);
+    background: var(--bg-card);
     border-radius: 6px;
     padding: 30px 25px;
-    border: 1px solid rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--border-dim);
     transition: transform 0.3s ease, box-shadow 0.3s ease;
     height: 100%;
 }
@@ -420,11 +457,11 @@ main {
 .hired-card .mini-timeline-item::before { border-color: var(--mint); }
 .hired-card .mini-timeline-item .date { color: var(--mint); }
 
-/* Founder Card Theme (Neon Purple) */
-.founder-card { border-top: 3px solid #bd93f9; }
-.founder-card .card-title { color: #bd93f9; }
-.founder-card .mini-timeline-item::before { border-color: #bd93f9; }
-.founder-card .mini-timeline-item .date { color: #bd93f9; }
+/* Founder Card Theme (Teal) */
+.founder-card { border-top: 3px solid #00ab81; }
+.founder-card .card-title { color: #00ab81; }
+.founder-card .mini-timeline-item::before { border-color: #00ab81; }
+.founder-card .mini-timeline-item .date { color: #00ab81; }
 
 /* Mini Timeline inside Cards */
 .mini-timeline {
@@ -435,7 +472,7 @@ main {
 .mini-timeline-item {
     position: relative;
     padding-left: 25px;
-    border-left: 1px solid rgba(255, 255, 255, 0.1);
+    border-left: 1px solid var(--border-light);
     padding-bottom: 30px;
 }
 
@@ -509,7 +546,7 @@ footer {
     background-color: var(--bg-darker);
     padding: 80px 0 40px;
     margin-top: 100px;
-    border-top: 1px solid rgba(100, 255, 218, 0.05);
+    border-top: 1px solid rgba(255, 99, 0, 0.05);
     position: relative;
     text-align: left;
 }
@@ -608,8 +645,8 @@ footer::before {
 
 /* --- Project Spotlight Extensions --- */
 .project-spotlight {
-    background: rgba(255, 255, 255, 0.02);
-    border: 1px solid rgba(100, 255, 218, 0.1);
+    background: var(--bg-card);
+    border: 1px solid rgba(255, 99, 0, 0.1);
     margin-bottom: 80px;
     border-radius: 2px;
     position: relative;
@@ -617,7 +654,7 @@ footer::before {
 }
 
 .project-spotlight[open] {
-    background: rgba(255, 255, 255, 0.03);
+    background: var(--bg-card-hover);
     border-color: var(--mint-dim);
 }
 
@@ -674,7 +711,7 @@ footer::before {
 }
 
 .project-header {
-    border-bottom: 1px solid rgba(100, 255, 218, 0.1);
+    border-bottom: 1px solid rgba(255, 99, 0, 0.1);
     padding-bottom: 30px;
     margin-bottom: 40px;
 }
@@ -743,12 +780,12 @@ footer::before {
     transition: 0.3s;
 }
 
-.faq-section details[open] { border-left: 3px solid var(--mint); background: rgba(100, 255, 218, 0.05); }
+.faq-section details[open] { border-left: 3px solid var(--mint); background: rgba(255, 99, 0, 0.05); }
 .faq-section summary { font-family: var(--font-mono); color: var(--text-light); outline: none; list-style: none; font-size: 0.95rem; }
 .faq-section summary::-webkit-details-marker { display: none; }
 .faq-section summary::after { content: "+"; float: right; color: var(--mint); font-weight: bold; }
 .faq-section details[open] summary::after { content: "-"; }
-.faq-section details p { margin-top: 15px; color: var(--text-dim); font-size: 0.9rem; line-height: 1.6; padding-left: 10px; border-left: 1px solid rgba(255,255,255,0.1); }
+.faq-section details p { margin-top: 15px; color: var(--text-dim); font-size: 0.9rem; line-height: 1.6; padding-left: 10px; border-left: 1px solid var(--border-light); }
 
 /* Section Dropdowns */
 .section-dropdown summary {
@@ -896,8 +933,8 @@ footer::before {
 
 /* --- Copywriting Samples Section --- */
 .samples-intro {
-    background: rgba(255, 255, 255, 0.03);
-    border: 1px solid rgba(100, 255, 218, 0.1);
+    background: var(--bg-card);
+    border: 1px solid rgba(255, 99, 0, 0.1);
     border-left: 4px solid var(--mint);
     padding: 40px;
     border-radius: 8px;
@@ -912,8 +949,8 @@ footer::before {
 }
 
 .sample-card {
-    background: rgba(255, 255, 255, 0.02);
-    border: 1px solid rgba(100, 255, 218, 0.1);
+    background: var(--bg-card);
+    border: 1px solid rgba(255, 99, 0, 0.1);
     padding: 25px;
     border-radius: 4px;
     transition: all 0.3s ease;
@@ -954,14 +991,14 @@ footer::before {
 .sample-type {
     display: inline-block;
     padding: 5px 10px;
-    background: rgba(100, 255, 218, 0.1);
+    background: rgba(255, 99, 0, 0.1);
     color: var(--mint);
     border-radius: 20px;
     font-size: 0.7rem;
     font-weight: bold;
     letter-spacing: 1px;
     margin-bottom: 15px;
-    border: 1px solid rgba(100, 255, 218, 0.2);
+    border: 1px solid rgba(255, 99, 0, 0.2);
     width: fit-content;
 }
 
@@ -984,7 +1021,7 @@ footer::before {
 
 .lp-card {
     background: var(--bg-darker);
-    border: 1px solid rgba(255, 255, 255, 0.05);
+    border: 1px solid var(--border-dim);
     padding: 30px 20px;
     border-radius: 6px;
     text-align: center;
@@ -1000,7 +1037,7 @@ footer::before {
 .lp-card:hover {
     border-color: var(--mint);
     transform: translateY(-5px);
-    background: rgba(100, 255, 218, 0.02);
+    background: var(--bg-card);
     color: var(--text-light);
 }
 
