@@ -61,6 +61,10 @@
                 justify-content: center;
                 transition: right 0.4s ease-in-out;
                 z-index: 1000;
+                gap: 20px;
+            }
+            .nav-links li {
+                margin: 0;
             }
             .nav-links.active {
                 right: 0;
@@ -68,6 +72,15 @@
             .hamburger {
                 position: relative;
                 z-index: 1001;
+            }
+
+            /* Light Theme Mobile Menu */
+            html[data-theme="light"] .nav-links {
+                background-color: #ffffff;
+                box-shadow: -5px 0 15px rgba(0,0,0,0.1);
+            }
+            html[data-theme="light"] .nav-links a {
+                color: #1a1a1a;
             }
         }
     </style>
@@ -130,7 +143,7 @@
                 <h1 class="typing-effect-title" style="display: inline-block; max-width: fit-content;">PRINCE DIKE</h1>
                 <h2 class="subtitle">Tech Founder | Copywriter & Content Writer, B2B/B2C Tech & SaaS Companies</h2>
                 <p class="bio-text">
-                    I help tech businesses like yours grow by writing clear and compelling copy & content that sells your product, turning your visitors into paying customers and <strong>increasing your click-through rates by 400%</strong>. I also build products that helps people and businesses get help faster.
+                    I write clear, concise, and compelling copy that sells your product, turning your visitors into paying clients and <strong>increasing your click-through rates by 400%</strong>. I also build products that helps people & businesses everyday.
                 </p>
                 <div class="cta-group">
                     <a href="#contact" class="btn-primary">3x Your Revenue NOW</a>
@@ -603,13 +616,5 @@
     </footer>
 
     <script src="scripts/script.js"></script>
-    <script>
-        const hamburger = document.querySelector('.hamburger');
-        const navLinks = document.querySelector('.nav-links');
-
-        hamburger.addEventListener('click', () => {
-            navLinks.classList.toggle('active');
-        });
-    </script>
 </body>
 </html>
