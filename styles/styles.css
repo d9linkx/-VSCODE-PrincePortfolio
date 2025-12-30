@@ -357,8 +357,6 @@ main {
     padding: 40px 0;
     display: flex;
     flex-direction: column;
-    justify-content: center;
-    align-items: center;
 }
 
 .skills-circle-container {
@@ -369,6 +367,7 @@ main {
     gap: 12px;
     max-width: 600px; /* Constrains the items to form a rough circle/blob */
     padding: 20px;
+    margin: 0 auto;
 }
 
 .skill-card {
