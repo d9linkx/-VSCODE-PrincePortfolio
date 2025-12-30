@@ -33,6 +33,43 @@
         :root {
             --mint: #ff6300;
         }
+
+        *, *::before, *::after {
+            box-sizing: border-box;
+        }
+
+        /* Prevent horizontal overflow from the hamburger menu */
+        html, body {
+            overflow-x: hidden;
+            width: 100%;
+            margin: 0;
+            padding: 0;
+        }
+
+        /* Mobile Menu Styles */
+        @media screen and (max-width: 768px) {
+            .nav-links {
+                position: fixed;
+                right: -100%;
+                top: 0;
+                height: 100vh;
+                width: 70%;
+                background-color: #1a1a1a;
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+                justify-content: center;
+                transition: right 0.4s ease-in-out;
+                z-index: 1000;
+            }
+            .nav-links.active {
+                right: 0;
+            }
+            .hamburger {
+                position: relative;
+                z-index: 1001;
+            }
+        }
     </style>
 
     <!-- Schema.org JSON-LD for Google SEO -->
@@ -566,5 +603,13 @@
     </footer>
 
     <script src="scripts/script.js"></script>
+    <script>
+        const hamburger = document.querySelector('.hamburger');
+        const navLinks = document.querySelector('.nav-links');
+
+        hamburger.addEventListener('click', () => {
+            navLinks.classList.toggle('active');
+        });
+    </script>
 </body>
 </html>
