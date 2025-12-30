@@ -539,16 +539,34 @@ main {
 .external-link:hover { color: var(--mint); }
 
 /* Contact */
-.contact-section { text-align: center; max-width: 600px; margin: 0 auto 100px; }
+.contact-section { margin: 0 auto 100px; }
+.contact-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    align-items: stretch;
+}
 .contact-box {
-    margin-top: 30px;
+    margin-top: 0;
     padding: 30px;
     border: 1px solid var(--mint);
     background: var(--mint-dim);
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
 }
 .contact-box p { margin: 10px 0; }
 .mint-link { color: var(--text-light); border-bottom: 1px solid var(--mint); }
 .mint-link:hover { color: var(--mint); }
+
+/* About & Startups Split Layout */
+.about-container,
+.startups-container {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+    align-items: start;
+}
 
 footer {
     background-color: var(--bg-darker);
@@ -943,6 +961,19 @@ footer::before {
 
     .desktop-text { display: none; }
     .mobile-text { display: inline; }
+
+    .contact-container {
+        grid-template-columns: 1fr;
+        text-align: center;
+    }
+    .contact-box {
+        margin-top: 30px;
+    }
+
+    .about-container,
+    .startups-container {
+        grid-template-columns: 1fr;
+    }
 }
 
 /* --- Copywriting Samples Section --- */
