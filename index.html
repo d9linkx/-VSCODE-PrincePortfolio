@@ -42,14 +42,20 @@
         html, body {
             overflow-x: hidden;
             width: 100%;
-            max-width: 100vw;
             margin: 0;
             padding: 0;
+            position: relative;
+            overflow-wrap: break-word;
         }
 
         img, video, iframe {
             max-width: 100%;
             height: auto;
+        }
+
+        /* Safety check for containers */
+        section, footer, header, main, .navbar, .scanline, .background-decoration {
+            max-width: 100%;
         }
 
         /* Mobile Menu Styles */
@@ -146,7 +152,7 @@
         <section id="hero" class="hero-section">
             <div class="hero-content">
                 <div class="glowing-orb orb-1"></div>
-                <h1 class="typing-effect-title" style="display: inline-block; max-width: fit-content;">PRINCE DIKE</h1>
+                <h1 class="typing-effect-title" style="display: inline-block; max-width: 100%;">PRINCE DIKE</h1>
                 <h2 class="subtitle">Tech Founder | Copywriter & Content Writer, B2B/B2C Tech & SaaS Companies</h2>
                 <p class="bio-text">
                     I write clear, concise, and compelling copy that sells your product, turning your visitors into paying clients and <strong>increasing your click-through rates by 400%</strong>. I also build products that helps people & businesses everyday.
