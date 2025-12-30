@@ -1,3 +1,8 @@
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 100px;
+}
+
 :root {
     --bg-main: #2f2f2f;
     --bg-darker: #252525;
@@ -120,7 +125,7 @@ ul { list-style: none; }
     top: 0;
     background: var(--bg-nav);
     backdrop-filter: blur(10px);
-    z-index: 100;
+    z-index: 1000;
     border-bottom: 1px solid rgba(255, 99, 0, 0.1);
 }
 
@@ -210,7 +215,8 @@ main {
 
 /* Hero */
 .hero-section {
-    height: 100vh;
+    min-height: 100vh;
+    padding-top: 80px;
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -846,7 +852,8 @@ footer::before {
     }
 
     .nav-links li {
-        opacity: 0;
+        opacity: 1;
+        margin: 20px 0;
     }
 
     /* Hamburger Animation */
