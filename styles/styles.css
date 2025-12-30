@@ -300,7 +300,8 @@ main {
     color: var(--mint);
     font-family: var(--font-mono);
     border-radius: 2px;
-    margin-right: 20px;
+    margin-right: 0px;
+    justify-content: center;
 }
 
 .btn-primary:hover {
