@@ -26,142 +26,564 @@
     <!-- Google Fonts -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
     
-    <link rel="stylesheet" href="styles/styles.css">
+    <!-- <link rel="stylesheet" href="styles/styles.css"> -->
 
     <style>
         :root {
-            --mint: #ff6300;
+            /* Palette: Engineered Minimalist */
+            --bg-primary: #FFFFFF;
+            --bg-secondary: #F2F2F7; /* Ghost Grey */
+            --border-color: #D1D1D6; /* Silver Lining */
+            
+            --text-primary: #1C1C1E; /* Graphite */
+            --text-secondary: #3A3A3C;
+            
+            /* Accents */
+            --accent-blue: #007AFF; /* Power Blue */
+            --accent-green: #34C759; /* Cyber Green */
+            --accent-orange: #FF9500; /* Kinetic Orange */
+            --accent-purple: #5856D6; /* Logic Purple */
+            
+            /* Spacing */
+            --container-width: 1200px;
+            --section-spacing: 100px;
+            
+            /* Typography */
+            --font-main: 'Plus Jakarta Sans', sans-serif;
+            --font-mono: 'Space Mono', monospace;
+            --nav-bg: rgba(255, 255, 255, 0.95);
         }
 
-        *, *::before, *::after {
-            box-sizing: border-box;
+        [data-theme="dark"] {
+            --bg-primary: #0A0A0B;
+            --bg-secondary: #161618;
+            --border-color: #2D2D30;
+            --text-primary: #F2F2F2;
+            --text-secondary: #A1A1AA;
+            --nav-bg: rgba(10, 10, 11, 0.95);
         }
 
-        /* Prevent horizontal overflow from the hamburger menu */
-        html, body {
+        /* Reset & Base */
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        
+        html { scroll-behavior: smooth; }
+        
+        body {
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            font-family: var(--font-main);
+            line-height: 1.6;
             overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+            scroll-padding-top: 80px;
+        }
+
+        a { text-decoration: none; color: inherit; transition: color 0.3s ease; }
+        ul { list-style: none; }
+        img { max-width: 100%; display: block; }
+
+        /* Typography */
+        h1, h2, h3, h4, h5, h6 {
+            line-height: 1.2;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+        }
+
+        h1 { font-size: clamp(2.5rem, 5vw, 4.5rem); margin-bottom: 1.5rem; }
+        h2 { font-size: clamp(2rem, 4vw, 3rem); margin-bottom: 1rem; }
+        h3 { font-size: 1.5rem; margin-bottom: 0.5rem; }
+        
+        .text-cyan { color: var(--accent-cyan); }
+        .text-purple { color: var(--accent-purple); }
+        .text-blue { color: var(--accent-blue); }
+        .text-green { color: var(--accent-green); }
+        .text-orange { color: var(--accent-orange); }
+        .text-gradient {
+            background: linear-gradient(to right, var(--accent-cyan), #ffffff, var(--accent-purple));
+            background-size: 200% auto;
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            animation: gradientFlow 5s linear infinite;
+        }
+        @keyframes gradientFlow { 0% { background-position: 0% 50%; } 100% { background-position: 200% 50%; } }
+        .text-secondary { color: var(--text-secondary); }
+        .font-mono { font-family: var(--font-mono); }
+        
+        .eyebrow {
+            display: inline-block;
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--accent-blue);
+            margin-bottom: 1rem;
+        }
+
+        /* Layout */
+        .container {
+            width: 90%;
+            max-width: var(--container-width);
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        section {
+            padding: var(--section-spacing) 0;
+        }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0;
+            left: 0;
             width: 100%;
-            margin: 0;
-            padding: 0;
+            z-index: 1000;
+            background: var(--nav-bg);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-color);
+            padding: 1.5rem 0;
+            transition: all 0.3s ease;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo {
+            font-size: 1.5rem;
+            font-weight: 800;
+            letter-spacing: -0.05em;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+        }
+
+        .nav-links a {
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--text-primary);
+            opacity: 0.8;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-blue);
+            opacity: 1;
+        }
+
+        .theme-toggle {
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            color: var(--text-primary);
+            padding: 0.5rem;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            transition: color 0.3s ease;
+        }
+        .theme-toggle:hover { color: var(--accent-blue); }
+        
+        .sun-icon { display: none; }
+        .moon-icon { display: block; }
+        [data-theme="dark"] .sun-icon { display: block; }
+        [data-theme="dark"] .moon-icon { display: none; }
+
+        .hamburger { display: none; cursor: pointer; }
+
+        /* Hero */
+        .hero-section {
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding-top: 80px;
             position: relative;
-            overflow-wrap: break-word;
+            overflow: hidden;
         }
 
-        img, video, iframe {
-            max-width: 100%;
-            height: auto;
+        .hero-bg-grid {
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-image: 
+                linear-gradient(rgba(0, 0, 0, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(0, 0, 0, 0.03) 1px, transparent 1px);
+            background-size: 40px 40px;
+            z-index: 0;
+            pointer-events: none;
+        }
+        
+        .hero-content {
+            max-width: 1000px;
+            position: relative;
+            z-index: 1;
+            text-align: center;
         }
 
-        /* Safety check for containers */
-        section, footer, header, main, .navbar, .scanline, .background-decoration {
-            max-width: 100%;
+        .hero-description {
+            font-size: 1.25rem;
+            color: var(--text-secondary);
+            margin: 0 auto 2.5rem;
+            max-width: 600px;
+            line-height: 1.8;
         }
 
-        /* Mobile Menu Styles */
-        @media screen and (max-width: 768px) {
-            .nav-links {
-                position: fixed;
-                right: -100%;
-                top: 0;
-                height: 100vh;
-                width: 70%;
-                background-color: #1a1a1a;
-                display: flex;
-                flex-direction: column;
-                align-items: center;
-                justify-content: center;
-                transition: right 0.4s ease-in-out;
-                z-index: 1000;
-                gap: 20px;
-            }
-            .nav-links li {
-                margin: 0;
-            }
-            .nav-links.active {
-                right: 0;
-            }
-            .hamburger {
-                position: relative;
-                z-index: 1001;
-            }
-
-            /* Light Theme Mobile Menu */
-            html[data-theme="light"] .nav-links {
-                background-color: #ffffff;
-                box-shadow: -5px 0 15px rgba(0,0,0,0.1);
-            }
-            html[data-theme="light"] .nav-links a {
-                color: #1a1a1a;
-            }
-        }
-
-        @media screen and (max-width: 1024px) {
-            .bio-text {
-                padding-left: 20px;
-                padding-right: 20px;
-            }
-        }
-
-        @media screen and (max-width: 768px) {
-            .cta-group {
-                display: flex;
-                flex-direction: column;
-                gap: 15px;
-                width: 100%;
-                align-items: center;
-            }
-            .cta-group a {
-                text-align: center;
-                justify-content: center;
-            }
+        /* Buttons */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem 2rem;
+            border-radius: 4px;
+            font-weight: 700;
+            font-family: var(--font-mono);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            font-size: 0.875rem;
         }
 
         .btn-primary {
-            background-color: var(--mint);
-            border-color: var(--mint);
-            color: #ffffff;
+            background: var(--accent-blue);
+            color: #FFFFFF;
+            border: 1px solid var(--accent-blue);
         }
 
         .btn-primary:hover {
-            background-color: #00ab81;
-            border-color: #00ab81;
+            background: #0062cc;
+            transform: translateY(-2px);
         }
 
-        .btn-alternate {
-            background-color: #00ab81;
-            border-color: #00ab81;
+        .btn-outline {
+            background-color: transparent;
+            color: var(--text-primary);
+            border: 1px solid var(--border-color);
+            margin-left: 1rem;
         }
 
-        .btn-alternate:hover {
-            background-color: var(--mint);
-            border-color: var(--mint);
+        .btn-outline:hover {
+            border-color: var(--text-primary);
+            background-color: rgba(0,0,0,0.05);
         }
 
-        /* Desktop Hero Adjustments */
-        @media screen and (min-width: 1024px) {
-            #hero .hero-content .subtitle {
-                font-size: 3.8rem;
-                margin-bottom: 1.5rem;
-            }
+        /* Grid Systems */
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
 
-            #hero .hero-content .bio-text {
-                font-size: 2.25rem;
-                line-height: 1.6;
-                max-width: 800px;
-            }
+        .grid-3 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 2rem;
+        }
 
-            #hero .hero-image .img-wrapper {
-                width: 550px;
-                height: 550px;
-            }
+        .grid-4 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 1.5rem;
+        }
 
-            #hero .hero-image .img-wrapper img {
-                width: 100%;
-                height: 100%;
-                object-fit: cover;
+        /* Cards */
+        .card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            padding: 2rem;
+            border-radius: 4px;
+            transition: transform 0.3s ease, border-color 0.3s ease;
+            height: 100%;
+            display: flex;
+            flex-direction: column;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent-blue);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.05);
+        }
+
+        .card-tags {
+            display: flex;
+            gap: 0.5rem;
+            flex-wrap: wrap;
+            margin-top: auto;
+            padding-top: 1.5rem;
+        }
+
+        .tag {
+            font-size: 0.75rem;
+            font-family: var(--font-mono);
+            padding: 0.25rem 0.75rem;
+            border: 1px solid var(--border-color);
+            color: var(--text-secondary);
+            text-transform: uppercase;
+            background: #FFFFFF;
+        }
+
+        [data-theme="dark"] .tag {
+            background: var(--bg-secondary);
+            color: var(--text-primary);
+        }
+
+        /* Protocol Section */
+        .protocol-step {
+            border-left: 2px solid var(--border-color);
+            padding-left: 2rem;
+            position: relative;
+        }
+        .protocol-step::before {
+            content: '';
+            position: absolute;
+            left: -6px;
+            top: 0;
+            width: 10px;
+            height: 10px;
+            background: var(--bg-primary);
+            border: 2px solid var(--accent-blue);
+            border-radius: 50%;
+        }
+
+        /* Metrics Ticker */
+        .metrics-bar {
+            background: var(--bg-secondary);
+            border-top: 1px solid var(--border-color);
+            border-bottom: 1px solid var(--border-color);
+            padding: 1.5rem 0;
+        }
+
+        .metrics-grid {
+            display: flex;
+            justify-content: space-between;
+            font-family: var(--font-mono);
+            font-size: 0.9rem;
+        }
+
+        .metric-card {
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+        }
+
+        .metric-value {
+            font-weight: 700;
+        }
+
+        @media (min-width: 769px) {
+            .metric-label::after { content: ":"; }
+        }
+
+        @media (max-width: 768px) {
+            .metrics-grid {
+                display: grid;
+                grid-template-columns: repeat(2, 1fr);
+                gap: 0.75rem;
             }
+            .metric-card {
+                background: var(--bg-primary);
+                border: 1px solid var(--border-color);
+                padding: 1rem;
+                border-radius: 4px;
+                flex-direction: column;
+                justify-content: center;
+                text-align: center;
+                gap: 0.25rem;
+            }
+            .metric-label { font-size: 0.7rem; color: var(--text-secondary); word-wrap: break-word; }
+            .metric-value { font-size: 1.1rem; }
+        }
+
+        /* Engine Room (Tech Stack) */
+        .tech-item {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            padding: 1rem;
+            background: #FFFFFF;
+            border: 1px solid var(--border-color);
+        }
+
+        [data-theme="dark"] .tech-item {
+            background: var(--bg-secondary);
+        }
+        
+        /* Filter Buttons */
+        .filter-container {
+            display: flex;
+            gap: 1rem;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+        .filter-btn {
+            background: transparent;
+            border: 1px solid var(--border-color);
+            padding: 0.5rem 1.5rem;
+            font-family: var(--font-mono);
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            color: var(--text-secondary);
+            border-radius: 20px;
+        }
+        .filter-btn.active, .filter-btn:hover {
+            background: var(--accent-blue);
+            color: #FFFFFF;
+            border-color: var(--accent-blue);
+        }
+
+        /* Terminal Contact */
+        .terminal-window {
+            background: #0f0f10;
+            border: 1px solid var(--border-color);
+            border-radius: 6px;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.5);
+            font-family: var(--font-mono);
+            overflow: hidden;
+        }
+
+        .terminal-header {
+            background: #1a1a1c;
+            padding: 0.75rem 1rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+
+        .dot { width: 12px; height: 12px; border-radius: 50%; }
+        .dot.red { background: #ff5f56; }
+        .dot.yellow { background: #ffbd2e; }
+        .dot.green { background: #27c93f; }
+        .terminal-title { margin-left: 1rem; color: var(--text-secondary); font-size: 0.8rem; }
+
+        .terminal-body {
+            padding: 2rem;
+            color: var(--accent-blue);
+        }
+
+        .cmd-line {
+            display: flex;
+            margin-bottom: 1.5rem;
+            align-items: baseline;
+        }
+        .prompt { color: var(--accent-purple); margin-right: 1rem; user-select: none; }
+        
+        .terminal-input {
+            background: transparent;
+            border: none;
+            border-bottom: 1px solid var(--border-color);
+            color: var(--text-primary);
+            font-family: var(--font-mono);
+            width: 100%;
+            padding: 0.5rem 0;
+            font-size: 1rem;
+        }
+        .terminal-input:focus {
+            outline: none;
+            border-bottom-color: var(--accent-blue);
+        }
+
+        /* Manifesto Section */
+        .manifesto-text {
+            font-size: clamp(2rem, 5vw, 4rem);
+            font-weight: 800;
+            line-height: 1.1;
+            color: var(--text-primary);
+        }
+        .manifesto-highlight {
+            color: transparent;
+            -webkit-text-stroke: 1px var(--text-primary);
+        }
+
+        /* Footer */
+        footer {
+            padding: 4rem 0;
+            border-top: 1px solid var(--border-color);
+            background: var(--bg-secondary);
+        }
+
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 3rem;
+        }
+        .footer-link {
+            display: block;
+            margin-bottom: 0.5rem;
+            color: var(--text-secondary);
+        }
+        .footer-link:hover { color: var(--accent-blue); }
+
+        /* Glassmorphism Utilities */
+        .glass-panel {
+            background: rgba(255, 255, 255, 0.7);
+            backdrop-filter: blur(12px);
+            border: 1px solid rgba(255, 255, 255, 0.5);
+        }
+
+        /* Utilities */
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s cubic-bezier(0.5, 0, 0, 1);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Mobile Responsiveness */
+        @media (max-width: 768px) {
+            h1 { font-size: 2.5rem; }
+            .nav-links {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                height: 100vh;
+                width: 80%;
+                background: var(--bg-secondary);
+                flex-direction: column;
+                padding: 6rem 2rem;
+                transition: right 0.3s ease;
+            }
+            .nav-links.active { right: 0; }
+            .hamburger { display: block; z-index: 1001; }
+            .hamburger span {
+                display: block;
+                width: 25px;
+                height: 2px;
+                background: var(--text-primary);
+                margin: 5px 0;
+            }
+            .btn-outline { margin-left: 0; margin-top: 1rem; display: flex; }
+        }
+    </style>
+    
+    <style>
+        /* Micro-interaction: Code Metadata */
+        .card::before {
+            content: 'ID: ' attr(data-id);
+            position: absolute;
+            top: 10px;
+            right: 10px;
+            font-family: var(--font-mono);
+            font-size: 0.6rem;
+            color: var(--accent-blue);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+        .card:hover::before {
+            opacity: 1;
         }
     </style>
 
@@ -182,7 +604,7 @@
       "email": "prince.chidera.dike@gmail.com",
       "telephone": "+2347070989034",
       "alumniOf": "BYU Idaho",
-      "knowsAbout": ["B2B SaaS Copywriting", "Technical Writing", "Python", "Web Development", "AI Content Strategy"],
+      "knowsAbout": ["B2B SaaS Copywriting", "Technical Writing", "Python", "Web Development", "AI Content Strategy", "Technical Analysis (SMC)"],
       "areaServed": [
         { "@type": "Country", "name": "United States" },
         { "@type": "Country", "name": "United Kingdom" },
@@ -197,509 +619,444 @@
     </script>
 </head>
 <body>
-    <div class="background-decoration"></div>
-    <div class="scanline"></div>
     
     <nav class="navbar">
-        <div class="logo">PD<span class="mint">.</span>_</div>
-        <ul class="nav-links">
-            <li><a href="#skills">SKILLS</a></li>
-            <li><a href="#about">ABOUT</a></li>
-            <li><a href="#experience">EXPERIENCE</a></li>
-            <li><a href="#startups">STARTUPS</a></li>
-            <li><a href="#samples">SAMPLES</a></li>
-            <li><a href="#contact">CONTACT</a></li>
-        </ul>
-        <button id="theme-toggle" class="theme-toggle" aria-label="Toggle Dark Mode">
-            <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
-            <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
-        </button>
-        <div class="hamburger">
-            <div class="line"></div>
-            <div class="line"></div>
-            <div class="line"></div>
+        <div class="container nav-container">
+            <a href="#" class="logo">PD<span class="text-blue">.</span></a>
+            <div style="display: flex; align-items: center; gap: 1.5rem;">
+                <ul class="nav-links">
+                    <li><a href="#portfolio">Portfolio</a></li>
+                    <li><a href="#services">Services</a></li>
+                    <li><a href="#manifesto">Manifesto</a></li>
+                    <li><a href="#about">About</a></li>
+                    <li><a href="#lab">The Lab</a></li>
+                    <li><a href="#contact" class="text-blue font-mono">Contact_</a></li>
+                </ul>
+                <button id="theme-toggle" class="theme-toggle" aria-label="Toggle Dark Mode">
+                    <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+                    <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+                </button>
+                <div class="hamburger" onclick="toggleMenu()">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
         </div>
     </nav>
 
     <main>
         <!-- Hero Section -->
         <section id="hero" class="hero-section">
-            <div class="hero-content">
-                <div class="glowing-orb orb-1"></div>
-                <h1 class="typing-effect-title" style="display: inline-block; max-width: fit-content;">PRINCE DIKE</h1>
-                <h2 class="subtitle">Copywriter, B2B/B2C Tech & SaaS | Tech Founder</h2>
-                <p class="bio-text">
-                    I write clear, concise, and compelling copy that sells your product, turning your visitors into paying clients and <strong>increasing your click-through rates by 400%</strong>.
-                </p>
-                <div class="cta-group">
-                    <a href="#contact" class="btn-primary">3x Your Revenue NOW</a>
-                    <a href="#experience" class="btn-secondary">My Experience</a>
-                </div>
-            </div>
-            <div class="hero-image">
-                <div class="img-wrapper">
-                    <img src="assets/prince.jpg" alt="Prince Dike" width="300" height="300">
-                </div>
-            </div>
-        </section>
-
-        <!-- Skills Cloud Section -->
-        <section id="skills" class="skills-section">
-            <h2 class="section-heading"><span class="mint">01.</span> SKILLS</h2>
-            <img src="https://images.unsplash.com/photo-1550751827-4bd374c3f58b?q=80&w=2070&auto=format&fit=crop" alt="Abstract Tech Skills" style="width: 100%; height: 200px; object-fit: cover; border-radius: 12px; margin-bottom: 25px; opacity: 0.9; filter: brightness(0.8);">
-            <div class="skills-circle-container">
-                <div class="skill-card">Copywriting</div>
-                <div class="skill-card">SEO & AI SEO</div>
-                <div class="skill-card">Brand Storytelling</div>
-                <div class="skill-card">Audience Research</div>
-                <div class="skill-card">Python</div>
-                <div class="skill-card">Web Development</div>
-                <div class="skill-card">Keyword Research</div>
-                <div class="skill-card">Content Analysis</div>
-                <div class="skill-card">HTML/CMS</div>
-                <div class="skill-card">Teamwork</div>
-                <div class="skill-card">Communication</div>
-                <div class="skill-card">Google Ads</div>
-                <div class="skill-card">Detail Oriented</div>
-                <div class="skill-card">A.I.D.A</div>
-                <div class="skill-card">UX (User Experience)Awareness</div>
-                <div class="skill-card">Multimedia Adaptability</div>
-                <div class="skill-card">Data Literacy</div>
-                <div class="skill-card">Headline & Hook Writing</div>
-                <div class="skill-card">Persuasive Writing</div>
-            </div>
-        </section>
-
-        <!-- About / Stats Section -->
-        <section id="about" class="section">
-            <div class="tech-accent-line" style="left: 0; top: 50%;"></div>
-            <details class="section-dropdown" open>
-            <summary><h2 class="section-heading"><span class="mint">02.</span> ABOUT</h2></summary>
-            <div class="about-container">
-                <div class="about-left">
-                    <img src="https://images.pexels.com/photos/2582937/pexels-photo-2582937.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Abstract Technology" style="width: 100%; height: 200px; object-fit: cover; border-radius: 12px; margin-bottom: 25px; opacity: 0.9; filter: brightness(0.8);">
-                    <p class="bio-text" style="margin-bottom: 30px;">
-                        I’m Prince Dike. I solve the disconnect between your complex technology and your customer's wallet. 
-                        You’ve built a powerful product, but without clear, persuasive messaging, it’s invisible. 
-                        You need a partner who understands the code <em>and</em> the psychology of the sale. 
-                        I combine <strong>technical expertise</strong> with <strong>direct-response copywriting</strong> to turn your features into benefits that convert. 
-                        Whether it's crafting a high-ROI content strategy or designing a user-centric interface, I provide the specialized skills you need to scale your B2B tech business.
+            <div class="hero-bg-grid"></div>
+            <div class="container">
+                <div class="hero-content reveal">
+                    <div style="margin-bottom: 1.5rem;">
+                        <span class="eyebrow" style="border: 1px solid var(--accent-blue); padding: 0.5rem 1rem; border-radius: 100px; background: rgba(0, 122, 255, 0.05);">
+                            <span class="dot green" style="display: inline-block; margin-right: 8px; vertical-align: middle;"></span>
+                            System Status: Online
+                        </span>
+                    </div>
+                    <h1 style="font-size: clamp(2.5rem, 6vw, 3.5rem); letter-spacing: -0.03em;">Founder's Logic.<br><span class="text-blue">Copywriter's Soul.</span></h1>
+                    <p class="hero-description">
+                        I build products, then I write persuasive copy that scale them. I'm the creative bridge between technical complexity and market-ready clarity.
                     </p>
-                </div>
-                <div class="about-right">
-                    <div class="grid-container">
-                        <div class="card">
-                            <h4><span class="mint">></span> Education</h4>
-                            <p><strong>B.Sc Software Development</strong><br>BYU Idaho (Jan 2024 - Present)<br><span class="dim">Python, Data Structures, Software Architecture</span></p>
-                        </div>
-                        <div class="card">
-                            <h4><span class="mint">></span> Certifications</h4>
-                            <ul>
-                                <li>Certified Content Marketing Specialist (HubSpot)</li>
-                                <li>Advanced SEO (Simplilearn)</li>
-                                <li>Launching Leaders Certificate</li>
-                            </ul>
-                        </div>
-                        <div class="card">
-                            <h4><span class="mint">></span> Languages</h4>
-                            <p>English (Native) <span class="mint">|</span> French (Fluent)</p>
-                        </div>
+                    <div style="display: flex; gap: 1rem; justify-content: center; flex-wrap: wrap;">
+                        <a href="#contact" class="btn btn-primary">Initialize Sequence</a>
+                        <a href="#work" class="btn btn-outline">View Database</a>
                     </div>
                 </div>
             </div>
-            </details>
         </section>
 
-        <!-- Experience Section -->
-        <section id="experience" class="section">
-            <div class="glowing-orb orb-2"></div>
-            <details class="section-dropdown" open>
-            <summary><h2 class="section-heading"><span class="mint">03.</span> EXPERIENCE </h2></summary>
-            <img src="https://images.unsplash.com/photo-1451187580459-43490279c0fa?q=80&w=2072&auto=format&fit=crop" alt="Global Tech Network" style="width: 100%; height: 200px; object-fit: cover; border-radius: 12px; margin-bottom: 25px; opacity: 0.9; filter: brightness(0.8);">
-            
-            <div class="experience-grid">
-                <!-- Hired / Professional Work -->
-                <div class="experience-card hired-card">
-                    <h4 class="card-title"><span class="card-icon-sm"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><rect x="2" y="7" width="20" height="14" rx="2" ry="2"></rect><path d="M16 21V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v16"></path></svg></span> Professional Experience</h4>
-                    <div class="mini-timeline">
-                        <div class="mini-timeline-item">
-                            <span class="date mono">Apr 2025 - Present</span>
-                            <h3>AI Writer (Remote)</h3>
-                            <h4>Mindrift</h4>
-                            <p>Training LLMs for factual accuracy and human-like reasoning. Delivering top-tier quality data for AI model refinement.</p>
-                        </div>
-                        <div class="mini-timeline-item">
-                            <span class="date mono">Nov 2022 - Oct 2025</span>
-                            <h3>Content Writer Consultant</h3>
-                            <h4>Telebu Communications LLP</h4>
-                            <p>Built a 280+ article content fortress. Achieved 400% increase in organic impressions via data-driven SEO.</p>
-                        </div>
-                        <div class="mini-timeline-item">
-                            <span class="date mono">2023 - 2024</span>
-                            <h3>Copywriter</h3>
-                            <h4>Avantaland</h4>
-                            <p>Engineered persuasive copy strategies that boosted brand engagement and retention.</p>
-                        </div>
-                        <div class="mini-timeline-item">
-                            <span class="date mono">2025 - Present</span>
-                            <h3>VP of Marketing (Voluntary)</h3>
-                            <h4>Academy for Creating Enterprise</h4>
-                            <p>Spearheading marketing strategies to empower local entrepreneurs.</p>
-                        </div>
-                        <div class="mini-timeline-item">
-                            <span class="date mono">2013 - 2015</span>
-                            <h3>Missionary Service (Voluntary)</h3>
-                            <h4>Abidjan-West Mission, The Church of Jesus Christ of Latter-day Saints</h4>
-                            <p>Developed resilience and cross-cultural communication skills in a French-speaking region.</p>
-                        </div>
+        <!-- Protocol Section -->
+        <section id="protocol" style="background: var(--bg-secondary);">
+            <div class="container">
+                <span class="eyebrow">The Protocol</span>
+                <h2 class="reveal">Workflow Architecture</h2>
+                <div class="grid-3 reveal">
+                    <div class="protocol-step">
+                        <h3 class="font-mono text-blue">01. Audit & Architecture</h3>
+                        <p class="text-secondary">I analyze your tech stack and market positioning to identify friction points in your messaging logic.</p>
                     </div>
-                </div>
-
-                <!-- Founder Experience -->
-                <div class="experience-card founder-card">
-                    <h4 class="card-title"><span class="card-icon-sm"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M4.5 16.5c-1.5 1.26-2 5-2 5s3.74-.5 5-2c.71-.84.7-2.13-.09-2.91a2.18 2.18 0 0 0-2.91-.09z"></path><path d="M12 15l-3-3a22 22 0 0 1 2-3.95A12.88 12.88 0 0 1 22 2c0 2.72-.78 7.5-6 11a22.35 22.35 0 0 1-4 2z"></path></svg></span> Founder Track</h4>
-                    <div class="mini-timeline">
-                        <div class="mini-timeline-item">
-                            <span class="date mono">Nov 2025 - Present</span>
-                            <h3>Founder & CEO</h3>
-                            <h4>YourHelpa AI</h4>
-                            <p>Architected a WhatsApp e-commerce platform that allows people to buy and sell products and services in a single chat, secured by an escrow payment system. Overseeing Python/Django development and business strategy.</p>
-                        </div>
-                        <div class="mini-timeline-item">
-                            <span class="date mono">Nov 2024 - Present</span>
-                            <h3>Co-founder/Exec. Director, Marketing & Product</h3>
-                            <h4>Prawnbox</h4>
-                            <p>Leading Product & Marketing for a peer-to-peer logistics startup that lets you send and deliver items even if you don't have a vehicle. Driving GTM strategy and product roadmap.</p>
-                        </div>
+                    <div class="protocol-step">
+                        <h3 class="font-mono text-purple">02. Strategy & Positioning</h3>
+                        <p class="text-secondary">Translating features into benefits. I engineer a narrative that speaks directly to C-Suite pain points.</p>
+                    </div>
+                    <div class="protocol-step">
+                        <h3 class="font-mono text-green">03. Execution & Optimization</h3>
+                        <p class="text-secondary">Deploying high-conversion copy assets and iterating based on live performance metrics.</p>
                     </div>
                 </div>
             </div>
-            </details>
         </section>
 
-        <!-- Startups Section -->
-        <section id="startups" class="section">
-            <div class="tech-accent-line" style="right: 0; top: 20%;"></div>
-            <details class="section-dropdown" open>
-            <summary><h2 class="section-heading"><span class="mint">04.</span> STARTUPS</h2></summary>
-            <div class="startups-container">
-                <div class="startups-left">
-                    <img src="https://images.pexels.com/photos/1714208/pexels-photo-1714208.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Abstract Technology Circuit" style="width: 100%; height: 200px; object-fit: cover; border-radius: 12px; margin-bottom: 25px; opacity: 0.9; filter: brightness(0.8);">
-                    
-                    <p class="bio-text" style="margin-bottom: 30px;">
-                        I don't just advise; I execute. I have architected and launched two fully functional tech startups from the ground up, proving my ability to deliver complex, scalable solutions.
-                    </p>
+        <!-- Metrics Ticker -->
+        <div class="metrics-bar">
+            <div class="container metrics-grid">
+                <div class="metric-card">
+                    <span class="metric-label">REVENUE_INFLUENCED</span>
+                    <span class="metric-value text-green">CONFIDENTIAL</span>
                 </div>
-
-                <div class="startups-right">
-                    <!-- YourHelpa Spotlight -->
-                    <details class="project-spotlight" id="yourhelpa" name="startups">
-                        <summary class="project-summary">
-                            <h3 class="project-title">YourHelpa<span class="mint">.</span></h3>
-                        </summary>
-                        <div class="project-header">
-                            <p class="project-tagline">Buy Anything on WhatsApp, 3x Safer & 99% Deliverability</p>
-                            <p class="bio-text">Get any product or service near you with AI-powered matching + escrow payment security. We host certified professionals and accredited sellers from leading institutions.</p>
-                            <div class="cert-badges">
-                                <span class="badge">COREN</span>
-                                <span class="badge">NAPTIN</span>
-                                <span class="badge">NIQS</span>
-                                <span class="badge">CIPM</span>
-                                <span class="badge">ARCON</span>
-                                <span class="badge">Cisco Certified</span>
-                                <span class="badge">Google Certified</span>
-                            </div>
-                            <br>
-                            <a href="https://yourhelpa.com.ng" target="_blank" class="btn-primary">Launch Platform ↗</a>
-                        </div>
-
-                        <h4 class="subsection-title">Core Modules</h4>
-                        <div class="feature-grid">
-                            <div class="info-card">
-                                <span class="card-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"/></svg></span>
-                                <h4>Escrow Secured</h4>
-                                <p>Funds held securely. Payment is only released when you confirm the job is done.</p>
-                            </div>
-                            <div class="info-card">
-                                <span class="card-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="10" rx="2"/><circle cx="12" cy="5" r="2"/><path d="M12 7v4"/><line x1="8" y1="16" x2="8" y2="16"/><line x1="16" y1="16" x2="16" y2="16"/></svg></span>
-                                <h4>AI-Powered Matching</h4>
-                                <p>Our AI finds the best-verified Helpas for your specific need in minutes.</p>
-                            </div>
-                            <div class="info-card">
-                                <span class="card-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M21 11.5a8.38 8.38 0 0 1-.9 3.8 8.5 8.5 0 0 1-7.6 4.7 8.38 8.38 0 0 1-3.8-.9L3 21l1.9-5.7a8.38 8.38 0 0 1-.9-3.8 8.5 8.5 0 0 1 4.7-7.6 8.38 8.38 0 0 1 3.8-.9h.5a8.48 8.48 0 0 1 8 8v.5z"/></svg></span>
-                                <h4>WhatsApp Native</h4>
-                                <p>No external apps. Search, hire, and pay directly within WhatsApp.</p>
-                            </div>
-                        </div>
-
-                        <h4 class="subsection-title">Execution Protocol (The 3-Step Guarantee)</h4>
-                        <div class="process-grid">
-                            <div class="info-card">
-                                <span class="step-num">01</span>
-                                <h4>Request & Match</h4>
-                                <p>Chat your need and budget. AI connects you with verified pros.</p>
-                            </div>
-                            <div class="info-card">
-                                <span class="step-num">02</span>
-                                <h4>Funds Secured</h4>
-                                <p>Pay into Escrow. The Helpa starts work knowing payment is secure.</p>
-                            </div>
-                            <div class="info-card">
-                                <span class="step-num">03</span>
-                                <h4>Confirm & Release</h4>
-                                <p>Job done? You approve on WhatsApp, and we release payment.</p>
-                            </div>
-                        </div>
-
-                        <h4 class="subsection-title">User Logs (Testimonials)</h4>
-                        <div class="testimonial-grid">
-                            <div class="info-card">
-                                <p class="quote-text">"My kitchen sink was blocked on a Sunday. I found a verified plumber on YourHelpa and paid securely. The job was done in two hours. Lifesaver!"</p>
-                                <span class="quote-author">- Chidi, Abuja</span>
-                            </div>
-                            <div class="info-card">
-                                <p class="quote-text">"Needed a custom cake for my daughter's birthday. YourHelpa connected me to an amazing baker. The cake was beautiful!"</p>
-                                <span class="quote-author">- Aisha, Kano</span>
-                            </div>
-                            <div class="info-card">
-                                <p class="quote-text">"I got a professional logo for my small business. The designer was talented and the whole process on WhatsApp was so easy."</p>
-                                <span class="quote-author">- Bolu, Ibadan</span>
-                            </div>
-                        </div>
-
-                        <h4 class="subsection-title">System Query (FAQ)</h4>
-                        <div class="faq-section">
-                            <details>
-                                <summary>How does the Escrow payment work?</summary>
-                                <p>When you hire a Helpa, you pay the agreed amount to YourHelpa. We hold the funds securely. Only when you confirm on WhatsApp that the job is complete to your satisfaction do we release the payment to the Helpa.</p>
-                            </details>
-                            <details>
-                                <summary>What services can I find?</summary>
-                                <p>Plumbing, Electrical, AC Repair, Cleaning, Catering, Delivery, Tutoring, Graphic Design, Web Development, Writing, Digital Marketing, and more.</p>
-                            </details>
-                            <details>
-                                <summary>What are the fees for being a Helpa?</summary>
-                                <p>Our Fair Partnership Model: 7% Commission = 100% Payment Guarantee. ₦1,000/month for Verified Lead Access.</p>
-                            </details>
-                        </div>
-                    </details>
-
-                    <!-- Prawnbox Spotlight -->
-                    <details class="project-spotlight" id="prawnbox" name="startups">
-                        <summary class="project-summary">
-                            <h3 class="project-title">Prawnbox<span class="mint">.</span></h3>
-                        </summary>
-                        <div class="project-header">
-                            <p class="project-tagline">Send Anything, Anywhere. Peer-to-Peer Delivery.</p>
-                            <p class="bio-text">Post your delivery request and let verified Pals compete to deliver your package safely and affordably. Built on trust and transparency.</p>
-                            <br>
-                            <a href="https://prawnbox.com" target="_blank" class="btn-primary">Start Sending ↗</a>
-                        </div>
-
-                        <h5 class="subsection-title">Core Functions</h5>
-                        <div class="feature-grid">
-                            <div class="info-card">
-                                <span class="card-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><line x1="12" y1="1" x2="12" y2="23"/><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"/></svg></span>
-                                <h4>Competitive Pricing</h4>
-                                <p>Set your budget and receive bids from multiple Pals. Choose the best price.</p>
-                            </div>
-                            <div class="info-card">
-                                <span class="card-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="11" width="18" height="11" rx="2" ry="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg></span>
-                                <h4>100% Protected</h4>
-                                <p>Dual escrow system locks both your payment and Pal's collateral until successful delivery.</p>
-                            </div>
-                            <div class="info-card">
-                                <span class="card-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg></span>
-                                <h4>AI Verification</h4>
-                                <p>Scan your item with AI. Pals must match the scan at pickup for security.</p>
-                            </div>
-                            <div class="info-card">
-                                <span class="card-icon"><svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-linecap="round" stroke-linejoin="round"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/></svg></span>
-                                <h4>Live Tracking</h4>
-                                <p>Track deliveries in real-time with live GPS from pickup to drop-off.</p>
-                            </div>
-                        </div>
-
-                        <h5 class="subsection-title">Transmission Protocol (How It Works)</h5>
-                        <div class="process-grid">
-                            <div class="info-card">
-                                <span class="step-num">01</span>
-                                <h4>Create Request</h4>
-                                <p>Describe item, add photos, set addresses, and specify budget.</p>
-                            </div>
-                            <div class="info-card">
-                                <span class="step-num">02</span>
-                                <h4>Select Pal</h4>
-                                <p>Review bids from verified Pals. Payment & Collateral locked in escrow.</p>
-                            </div>
-                            <div class="info-card">
-                                <span class="step-num">03</span>
-                                <h4>Track & Confirm</h4>
-                                <p>Real-time tracking. Verify receipt with QR code/PIN to release funds.</p>
-                            </div>
-                        </div>
-                    </details>
-
-                    <!-- CTA for Startups -->
-                    <div style="text-align: center; margin-top: 40px;">
-                        <p class="mono dim">Looking to build the next big thing?</p>
-                        <br>
-                        <a href="#contact" class="btn-primary btn-alternate" style="margin: 0 auto; display: block; width: fit-content;">Let's Discuss Your Project</a>
-                    </div>
+                <div class="metric-card">
+                    <span class="metric-label">PRODUCTS_LAUNCHED</span>
+                    <span class="metric-value text-blue">2</span>
+                </div>
+                <div class="metric-card">
+                    <span class="metric-label">LINES_OF_CODE</span>
+                    <span class="metric-value text-purple">150k+</span>
+                </div>
+                <div class="metric-card">
+                    <span class="metric-label">WORDS_WRITTEN</span>
+                    <span class="metric-value text-orange">1M+</span>
                 </div>
             </div>
-            </details>
-        </section>
+        </div>
 
-        <!-- Copywriting Samples Section -->
-        <section id="samples" class="section">
-            <div class="glowing-orb orb-3"></div>
-            <details class="section-dropdown" open>
-                <summary><h3 class="section-heading"><span class="mint">05.</span> COPYWRITING SAMPLES</h3></summary>
-                <img src="assets/copywriting.png" alt="Workspace and Writing" style="width: 100%; height: auto; object-fit: contain; border-radius: 12px; margin-bottom: 25px; opacity: 0.9; filter: brightness(0.8);">
+        <!-- Portfolio Section -->
+        <section id="portfolio">
+            <div class="container">
+                <span class="eyebrow">The Proof</span>
+                <h2 class="reveal">Case Studies & Assets</h2>
                 
-                <div class="samples-intro">
-                    <h2 style="color: var(--text-light); margin-bottom: 15px; font-family: var(--font-tech);">Increase your click-through rates by 400% and triple your revenue in 12 months.</h2>
-                    <p class="bio-text" style="padding: 0; max-width: 100%;">
-                        I have over six years of experience in marketing and more than three years of writing for B2B tech and SaaS companies in the US, UK, and the GCC. I’m your go-to guy for compelling copy and content for blogs, YouTube scripts, social media posts, newsletters, landing pages, and more.
-                    </p>
-                    <div style="margin-top: 25px;">
-                        <a href="#contact" class="btn-primary">Schedule a Call</a>
-                        <a href="https://www.linkedin.com/in/prince-dike" target="_blank" class="btn-secondary">Connect on LinkedIn</a>
+                <div class="filter-container reveal">
+                    <button class="filter-btn active" data-filter="all">All Systems</button>
+                    <button class="filter-btn" data-filter="startup">Startups</button>
+                    <button class="filter-btn" data-filter="content">Technical Content</button>
+                    <button class="filter-btn" data-filter="landing">Landing Pages</button>
+                </div>
+                
+                <div class="grid-3 reveal">
+                    <a href="https://www.smscountry.com/blog/what-mfa/" target="_blank" class="card" data-category="content" data-id="TC-001">
+                        <h3 class="font-mono">MFA Deep Dive</h3>
+                        <p class="text-secondary" style="margin: 1rem 0;"><strong>Problem:</strong> Complex security concept. <strong>Solution:</strong> Simplified technical guide. <strong>ROI:</strong> Top ranking for high-intent keywords.</p>
+                        <div class="card-tags">
+                            <span class="tag">Technical Writing</span>
+                            <span class="tag">SEO</span>
+                        </div>
+                    </a>
+                    <a href="https://www.smscountry.com/blog/best-mass-texting-service-churches/" target="_blank" class="card" data-category="content" data-id="TC-002">
+                        <h3 class="font-mono">Mass Texting Guide</h3>
+                        <p class="text-secondary" style="margin: 1rem 0;"><strong>Problem:</strong> Low vertical penetration. <strong>Solution:</strong> Niche-specific guide. <strong>ROI:</strong> Increased vertical adoption.</p>
+                        <div class="card-tags"><span class="tag">Guide</span></div>
+                    </a>
+                    <a href="https://www.smscountry.com/blog/textlocal-alternative/" target="_blank" class="card" data-category="content" data-id="TC-003">
+                        <h3 class="font-mono">Competitor Analysis</h3>
+                        <p class="text-secondary" style="margin: 1rem 0;"><strong>Problem:</strong> High churn competitors. <strong>Solution:</strong> Comparison article. <strong>ROI:</strong> Captured BOFU traffic.</p>
+                        <div class="card-tags"><span class="tag">Comparison</span></div>
+                    </a>
+                    <a href="https://www.telebusocial.com/blog/build-customer-support-team/" target="_blank" class="card" data-category="content" data-id="TC-004">
+                        <h3 class="font-mono">Support Strategy</h3>
+                        <p class="text-secondary" style="margin: 1rem 0;">Strategic content for TelebuSocial focusing on team building and customer retention frameworks.</p>
+                        <div class="card-tags"><span class="tag">Strategy</span></div>
+                    </a>
+                    <a href="https://www.telebusocial.com/blog/happy-easter-messages/" target="_blank" class="card" data-category="content" data-id="TC-005">
+                        <h3 class="font-mono">Viral Templates</h3>
+                        <p class="text-secondary" style="margin: 1rem 0;">High-volume search query targeting. "Happy Easter Messages" templates to boost brand awareness.</p>
+                        <div class="card-tags"><span class="tag">Viral SEO</span></div>
+                    </a>
+                    <a href="https://www.telebusocial.com/blog/telebusocial-vs-interakt/" target="_blank" class="card" data-category="content" data-id="TC-006">
+                        <h3 class="font-mono">Product Battle</h3>
+                        <p class="text-secondary" style="margin: 1rem 0;">Direct comparison content: TelebuSocial vs Interakt. Positioning product strengths against market leader.</p>
+                        <div class="card-tags"><span class="tag">BOFU</span></div>
+                    </a>
+                    <a href="https://www.telebusocial.com/blog/automobile-whatsapp-message-templates/" target="_blank" class="card" data-category="content" data-id="TC-007">
+                        <h3 class="font-mono">Auto Templates</h3>
+                        <p class="text-secondary" style="margin: 1rem 0;">80+ Automobile WhatsApp Message Templates. High-utility content driving recurring traffic.</p>
+                        <div class="card-tags"><span class="tag">Templates</span></div>
+                    </a>
+                    <a href="https://www.pdffiller.com/s/vEnQfNBs1" target="_blank" class="card" data-category="landing" data-id="LP-001">
+                        <h3 class="font-mono">Landing Page V1</h3>
+                        <p class="text-secondary" style="margin: 1rem 0;">High-conversion landing page draft focusing on pain-point agitation and solution awareness.</p>
+                        <div class="card-tags"><span class="tag">Copywriting</span></div>
+                    </a>
+                    <a href="https://www.pdffiller.com/s/doY4r1Oy" target="_blank" class="card" data-category="landing" data-id="LP-002">
+                        <h3 class="font-mono">Landing Page V2</h3>
+                        <p class="text-secondary" style="margin: 1rem 0;">Alternative angle testing social proof and authority bias to increase trust signals.</p>
+                        <div class="card-tags"><span class="tag">CRO</span></div>
+                    </a>
+                    <a href="https://www.pdffiller.com/s/4UwDCRq76" target="_blank" class="card" data-category="landing" data-id="LP-003">
+                        <h3 class="font-mono">Landing Page V3</h3>
+                        <p class="text-secondary" style="margin: 1rem 0;">Direct response focus with clear CTA hierarchy and objection handling.</p>
+                        <div class="card-tags"><span class="tag">Direct Response</span></div>
+                    </a>
+                    <a href="https://yourhelpa.com.ng" target="_blank" class="card" data-category="startup" data-id="ST-001">
+                        <h3 class="font-mono">YourHelpa AI</h3>
+                        <p class="text-secondary" style="margin: 1rem 0;">Architected a WhatsApp e-commerce platform with AI-powered matching. <strong>Status:</strong> <span class="text-green">Live</span></p>
+                        <div class="card-tags"><span class="tag">Founder</span><span class="tag">Python/Django</span></div>
+                    </a>
+                    <a href="https://prawnbox.com" target="_blank" class="card" data-category="startup" data-id="ST-002">
+                        <h3 class="font-mono">Prawnbox</h3>
+                        <p class="text-secondary" style="margin: 1rem 0;">Peer-to-peer logistics startup. Leading Product & Marketing. <strong>Status:</strong> <span class="text-green">Scaling</span></p>
+                        <div class="card-tags"><span class="tag">Co-Founder</span><span class="tag">GTM Strategy</span></div>
+                    </a>
+                </div>
+            </div>
+        </section>
+
+        <!-- Services -->
+        <section id="services" style="background: var(--bg-secondary);">
+            <div class="container">
+                <span class="eyebrow">The Solutions</span>
+                <h2 class="reveal">Engagement Models</h2>
+                <div class="grid-3 reveal">
+                    <div class="card glass-panel">
+                        <h3 class="text-blue">B2B SaaS Copywriting</h3>
+                        <p class="text-secondary" style="margin-top: 1rem;">Landing pages, email sequences, and VSL scripts engineered to convert cold traffic into qualified leads.</p>
+                    </div>
+                    <div class="card glass-panel">
+                        <h3 class="text-purple">Content Operations</h3>
+                        <p class="text-secondary" style="margin-top: 1rem;">Full-stack content operations. From keyword research to publication, building a fortress of organic traffic.</p>
+                    </div>
+                    <div class="card glass-panel">
+                        <h3 class="text-orange">Founder Consulting</h3>
+                        <p class="text-secondary" style="margin-top: 1rem;">Founder-to-Founder advising on product positioning, GTM strategy, and technical messaging alignment.</p>
+                    </div>
+                    <div class="card glass-panel">
+                        <h3 class="text-green">Technical Analysis</h3>
+                        <p class="text-secondary" style="margin-top: 1rem;">Smart Money Concepts (SMC) trading. Analyzing market structure, liquidity pools, and order flow for high-precision entries.</p>
                     </div>
                 </div>
+            </div>
+        </section>
 
-                <h4 class="subsection-title">PUBLISHED ARTICLES</h4>
-                <div class="samples-grid">
-                    <a href="https://www.smscountry.com/blog/best-mass-texting-service-churches/" target="_blank" class="sample-card">
-                        <span class="sample-type">Guide</span>
-                        <h5 class="sample-title">Best 15 Mass Texting Services for Churches (No Matter Your Size)</h5>
-                        <span class="read-link">Read Article ↗</span>
-                    </a>
-                    <a href="https://www.smscountry.com/blog/textlocal-alternative/" target="_blank" class="sample-card">
-                        <span class="sample-type">Comparison</span>
-                        <h5 class="sample-title">Why SMSCountry is the Best Textlocal Alternative + 4 Other Alternatives</h5>
-                        <span class="read-link">Read Article ↗</span>
-                    </a>
-                    <a href="https://www.telebusocial.com/blog/happy-easter-messages/" target="_blank" class="sample-card">
-                        <span class="sample-type">Templates</span>
-                        <h5 class="sample-title">Copy, Tweak and Share Joy This Easter With The Best 20 Happy Easter WhatsApp Message Templates</h5>
-                        <span class="read-link">Read Article ↗</span>
-                    </a>
-                    <a href="https://www.smscountry.com/blog/what-mfa/" target="_blank" class="sample-card">
-                        <span class="sample-type">Technical</span>
-                        <h5 class="sample-title">What is MFA (Multi-factor Authentication), How Does it Work, and What Are the Different Methods?</h5>
-                        <span class="read-link">Read Article ↗</span>
-                    </a>
-                    <a href="https://www.telebusocial.com/blog/build-customer-support-team/" target="_blank" class="sample-card">
-                        <span class="sample-type">Strategy</span>
-                        <h5 class="sample-title">How to Build a Support Team That Puts a Smile on Your Customers’ Faces (7 Foolproof Tactics)</h5>
-                        <span class="read-link">Read Article ↗</span>
-                    </a>
-                    <a href="https://www.telebusocial.com/blog/automobile-whatsapp-message-templates/" target="_blank" class="sample-card">
-                        <span class="sample-type">Templates</span>
-                        <h5 class="sample-title">80 Automobile WhatsApp Message Templates For 2025</h5>
-                        <span class="read-link">Read Article ↗</span>
-                    </a>
-                    <a href="https://www.telebusocial.com/blog/telebusocial-vs-interakt/" target="_blank" class="sample-card">
-                        <span class="sample-type">Comparison</span>
-                        <h5 class="sample-title">Between TelebuSocial vs Interakt Which is Really The Best For Your Business?</h5>
-                        <span class="read-link">Read Article ↗</span>
-                    </a>
+        <!-- Manifesto -->
+        <section id="manifesto">
+            <div class="container">
+                <div class="reveal">
+                    <p class="manifesto-text">
+                        "Code builds the product. <span class="text-purple">Words build the company.</span>"
+                    </p>
+                    <p class="manifesto-text" style="margin-top: 2rem;">
+                        <span class="manifesto-highlight">Complexity is a bug.</span> Clarity is the feature.
+                    </p>
+                    <p class="manifesto-text" style="margin-top: 2rem;">
+                        I don't just write for users; I write for the <span class="text-green">bottom line</span>.
+                    </p>
+                    <p class="manifesto-text" style="margin-top: 2rem;">
+                        The best B2B stories are <span class="text-blue">engineered</span>, not just told.
+                    </p>
+                    <p class="manifesto-text" style="margin-top: 2rem;">
+                        Founder-led logic meets <span class="text-orange">conversion-driven</span> copy.
+                    </p>
                 </div>
+            </div>
+        </section>
 
-                <h4 class="subsection-title">LANDING PAGE DRAFTS</h4>
-                <div class="lp-container">
-                    <a href="https://www.pdffiller.com/s/vEnQfNBs1" target="_blank" class="lp-card">
-                        <svg class="lp-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="9" y1="21" x2="9" y2="9"></line></svg>
-                        <span>Landing Page Draft 01</span>
-                    </a>
-                    <a href="https://www.pdffiller.com/s/doY4r1Oy" target="_blank" class="lp-card">
-                        <svg class="lp-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="9" y1="21" x2="9" y2="9"></line></svg>
-                        <span>Landing Page Draft 02</span>
-                    </a>
-                    <a href="https://www.pdffiller.com/s/4UwDCRq76" target="_blank" class="lp-card">
-                        <svg class="lp-icon" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round"><rect x="3" y="3" width="18" height="18" rx="2" ry="2"></rect><line x1="3" y1="9" x2="21" y2="9"></line><line x1="9" y1="21" x2="9" y2="9"></line></svg>
-                        <span>Landing Page Draft 03</span>
-                    </a>
+        <!-- About Section -->
+        <section id="about" style="background: var(--bg-secondary);">
+            <div class="container">
+                <div class="grid-2 reveal">
+                    <div>
+                        <span class="eyebrow">The Origin</span>
+                        <h2>From <code class="text-blue">git commit</code> to Publish.</h2>
+                    </div>
+                    <div>
+                        <p class="text-secondary" style="font-size: 1.1rem; margin-bottom: 1.5rem;">
+                            I started as a developer, frustrated by how poorly great products were explained. I realized that the best code in the world is useless if no one understands why they need it.
+                        </p>
+                        <p class="text-secondary" style="font-size: 1.1rem;">
+                            Now, I use my technical background to reverse-engineer successful B2B marketing strategies. I don't just write for users; I write for the bottom line.
+                        </p>
+                    </div>
                 </div>
+            </div>
+        </section>
 
-                <div style="text-align: center; margin-top: 60px;">
-                    <h3 style="color: var(--text-light); margin-bottom: 20px; font-family: var(--font-tech);">So, what are you waiting for?</h3>
-                    <a href="#contact" class="btn-primary">
-                        <span class="desktop-text">Get 400% more impressions & 3x your revenue today</span>
-                        <span class="mobile-text">Get 3x Revenue Today</span>
-                    </a>
+        <!-- The Lab (Founder Side) -->
+        <section id="lab">
+            <div class="container">
+                <span class="eyebrow">The Lab</span>
+                <h2 class="reveal">Ventures & Experiments</h2>
+                <div class="grid-2 reveal" style="margin-bottom: 3rem;">
                 </div>
-            </details>
+                
+                <h3 class="font-mono" style="margin-bottom: 1.5rem;">Tech & Creative Stack</h3>
+                <div class="grid-4 reveal">
+                    <div class="tech-item"><span class="text-blue">>></span> Python / Django</div>
+                    <div class="tech-item"><span class="text-blue">>></span> JavaScript / React</div>
+                    <div class="tech-item"><span class="text-blue">>></span> HTML5 / CSS3</div>
+                    <div class="tech-item"><span class="text-blue">>></span> Git / Version Control</div>
+                    <div class="tech-item"><span class="text-purple">>></span> B2B SaaS Copywriting</div>
+                    <div class="tech-item"><span class="text-purple">>></span> Technical Writing</div>
+                    <div class="tech-item"><span class="text-purple">>></span> SEO / Ahrefs</div>
+                    <div class="tech-item"><span class="text-purple">>></span> AI / LLM Training</div>
+                    <div class="tech-item"><span class="text-orange">>></span> Conversion Strategy</div>
+                    <div class="tech-item"><span class="text-orange">>></span> Email Marketing</div>
+                    <div class="tech-item"><span class="text-orange">>></span> Google Analytics</div>
+                    <div class="tech-item"><span class="text-orange">>></span> Brand Storytelling</div>
+                    <div class="tech-item"><span class="text-green">>></span> Technical Analysis (SMC)</div>
+                    <div class="tech-item"><span class="text-purple">>></span> VSL Scripting</div>
+                    <div class="tech-item"><span class="text-purple">>></span> Direct Response</div>
+                    <div class="tech-item"><span class="text-green">>></span> Market Structure</div>
+                    <div class="tech-item"><span class="text-green">>></span> Liquidity Concepts</div>
+                    <div class="tech-item"><span class="text-green">>></span> Order Flow</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Ebook Section -->
+        <section id="ebook" style="background: var(--bg-secondary);">
+            <div class="container">
+                <div class="grid-2 reveal" style="align-items: center;">
+                    <div>
+                        <img src="assets/ebook1.jpg" alt="33 Brutal Truths Ebook Cover" style="width: 100%; height: auto; border-radius: 4px; border: 1px solid var(--border-color); box-shadow: 0 20px 40px -10px rgba(0,0,0,0.2);">
+                    </div>
+                    <div>
+                        <span class="eyebrow">The Manual</span>
+                        <h2>33 Brutal Truths No One Tells You Before You Start a Startup</h2>
+                        <p class="text-secondary" style="margin-bottom: 1.5rem; font-size: 1.1rem;">
+                            The unfiltered reality of building a company. No fluff, no survivorship bias—just the raw lessons learned from the trenches of founder life.
+                        </p>
+                        <ul style="margin-bottom: 2rem; list-style: none;">
+                            <li style="margin-bottom: 0.8rem; display: flex; align-items: flex-start; gap: 10px;"><span class="text-orange font-mono">>></span> <span class="text-secondary">Why "passion" kills more startups than it saves.</span></li>
+                            <li style="margin-bottom: 0.8rem; display: flex; align-items: flex-start; gap: 10px;"><span class="text-orange font-mono">>></span> <span class="text-secondary">The "Technical Debt" of co-founder relationships.</span></li>
+                            <li style="margin-bottom: 0.8rem; display: flex; align-items: flex-start; gap: 10px;"><span class="text-orange font-mono">>></span> <span class="text-secondary">How to sell before you build (and why you must).</span></li>
+                        </ul>
+                        <a href="#" class="btn btn-primary">Buy NOW</a>
+                    </div>
+                </div>
+            </div>
         </section>
 
         <!-- Contact Section -->
-        <section id="contact" class="section contact-section">
-            <h2 class="section-heading"><span class="mint">06.</span> CONTACT</h2>
-            <div class="contact-container">
-                <div class="contact-left">
-                    <img src="https://images.pexels.com/photos/5475760/pexels-photo-5475760.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=1" alt="Abstract Connection" style="width: 100%; height: 200px; object-fit: cover; border-radius: 12px; margin-bottom: 25px; opacity: 0.9; filter: brightness(0.8);">
-                </div>
-                <div class="contact-box">
-                    <p class="mono">EMAIL: <a href="mailto:prince.chidera.dike@gmail.com" class="mint-link">prince.chidera.dike@gmail.com</a></p>
-                    <p class="mono">WHATSAPP: <a href="https://wa.me/2349027231243" class="mint-link">+234 707 098 9034</a></p>
-                    <p class="mono">LOC: Ibadan, Oyo State, Nigeria</p>
+        <section id="contact">
+            <div class="container">
+                <span class="eyebrow">The Connection</span>
+                <h2 class="reveal">Initiate Handshake</h2>
+                
+                <div class="terminal-window reveal" style="max-width: 700px; margin: 2rem auto;">
+                    <div class="terminal-header">
+                        <span class="dot red"></span>
+                        <span class="dot yellow"></span>
+                        <span class="dot green"></span>
+                        <span class="terminal-title">contact_protocol.exe</span>
+                    </div>
+                    <div class="terminal-body">
+                        <p class="font-mono" style="margin-bottom: 1rem;">> initializing secure connection...</p>
+                        <p class="font-mono" style="margin-bottom: 2rem;">> ready for input.</p>
+                        
+                        <form action="mailto:prince.chidera.dike@gmail.com" method="post" enctype="text/plain">
+                            <div class="cmd-line">
+                                <span class="prompt">user@root:~$</span>
+                                <input type="text" name="name" class="terminal-input" placeholder="enter_name" required>
+                            </div>
+                            <div class="cmd-line">
+                                <span class="prompt">user@root:~$</span>
+                                <input type="email" name="email" class="terminal-input" placeholder="enter_email" required>
+                            </div>
+                            <div class="cmd-line">
+                                <span class="prompt">user@root:~$</span>
+                                <input type="text" name="message" class="terminal-input" placeholder="enter_message_payload" required>
+                            </div>
+                            <button type="submit" class="btn btn-primary" style="margin-top: 1rem;">> EXECUTE_SEND</button>
+                        </form>
+                    </div>
                 </div>
             </div>
         </section>
     </main>
 
     <footer>
-        <div class="footer-container">
-            <div class="footer-top">
-                <div class="footer-col brand-col">
-                    <div class="logo">PD<span class="mint">.</span>_</div>
-                    <p class="footer-desc">Bridging the gap between human psychology and technical architecture.</p>
+        <div class="container">
+            <div class="footer-grid">
+                <div>
+                    <a href="#" class="logo" style="font-size: 1.5rem; display: block; margin-bottom: 1rem;">PD<span class="text-blue">.</span></a>
+                    <p class="text-secondary">Bridging the gap between human psychology and technical architecture.</p>
                 </div>
-                <div class="footer-col">
-                    <h4>SITEMAP</h4>
-                    <ul>
-                        <li><a href="#skills">Skills</a></li>
-                        <li><a href="#about">About</a></li>
-                        <li><a href="#experience">Experience</a></li>
-                        <li><a href="#startups">Startups</a></li>
-                        <li><a href="#samples">Samples</a></li>
-                        <li><a href="#contact">Contact</a></li>
-                    </ul>
+                <div>
+                    <h4 class="text-primary" style="margin-bottom: 1rem;">Sitemap</h4>
+                    <a href="#portfolio" class="footer-link">Portfolio</a>
+                    <a href="#services" class="footer-link">Services</a>
+                    <a href="#manifesto" class="footer-link">Manifesto</a>
+                    <a href="#about" class="footer-link">About</a>
+                    <a href="#lab" class="footer-link">The Lab</a>
+                    <a href="#contact" class="footer-link">Contact</a>
                 </div>
-                <div class="footer-col">
-                    <h4>LEGAL</h4>
-                    <ul>
-                        <li><a href="privacy.html">Privacy Policy</a></li>
-                        <li><a href="terms.html">Terms of Service</a></li>
-                        <li><a href="cookie.html">Cookie Policy</a></li>
-                    </ul>
+                <div>
+                    <h4 class="text-primary" style="margin-bottom: 1rem;">Legal</h4>
+                    <a href="privacy.html" class="footer-link">Privacy Policy</a>
+                    <a href="terms.html" class="footer-link">Terms of Service</a>
+                </div>
+                <div>
+                    <h4 class="text-primary" style="margin-bottom: 1rem;">Connect</h4>
+                    <a href="https://www.linkedin.com/in/prince-dike" class="footer-link">LinkedIn</a>
+                    <a href="https://x.com" class="footer-link">X (Twitter)</a>
+                    <a href="mailto:prince.chidera.dike@gmail.com" class="footer-link">Email</a>
                 </div>
             </div>
-            <div class="footer-bottom">
-                <div class="social-links">
-                    <a href="https://wa.me/2349027231243" target="_blank" aria-label="WhatsApp" class="social-icon">
-                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/></svg>
-                    </a>
-                    <a href="https://www.linkedin.com/in/prince-dike" target="_blank" aria-label="LinkedIn" class="social-icon">
-                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M20.447 20.452h-3.554v-5.569c0-1.328-.027-3.037-1.852-3.037-1.853 0-2.136 1.445-2.136 2.939v5.667H9.351V9h3.414v1.561h.046c.477-.9 1.637-1.85 3.37-1.85 3.601 0 4.267 2.37 4.267 5.455v6.286zM5.337 7.433c-1.144 0-2.063-.926-2.063-2.065 0-1.138.92-2.063 2.063-2.063 1.14 0 2.064.925 2.064 2.063 0 1.139-.925 2.065-2.064 2.065zm1.782 13.019H3.555V9h3.564v11.452zM22.225 0H1.771C.792 0 0 .774 0 1.729v20.542C0 23.227.792 24 1.771 24h20.451C23.2 24 24 23.227 24 22.271V1.729C24 .774 23.2 0 22.222 0h.003z"/></svg>
-                    </a>
-                    <a href="mailto:prince.chidera.dike@gmail.com" aria-label="Gmail" class="social-icon">
-                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M24 5.457v13.909c0 .904-.732 1.636-1.636 1.636h-3.819V11.73L12 16.64l-6.545-4.91v9.273H1.636A1.636 1.636 0 0 1 0 19.366V5.457c0-2.023 2.309-3.178 3.927-1.964L5.455 4.64 12 9.548l6.545-4.91 1.528-1.145C21.69 2.28 24 3.434 24 5.457z"/></svg>
-                    </a>
-                    <a href="https://t.me/+2349027231243" target="_blank" aria-label="Telegram" class="social-icon">
-                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M11.944 0A12 12 0 0 0 0 12a12 12 0 0 0 12 12 12 12 0 0 0 12-12A12 12 0 0 0 11.944 0zm4.962 7.224c.1-.002.321.023.465.14a.506.506 0 0 1 .171.325c.016.093.036.306.02.472-.18 1.898-.962 6.502-1.36 8.627-.168.9-.499 1.201-.82 1.23-.696.065-1.225-.46-1.9-.902-1.056-.693-1.653-1.124-2.678-1.8-1.185-.78-.417-1.21.258-1.91.177-.184 3.247-2.977 3.307-3.23.007-.032.014-.15-.056-.212s-.174-.041-.249-.024c-.106.024-1.793 1.14-5.061 3.345-.48.33-.913.49-1.302.48-.428-.008-1.252-.241-1.865-.44-.752-.245-1.349-.374-1.297-.789.027-.216.325-.437.893-.663 3.498-1.524 5.83-2.529 6.998-3.014 3.332-1.386 4.025-1.627 4.476-1.635z"/></svg>
-                    </a>
-                    <a href="https://x.com" target="_blank" aria-label="X" class="social-icon">
-                        <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg"><path d="M18.901 1.153h3.68l-8.04 9.19L24 22.846h-7.406l-5.8-7.584-6.638 7.584H.474l8.6-9.83L0 1.154h7.594l5.243 6.932ZM17.61 20.644h2.039L6.486 3.24H4.298Z"/></svg>
-                    </a>
-                </div>
-                <p class="mono">DESIGNED & BUILT BY PRINCE DIKE © 2025</p>
+            <div style="margin-top: 4rem; text-align: center; border-top: 1px solid var(--border-color); padding-top: 2rem;">
+                <p class="text-secondary font-mono" style="font-size: 0.8rem;">© 2025 PRINCE DIKE. SYSTEM ALL SYSTEMS OPERATIONAL.</p>
             </div>
         </div>
     </footer>
 
-    <script src="scripts/script.js"></script>
+    <script>
+        // Mobile Menu
+        function toggleMenu() {
+            const nav = document.querySelector('.nav-links');
+            nav.classList.toggle('active');
+        }
+
+        // Theme Toggle
+        const toggleButton = document.getElementById('theme-toggle');
+        const html = document.documentElement;
+        const savedTheme = localStorage.getItem('theme');
+        const systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        
+        if (savedTheme) {
+            html.setAttribute('data-theme', savedTheme);
+        } else {
+            html.setAttribute('data-theme', systemTheme);
+        }
+
+        toggleButton.addEventListener('click', () => {
+            const currentTheme = html.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            html.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+        });
+
+        // Scroll Animation
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('active');
+                }
+            });
+        }, { threshold: 0.1 });
+
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+        // Close mobile menu on link click
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                const nav = document.querySelector('.nav-links');
+                nav.classList.remove('active');
+            });
+        });
+        
+        // Portfolio Filtering
+        const filterBtns = document.querySelectorAll('.filter-btn');
+        const cards = document.querySelectorAll('.card[data-category]');
+
+        filterBtns.forEach(btn => {
+            btn.addEventListener('click', () => {
+                // Remove active class from all buttons
+                filterBtns.forEach(b => b.classList.remove('active'));
+                btn.classList.add('active');
+
+                const filter = btn.getAttribute('data-filter');
+
+                cards.forEach(card => {
+                    if (filter === 'all' || card.getAttribute('data-category') === filter) {
+                        card.style.display = 'flex';
+                    } else {
+                        card.style.display = 'none';
+                    }
+                });
+            });
+        });
+    </script>
 </body>
 </html>
