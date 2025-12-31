@@ -707,6 +707,53 @@
             .hamburger.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
             .btn-outline { margin-left: 0; margin-top: 1rem; display: flex; }
         }
+
+        /* Dropdown Menu */
+        .dropdown { position: relative; }
+        .dropdown-content {
+            display: none;
+            position: absolute;
+            background-color: var(--bg-secondary);
+            min-width: 220px;
+            box-shadow: 0 10px 30px rgba(0,0,0,0.1);
+            z-index: 100;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            top: 100%;
+            left: 0;
+            padding: 0.5rem 0;
+        }
+        .dropdown:hover .dropdown-content { display: block; }
+        .dropdown-content a {
+            color: var(--text-primary);
+            padding: 0.75rem 1.5rem;
+            text-decoration: none;
+            display: block;
+            font-size: 0.85rem;
+            transition: all 0.2s;
+        }
+        .dropdown-content a:hover {
+            background-color: var(--bg-primary);
+            color: var(--accent-blue);
+            padding-left: 1.8rem;
+        }
+        @media (max-width: 768px) {
+            .dropdown-content {
+                position: static;
+                display: block;
+                background: transparent;
+                box-shadow: none;
+                border: none;
+                padding: 0;
+                min-width: auto;
+            }
+            .dropdown-content a {
+                padding: 0.5rem 0 0.5rem 1rem;
+                color: var(--text-secondary);
+                font-size: 0.8rem;
+            }
+            .dropdown-content a:hover { padding-left: 1rem; color: var(--accent-blue); }
+        }
     </style>
     
     <style>
@@ -766,7 +813,17 @@
             <div style="display: flex; align-items: center; gap: 1.5rem;">
                 <ul class="nav-links">
                     <li><a href="#portfolio">Portfolio</a></li>
-                    <li><a href="#services">Services</a></li>
+                    <li class="dropdown">
+                        <a href="#services">Services ▾</a>
+                        <div class="dropdown-content">
+                            <a href="saas-copywriting.html">SaaS Copywriting</a>
+                            <a href="content-operations.html">Content Ops</a>
+                            <a href="founder-consulting.html">Founder Consulting</a>
+                            <a href="technical-analysis.html">Technical Analysis</a>
+                            <a href="youtube-seo.html">YouTube SEO</a>
+                            <a href="digital-products.html">Digital Products</a>
+                        </div>
+                    </li>
                     <li><a href="#manifesto">Manifesto</a></li>
                     <li><a href="#about">About</a></li>
                     <li><a href="#lab">The Lab</a></li>
@@ -1187,6 +1244,17 @@
                     <a href="#about" class="footer-link">About</a>
                     <a href="#lab" class="footer-link">The Lab</a>
                     <a href="#contact" class="footer-link">Contact</a>
+                </div>
+                <div>
+                    <h4 class="text-primary" style="margin-bottom: 1rem;">Services</h4>
+                    <ul style="display: flex; flex-direction: column; gap: 0.5rem;">
+                        <li><a href="saas-copywriting.html" class="footer-link">SaaS Copywriting</a></li>
+                        <li><a href="content-operations.html" class="footer-link">Content Ops</a></li>
+                        <li><a href="founder-consulting.html" class="footer-link">Founder Consulting</a></li>
+                        <li><a href="technical-analysis.html" class="footer-link">Technical Analysis</a></li>
+                        <li><a href="youtube-seo.html" class="footer-link">YouTube SEO</a></li>
+                        <li><a href="digital-products.html" class="footer-link">Digital Products</a></li>
+                    </ul>
                 </div>
                 <div>
                     <h4 class="text-primary" style="margin-bottom: 1rem;">Legal</h4>

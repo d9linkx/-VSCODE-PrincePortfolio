@@ -7,8 +7,8 @@
     <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;700&family=Space+Mono&display=swap" rel="stylesheet">
     <style>
         /* Shared Minimal CSS */
-        :root { --bg-primary: #FFFFFF; --bg-secondary: #F2F2F7; --border-color: #D1D1D6; --text-primary: #1C1C1E; --text-secondary: #3A3A3C; --accent-blue: #007AFF; --accent-purple: #5856D6; --accent-orange: #FF9500; --accent-green: #34C759; --font-main: 'Plus Jakarta Sans', sans-serif; --font-mono: 'Space Mono', monospace; --nav-bg: rgba(255, 255, 255, 0.95); }
-        [data-theme="dark"] { --bg-primary: #0A0A0B; --bg-secondary: #161618; --border-color: #2D2D30; --text-primary: #F2F2F2; --text-secondary: #A1A1AA; --nav-bg: rgba(10, 10, 11, 0.95); }
+        :root { --bg-primary: #FFFFFF; --bg-secondary: #F2F2F7; --border-color: #D1D1D6; --text-primary: #1C1C1E; --text-secondary: #3A3A3C; --accent-blue: #007AFF; --accent-purple: #5856D6; --accent-orange: #FF9500; --accent-green: #34C759; --font-main: 'Plus Jakarta Sans', sans-serif; --font-mono: 'Space Mono', monospace; --nav-bg: rgba(255, 255, 255, 0.95); --grid-color: rgba(0, 0, 0, 0.03); }
+        [data-theme="dark"] { --bg-primary: #0A0A0B; --bg-secondary: #161618; --border-color: #2D2D30; --text-primary: #F2F2F2; --text-secondary: #A1A1AA; --nav-bg: rgba(10, 10, 11, 0.95); --grid-color: rgba(255, 255, 255, 0.05); }
         body { background: var(--bg-primary); color: var(--text-primary); font-family: var(--font-main); margin: 0; line-height: 1.6; }
         a { text-decoration: none; color: inherit; transition: color 0.3s ease; }
         .container { max-width: 1000px; margin: 0 auto; padding: 0 1rem; }
@@ -20,6 +20,10 @@
         .navbar { position: fixed; top: 0; left: 0; width: 100%; z-index: 1000; background: var(--nav-bg); backdrop-filter: blur(10px); border-bottom: 1px solid var(--border-color); padding: 1.5rem 0; }
         .nav-container { display: flex; justify-content: space-between; align-items: center; }
         .logo { font-size: 1.5rem; font-weight: 800; letter-spacing: -0.05em; }
+
+        .hero-bg-grid { position: absolute; top: 0; left: 0; width: 100%; height: 100%; background-image: linear-gradient(var(--grid-color) 1px, transparent 1px), linear-gradient(90deg, var(--grid-color) 1px, transparent 1px); background-size: 40px 40px; z-index: -1; pointer-events: none; }
+        .reveal { opacity: 0; transform: translateY(30px); transition: all 0.8s cubic-bezier(0.5, 0, 0, 1); }
+        .reveal.active { opacity: 1; transform: translateY(0); }
         
         /* Image Frame */
         .hero-image-container { position: relative; width: 100%; max-width: 450px; aspect-ratio: 1; margin: 0 auto; display: flex; justify-content: center; align-items: center; }
@@ -35,6 +39,18 @@
         .footer-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 3rem; text-align: left; }
         .footer-link { display: block; margin-bottom: 0.5rem; color: var(--text-secondary); }
         .footer-link:hover { color: var(--accent-blue); }
+
+        /* Dropdown */
+        .dropdown { position: relative; }
+        .dropdown-content { display: none; position: absolute; background-color: var(--bg-secondary); min-width: 220px; box-shadow: 0 10px 30px rgba(0,0,0,0.1); z-index: 100; border: 1px solid var(--border-color); border-radius: 4px; top: 100%; left: 0; padding: 0.5rem 0; }
+        .dropdown:hover .dropdown-content { display: block; }
+        .dropdown-content a { color: var(--text-primary); padding: 0.75rem 1.5rem; text-decoration: none; display: block; font-size: 0.85rem; transition: all 0.2s; }
+        .dropdown-content a:hover { background-color: var(--bg-primary); color: var(--accent-blue); padding-left: 1.8rem; }
+        @media (max-width: 768px) {
+            .dropdown-content { position: static; display: block; background: transparent; box-shadow: none; border: none; padding: 0; min-width: auto; }
+            .dropdown-content a { padding: 0.5rem 0 0.5rem 1rem; color: var(--text-secondary); font-size: 0.8rem; }
+            .dropdown-content a:hover { padding-left: 1rem; color: var(--accent-blue); }
+        }
     </style>
 </head>
 <body>
@@ -44,7 +60,17 @@
             <div style="display: flex; align-items: center; gap: 1.5rem;">
                 <ul class="nav-links" style="display: flex; gap: 2rem; list-style: none;">
                     <li><a href="index.html#portfolio">Portfolio</a></li>
-                    <li><a href="index.html#services">Services</a></li>
+                    <li class="dropdown">
+                        <a href="index.html#services">Services ▾</a>
+                        <div class="dropdown-content">
+                            <a href="saas-copywriting.html">SaaS Copywriting</a>
+                            <a href="content-operations.html">Content Ops</a>
+                            <a href="founder-consulting.html">Founder Consulting</a>
+                            <a href="technical-analysis.html">Technical Analysis</a>
+                            <a href="youtube-seo.html">YouTube SEO</a>
+                            <a href="digital-products.html">Digital Products</a>
+                        </div>
+                    </li>
                     <li><a href="index.html#manifesto">Manifesto</a></li>
                     <li><a href="index.html#about">About</a></li>
                     <li><a href="index.html#lab">The Lab</a></li>
@@ -56,9 +82,10 @@
     </nav>
 
     <main style="padding-top: 120px;">
-        <section>
+        <section style="position: relative;">
+            <div class="hero-bg-grid"></div>
             <div class="container">
-                <div class="grid-2">
+                <div class="grid-2 reveal">
                     <div>
                         <span style="color: var(--accent-purple); font-family: 'Space Mono', monospace;">Service: Content Ops</span>
                         <h1>Build a Fortress of <span class="text-purple">Organic Traffic.</span></h1>
@@ -78,8 +105,8 @@
         </section>
         <section style="background: #F2F2F7;">
             <div class="container">
-                <h2>The Protocol</h2>
-                <ul style="list-style: none; padding: 0; font-size: 1.1rem;">
+                <h2 class="reveal">The Protocol</h2>
+                <ul class="reveal" style="list-style: none; padding: 0; font-size: 1.1rem;">
                     <li style="margin-bottom: 1rem;"><strong>01. Keyword Strategy:</strong> Targeting high-intent, low-competition terms.</li>
                     <li style="margin-bottom: 1rem;"><strong>02. Production Pipeline:</strong> Consistent, high-quality technical articles.</li>
                     <li style="margin-bottom: 1rem;"><strong>03. Distribution:</strong> Repurposing for LinkedIn, X, and Newsletters.</li>
@@ -105,6 +132,15 @@
                     <a href="index.html#contact" class="footer-link">Contact</a>
                 </div>
                 <div>
+                    <h4 style="margin-bottom: 1rem;">Services</h4>
+                    <a href="saas-copywriting.html" class="footer-link">SaaS Copywriting</a>
+                    <a href="content-operations.html" class="footer-link">Content Ops</a>
+                    <a href="founder-consulting.html" class="footer-link">Founder Consulting</a>
+                    <a href="technical-analysis.html" class="footer-link">Technical Analysis</a>
+                    <a href="youtube-seo.html" class="footer-link">YouTube SEO</a>
+                    <a href="digital-products.html" class="footer-link">Digital Products</a>
+                </div>
+                <div>
                     <h4 style="margin-bottom: 1rem;">Legal</h4>
                     <a href="privacy.html" class="footer-link">Privacy Policy</a>
                     <a href="terms.html" class="footer-link">Terms of Service</a>
@@ -121,5 +157,14 @@
             </div>
         </div>
     </footer>
+    <script>
+        // Scroll Reveal
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) entry.target.classList.add('active');
+            });
+        }, { threshold: 0.1 });
+        document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+    </script>
 </body>
 </html>
