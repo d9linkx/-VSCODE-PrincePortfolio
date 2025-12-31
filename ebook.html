@@ -1,0 +1,496 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Download '33 Brutal Truths No One Tells You Before You Start a Startup'. The unfiltered manual for technical founders.">
+    <meta name="author" content="Prince Dike">
+    <meta name="robots" content="index, follow">
+    
+    <title>33 Brutal Truths | Prince Dike</title>
+    
+    <!-- Google Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            /* Palette: Engineered Minimalist */
+            --bg-primary: #FFFFFF;
+            --bg-secondary: #F2F2F7;
+            --border-color: #D1D1D6;
+            
+            --text-primary: #1C1C1E;
+            --text-secondary: #3A3A3C;
+            
+            /* Accents */
+            --accent-blue: #007AFF;
+            --accent-green: #34C759;
+            --accent-orange: #FF9500;
+            --accent-purple: #5856D6;
+            
+            /* Spacing */
+            --container-width: 1000px; /* Narrower for reading focus */
+            --section-spacing: 80px;
+            
+            /* Typography */
+            --font-main: 'Plus Jakarta Sans', sans-serif;
+            --font-mono: 'Space Mono', monospace;
+            --nav-bg: rgba(255, 255, 255, 0.95);
+        }
+
+        [data-theme="dark"] {
+            --bg-primary: #0A0A0B;
+            --bg-secondary: #161618;
+            --border-color: #2D2D30;
+            --text-primary: #F2F2F2;
+            --text-secondary: #A1A1AA;
+            --nav-bg: rgba(10, 10, 11, 0.95);
+        }
+
+        /* Reset & Base */
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        
+        html { scroll-behavior: smooth; }
+        
+        body {
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            font-family: var(--font-main);
+            line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        a { text-decoration: none; color: inherit; transition: color 0.3s ease; }
+        ul { list-style: none; }
+        img { max-width: 100%; display: block; }
+
+        /* Typography */
+        h1, h2, h3, h4 {
+            line-height: 1.2;
+            font-weight: 700;
+            letter-spacing: -0.02em;
+        }
+
+        h1 { font-size: clamp(2.5rem, 5vw, 4rem); margin-bottom: 1.5rem; }
+        h2 { font-size: clamp(2rem, 4vw, 3rem); margin-bottom: 1rem; }
+        h3 { font-size: 1.5rem; margin-bottom: 0.5rem; }
+        
+        .text-blue { color: var(--accent-blue); }
+        .text-purple { color: var(--accent-purple); }
+        .text-orange { color: var(--accent-orange); }
+        .text-green { color: var(--accent-green); }
+        .text-secondary { color: var(--text-secondary); }
+        .font-mono { font-family: var(--font-mono); }
+        
+        .eyebrow {
+            display: inline-block;
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 0.1em;
+            color: var(--accent-blue);
+            margin-bottom: 1rem;
+        }
+
+        /* Layout */
+        .container {
+            width: 90%;
+            max-width: var(--container-width);
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        section { padding: var(--section-spacing) 0; }
+
+        /* Navigation */
+        .navbar {
+            position: fixed;
+            top: 0; left: 0; width: 100%;
+            z-index: 1000;
+            background: var(--nav-bg);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border-color);
+            padding: 1.5rem 0;
+        }
+
+        .nav-container {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .logo { font-size: 1.5rem; font-weight: 800; letter-spacing: -0.05em; }
+
+        .nav-links {
+            display: flex;
+            gap: 2.5rem;
+        }
+
+        .nav-links a {
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--text-primary);
+            opacity: 0.8;
+        }
+
+        .nav-links a:hover {
+            color: var(--accent-blue);
+            opacity: 1;
+        }
+
+        /* Buttons */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem 2rem;
+            border-radius: 4px;
+            font-weight: 700;
+            font-family: var(--font-mono);
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            font-size: 0.875rem;
+            width: fit-content;
+        }
+
+        .btn-primary {
+            background: var(--accent-blue);
+            color: #FFFFFF;
+            border: 1px solid var(--accent-blue);
+        }
+
+        .btn-primary:hover {
+            background: #0062cc;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(0, 122, 255, 0.2);
+        }
+
+        .btn-full { width: 100%; }
+
+        /* Grid Systems */
+        .grid-2 {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 3rem;
+            align-items: center;
+        }
+
+        /* Cards */
+        .card {
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            padding: 2rem;
+            border-radius: 4px;
+        }
+
+        /* Form */
+        .optin-form input {
+            width: 100%;
+            padding: 1rem;
+            margin-bottom: 1rem;
+            border: 1px solid var(--border-color);
+            border-radius: 4px;
+            background: var(--bg-primary);
+            color: var(--text-primary);
+            font-family: var(--font-main);
+        }
+
+        /* Utilities */
+        .text-center { text-align: center; }
+        .mx-auto { margin-left: auto; margin-right: auto; }
+        .mb-2 { margin-bottom: 2rem; }
+        
+        .check-list li {
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            font-size: 1.1rem;
+        }
+
+        /* Theme Toggle */
+        .theme-toggle {
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            color: var(--text-primary);
+        }
+        .sun-icon { display: none; }
+        .moon-icon { display: block; }
+        [data-theme="dark"] .sun-icon { display: block; }
+        [data-theme="dark"] .moon-icon { display: none; }
+
+        .hamburger { display: none; cursor: pointer; }
+        .hamburger span {
+            display: block;
+            width: 25px;
+            height: 2px;
+            background: var(--text-primary);
+            margin: 5px 0;
+            transition: all 0.3s ease-in-out;
+        }
+        .hamburger.active span:nth-child(1) { transform: translateY(7px) rotate(45deg); }
+        .hamburger.active span:nth-child(2) { opacity: 0; }
+        .hamburger.active span:nth-child(3) { transform: translateY(-7px) rotate(-45deg); }
+
+        @media (max-width: 768px) {
+            .grid-2 { grid-template-columns: 1fr; gap: 2rem; }
+            h1 { font-size: 2.5rem; }
+            .nav-links {
+                position: fixed; top: 0; right: -100%; height: 100vh; width: 80%;
+                background: var(--bg-secondary); flex-direction: column; padding: 6rem 2rem;
+                transition: right 0.3s ease; border-left: 1px solid var(--border-color);
+            }
+            .nav-links.active { right: 0; }
+            .hamburger { display: block; z-index: 1001; }
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">PD<span class="text-blue">.</span></a>
+            <div style="display: flex; align-items: center; gap: 1.5rem;">
+                <ul class="nav-links">
+                    <li><a href="index.html#portfolio">Portfolio</a></li>
+                    <li><a href="index.html#services">Services</a></li>
+                    <li><a href="index.html#manifesto">Manifesto</a></li>
+                    <li><a href="index.html#about">About</a></li>
+                    <li><a href="index.html#lab">The Lab</a></li>
+                    <li><a href="index.html#contact" class="text-blue font-mono">Contact_</a></li>
+                </ul>
+                <button id="theme-toggle" class="theme-toggle" aria-label="Toggle Dark Mode">
+                    <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+                    <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+                </button>
+                <div class="hamburger" onclick="toggleMenu()">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main style="padding-top: 80px;">
+        <!-- Hero Section -->
+        <section>
+            <div class="container">
+                <div class="grid-2">
+                    <div>
+                        <span class="eyebrow">The Manual</span>
+                        <h1>Stop Building Products <span class="text-orange">No One Wants.</span></h1>
+                        <p class="text-secondary" style="font-size: 1.2rem; margin-bottom: 2rem;">
+                            Most startup advice is survivorship bias. This is the unfiltered reality of building a company—no fluff, just the raw lessons learned from the trenches of founder life.
+                        </p>
+                        <a href="#download" class="btn btn-primary">Download Free Copy</a>
+                        <p class="font-mono" style="font-size: 0.8rem; margin-top: 1rem; color: var(--text-secondary);">
+                            <span class="text-green">●</span> 100% Free. No Spam.
+                        </p>
+                    </div>
+                    <div style="display: flex; justify-content: center;">
+                        <img src="assets/ebook1.jpg" alt="33 Brutal Truths Ebook Cover" style="max-width: 350px; width: 100%; border-radius: 8px; box-shadow: 0 20px 40px rgba(0,0,0,0.2); transform: rotate(-3deg);">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- The Problem -->
+        <section style="background: var(--bg-secondary);">
+            <div class="container">
+                <div class="text-center mx-auto" style="max-width: 700px;">
+                    <h2 class="mb-2">Why "Passion" Kills More Startups Than It Saves</h2>
+                    <p class="text-secondary" style="font-size: 1.1rem; margin-bottom: 1.5rem;">
+                        You have a great idea. You can write clean code. You've set up the repo. So why are you struggling to get your first 10 users?
+                    </p>
+                    <p class="text-secondary" style="font-size: 1.1rem;">
+                        Because you're building for yourself, not the market. I made the same mistake. I spent months perfecting features that no one asked for, ignoring the brutal truths of business logic.
+                    </p>
+                </div>
+            </div>
+        </section>
+
+        <!-- What's Inside -->
+        <section>
+            <div class="container">
+                <div class="grid-2">
+                    <div>
+                        <span class="eyebrow">Inside The Book</span>
+                        <h2>What You'll Learn</h2>
+                        <p class="text-secondary mb-2">This isn't a textbook. It's a collection of 33 hard-hitting principles derived from blood, sweat, and failed deployments.</p>
+                        
+                        <ul class="check-list">
+                            <li>
+                                <span class="text-blue font-mono">>></span>
+                                <span><strong>The Co-Founder Trap:</strong> Why your best friend might be your worst business partner.</span>
+                            </li>
+                            <li>
+                                <span class="text-blue font-mono">>></span>
+                                <span><strong>Sales > Code:</strong> Why technical founders fail to sell, and how to fix it immediately.</span>
+                            </li>
+                            <li>
+                                <span class="text-blue font-mono">>></span>
+                                <span><strong>The MVP Lie:</strong> Why "Minimum Viable Product" often becomes "Minimum Valuable Product".</span>
+                            </li>
+                            <li>
+                                <span class="text-blue font-mono">>></span>
+                                <span><strong>Pricing Psychology:</strong> How to charge what you're worth, not what you think they'll pay.</span>
+                            </li>
+                        </ul>
+                    </div>
+                    <div class="card">
+                        <h3 class="font-mono text-center" style="margin-bottom: 2rem;">Chapter Preview</h3>
+                        <div style="border-left: 2px solid var(--accent-orange); padding-left: 1.5rem; margin-bottom: 1.5rem;">
+                            <h4 style="font-size: 1rem; margin-bottom: 0.5rem;">Truth #7: Complexity is a Bug</h4>
+                            <p class="text-secondary" style="font-size: 0.9rem;">"If you can't explain your product's value in one sentence, you don't have a product; you have a hobby. Complexity is where revenue goes to die."</p>
+                        </div>
+                        <div style="border-left: 2px solid var(--accent-purple); padding-left: 1.5rem;">
+                            <h4 style="font-size: 1rem; margin-bottom: 0.5rem;">Truth #12: Feedback is Data</h4>
+                            <p class="text-secondary" style="font-size: 0.9rem;">"Your mom's opinion doesn't count. Your friend's opinion doesn't count. The only opinion that matters is the one accompanied by a credit card transaction."</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- About Author -->
+        <section style="background: var(--bg-secondary);">
+            <div class="container">
+                <div class="grid-2">
+                    <div style="order: 2; text-align: left;">
+                        <span class="eyebrow">The Author</span>
+                        <h2>Who is Prince Dike?</h2>
+                        <p class="text-secondary" style="margin-bottom: 1rem;">
+                            I'm a Software Developer turned B2B SaaS Copywriter. I've built products that failed and products that scaled.
+                        </p>
+                        <p class="text-secondary" style="margin-bottom: 1rem;">
+                            I wrote this book because I was tired of seeing brilliant technical founders build amazing solutions for problems that didn't exist.
+                        </p>
+                        <p class="text-secondary">
+                            My goal is simple: to bridge the gap between technical complexity and market-ready clarity.
+                        </p>
+                    </div>
+                    <div style="order: 1; display: flex; justify-content: center;">
+                        <div style="position: relative; width: 250px; height: 250px; border-radius: 50%; overflow: hidden; border: 4px solid var(--bg-primary);">
+                            <img src="assets/prince.jpg" alt="Prince Dike" style="width: 100%; height: 100%; object-fit: cover;">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- CTA / Download Section -->
+        <section id="download">
+            <div class="container">
+                <div class="card mx-auto" style="max-width: 600px; border-top: 4px solid var(--accent-blue);">
+                    <div class="text-center">
+                        <h2 style="margin-bottom: 0.5rem;">Get The Manual</h2>
+                        <p class="text-secondary mb-2">Join other founders who are building smarter.</p>
+                    </div>
+                    
+                    <form action="mailto:prince.chidera.dike@gmail.com" method="post" enctype="text/plain" class="optin-form">
+                        <div>
+                            <label for="name" style="display: block; margin-bottom: 0.5rem; font-size: 0.9rem; font-weight: 600;">First Name</label>
+                            <input type="text" id="name" name="name" placeholder="Elon" required>
+                        </div>
+                        <div>
+                            <label for="email" style="display: block; margin-bottom: 0.5rem; font-size: 0.9rem; font-weight: 600;">Email Address</label>
+                            <input type="email" id="email" name="email" placeholder="elon@spacex.com" required>
+                        </div>
+                        <button type="submit" class="btn btn-primary btn-full">Send Me The Ebook</button>
+                    </form>
+                    
+                    <p class="text-center" style="font-size: 0.8rem; margin-top: 1.5rem; color: var(--text-secondary);">
+                        By downloading, you agree to receive occasional updates on building better products. Unsubscribe anytime.
+                    </p>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer style="background: var(--bg-secondary); padding: 4rem 0; border-top: 1px solid var(--border-color);">
+        <div class="container">
+            <div class="grid-2" style="grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 3rem; align-items: start;">
+                <div>
+                    <a href="index.html" class="logo" style="font-size: 1.5rem; display: block; margin-bottom: 1rem;">PD<span class="text-blue">.</span></a>
+                    <p class="text-secondary">Bridging the gap between human psychology and technical architecture.</p>
+                </div>
+                <div>
+                    <h4 class="text-primary" style="margin-bottom: 1rem;">Sitemap</h4>
+                    <ul style="display: flex; flex-direction: column; gap: 0.5rem;">
+                        <li><a href="index.html#portfolio" class="text-secondary">Portfolio</a></li>
+                        <li><a href="index.html#services" class="text-secondary">Services</a></li>
+                        <li><a href="index.html#manifesto" class="text-secondary">Manifesto</a></li>
+                        <li><a href="index.html#about" class="text-secondary">About</a></li>
+                        <li><a href="index.html#lab" class="text-secondary">The Lab</a></li>
+                        <li><a href="index.html#contact" class="text-secondary">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-primary" style="margin-bottom: 1rem;">Legal</h4>
+                    <ul style="display: flex; flex-direction: column; gap: 0.5rem;">
+                        <li><a href="privacy.html" class="text-secondary">Privacy Policy</a></li>
+                        <li><a href="terms.html" class="text-secondary">Terms of Service</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="text-primary" style="margin-bottom: 1rem;">Connect</h4>
+                    <ul style="display: flex; flex-direction: column; gap: 0.5rem;">
+                        <li><a href="https://www.linkedin.com/in/prince-dike" class="text-secondary">LinkedIn</a></li>
+                        <li><a href="https://x.com" class="text-secondary">X (Twitter)</a></li>
+                        <li><a href="mailto:prince.chidera.dike@gmail.com" class="text-secondary">Email</a></li>
+                    </ul>
+                </div>
+            </div>
+            <div style="margin-top: 4rem; text-align: center; border-top: 1px solid var(--border-color); padding-top: 2rem;">
+                <p class="text-secondary font-mono" style="font-size: 0.8rem;">© 2025 PRINCE DIKE. SYSTEM ALL SYSTEMS OPERATIONAL.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile Menu
+        function toggleMenu() {
+            const nav = document.querySelector('.nav-links');
+            const hamburger = document.querySelector('.hamburger');
+            nav.classList.toggle('active');
+            hamburger.classList.toggle('active');
+        }
+
+        // Close mobile menu on link click
+        document.querySelectorAll('.nav-links a').forEach(link => {
+            link.addEventListener('click', () => {
+                const nav = document.querySelector('.nav-links');
+                const hamburger = document.querySelector('.hamburger');
+                nav.classList.remove('active');
+                hamburger.classList.remove('active');
+            });
+        });
+
+        // Theme Toggle Logic
+        const toggleButton = document.getElementById('theme-toggle');
+        const html = document.documentElement;
+        const savedTheme = localStorage.getItem('theme');
+        const systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        
+        if (savedTheme) {
+            html.setAttribute('data-theme', savedTheme);
+        } else {
+            html.setAttribute('data-theme', systemTheme);
+        }
+
+        toggleButton.addEventListener('click', () => {
+            const currentTheme = html.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            html.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+        });
+    </script>
+</body>
+</html>
