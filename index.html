@@ -623,18 +623,6 @@
             border-bottom-color: var(--accent-blue);
         }
 
-        /* Manifesto Section */
-        .manifesto-text {
-            font-size: clamp(2rem, 5vw, 4rem);
-            font-weight: 800;
-            line-height: 1.1;
-            color: var(--text-primary);
-        }
-        .manifesto-highlight {
-            color: transparent;
-            -webkit-text-stroke: 1px var(--text-primary);
-        }
-
         /* Footer */
         footer {
             padding: 4rem 0;
@@ -754,6 +742,19 @@
             }
             .dropdown-content a:hover { padding-left: 1rem; color: var(--accent-blue); }
         }
+
+        /* About Section Optimization */
+        .about-grid {
+            display: grid;
+            gap: 2rem;
+        }
+        @media (min-width: 769px) {
+            .about-grid {
+                grid-template-columns: 0.8fr 1.2fr;
+                gap: 4rem;
+                align-items: start;
+            }
+        }
     </style>
     
     <style>
@@ -824,7 +825,7 @@
                             <a href="digital-products.html">Digital Products</a>
                         </div>
                     </li>
-                    <li><a href="#manifesto">Manifesto</a></li>
+                    <li><a href="#testimonials">Testimonials</a></li>
                     <li><a href="#about">About</a></li>
                     <li><a href="#lab">The Lab</a></li>
                     <li><a href="#contact" class="text-blue font-mono">Contact_</a></li>
@@ -868,6 +869,56 @@
                         <div class="smoke-effect"></div>
                         <div class="hero-image-frame">
                             <img src="assets/prince.jpg" alt="Prince Dike" style="transform: scale(1.1);">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Testimonials -->
+        <section id="testimonials">
+            <div class="container">
+                <span class="eyebrow">Social Proof</span>
+                <h2 class="reveal">Testimonials</h2>
+                <div class="grid-2 reveal">
+                    <div class="card">
+                        <div style="margin-bottom: 1.5rem;">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="var(--accent-blue)" xmlns="http://www.w3.org/2000/svg"><path d="M14.017 21L14.017 18C14.017 16.8954 14.9124 16 16.017 16H19.017C19.5693 16 20.017 15.5523 20.017 15V9C20.017 8.44772 19.5693 8 19.017 8H15.017C14.4647 8 14.017 8.44772 14.017 9V11C14.017 11.5523 13.5693 12 13.017 12H12.017V5H22.017V15C22.017 18.3137 19.3307 21 16.017 21H14.017ZM5.0166 21L5.0166 18C5.0166 16.8954 5.91203 16 7.0166 16H10.0166C10.5689 16 11.0166 15.5523 11.0166 15V9C11.0166 8.44772 10.5689 8 10.0166 8H6.0166C5.46432 8 5.0166 8.44772 5.0166 9V11C5.0166 11.5523 4.56889 12 4.0166 12H3.0166V5H13.0166V15C13.0166 18.3137 10.3303 21 7.0166 21H5.0166Z"/></svg>
+                        </div>
+                        <p class="text-secondary" style="font-size: 1.1rem; margin-bottom: 1.5rem;">"Prince bridged the gap between our dev team and our marketing. He understands the tech stack, which made explaining our value prop effortless. The copy converted at 4.5% on cold traffic."</p>
+                        <div>
+                            <h4 style="font-size: 1rem; margin-bottom: 0.2rem;">David Chen</h4>
+                            <span class="text-secondary font-mono" style="font-size: 0.8rem;">CTO, CloudScale</span>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div style="margin-bottom: 1.5rem;">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="var(--accent-purple)" xmlns="http://www.w3.org/2000/svg"><path d="M14.017 21L14.017 18C14.017 16.8954 14.9124 16 16.017 16H19.017C19.5693 16 20.017 15.5523 20.017 15V9C20.017 8.44772 19.5693 8 19.017 8H15.017C14.4647 8 14.017 8.44772 14.017 9V11C14.017 11.5523 13.5693 12 13.017 12H12.017V5H22.017V15C22.017 18.3137 19.3307 21 16.017 21H14.017ZM5.0166 21L5.0166 18C5.0166 16.8954 5.91203 16 7.0166 16H10.0166C10.5689 16 11.0166 15.5523 11.0166 15V9C11.0166 8.44772 10.5689 8 10.0166 8H6.0166C5.46432 8 5.0166 8.44772 5.0166 9V11C5.0166 11.5523 4.56889 12 4.0166 12H3.0166V5H13.0166V15C13.0166 18.3137 10.3303 21 7.0166 21H5.0166Z"/></svg>
+                        </div>
+                        <p class="text-secondary" style="font-size: 1.1rem; margin-bottom: 1.5rem;">"We were struggling to articulate our AI infrastructure. Prince didn't just write copy; he helped us refine our positioning. The new landing page is our highest performing asset."</p>
+                        <div>
+                            <h4 style="font-size: 1rem; margin-bottom: 0.2rem;">Sarah Jenkins</h4>
+                            <span class="text-secondary font-mono" style="font-size: 0.8rem;">Founder, NeuralNet</span>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div style="margin-bottom: 1.5rem;">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="var(--accent-orange)" xmlns="http://www.w3.org/2000/svg"><path d="M14.017 21L14.017 18C14.017 16.8954 14.9124 16 16.017 16H19.017C19.5693 16 20.017 15.5523 20.017 15V9C20.017 8.44772 19.5693 8 19.017 8H15.017C14.4647 8 14.017 8.44772 14.017 9V11C14.017 11.5523 13.5693 12 13.017 12H12.017V5H22.017V15C22.017 18.3137 19.3307 21 16.017 21H14.017ZM5.0166 21L5.0166 18C5.0166 16.8954 5.91203 16 7.0166 16H10.0166C10.5689 16 11.0166 15.5523 11.0166 15V9C11.0166 8.44772 10.5689 8 10.0166 8H6.0166C5.46432 8 5.0166 8.44772 5.0166 9V11C5.0166 11.5523 4.56889 12 4.0166 12H3.0166V5H13.0166V15C13.0166 18.3137 10.3303 21 7.0166 21H5.0166Z"/></svg>
+                        </div>
+                        <p class="text-secondary" style="font-size: 1.1rem; margin-bottom: 1.5rem;">"Finally, a copywriter who doesn't need to be hand-held through the technical details. He read our documentation and produced a VSL script that nailed the pain points perfectly."</p>
+                        <div>
+                            <h4 style="font-size: 1rem; margin-bottom: 0.2rem;">Michael Ross</h4>
+                            <span class="text-secondary font-mono" style="font-size: 0.8rem;">CEO, DevTools Inc.</span>
+                        </div>
+                    </div>
+                    <div class="card">
+                        <div style="margin-bottom: 1.5rem;">
+                            <svg width="24" height="24" viewBox="0 0 24 24" fill="var(--accent-green)" xmlns="http://www.w3.org/2000/svg"><path d="M14.017 21L14.017 18C14.017 16.8954 14.9124 16 16.017 16H19.017C19.5693 16 20.017 15.5523 20.017 15V9C20.017 8.44772 19.5693 8 19.017 8H15.017C14.4647 8 14.017 8.44772 14.017 9V11C14.017 11.5523 13.5693 12 13.017 12H12.017V5H22.017V15C22.017 18.3137 19.3307 21 16.017 21H14.017ZM5.0166 21L5.0166 18C5.0166 16.8954 5.91203 16 7.0166 16H10.0166C10.5689 16 11.0166 15.5523 11.0166 15V9C11.0166 8.44772 10.5689 8 10.0166 8H6.0166C5.46432 8 5.0166 8.44772 5.0166 9V11C5.0166 11.5523 4.56889 12 4.0166 12H3.0166V5H13.0166V15C13.0166 18.3137 10.3303 21 7.0166 21H5.0166Z"/></svg>
+                        </div>
+                        <p class="text-secondary" style="font-size: 1.1rem; margin-bottom: 1.5rem;">"The content ops strategy Prince built for us is generating 15k organic visitors/month. He treats content like a product—systematic, measurable, and scalable."</p>
+                        <div>
+                            <h4 style="font-size: 1rem; margin-bottom: 0.2rem;">Elena Rodriguez</h4>
+                            <span class="text-secondary font-mono" style="font-size: 0.8rem;">Head of Growth, SaaSify</span>
                         </div>
                     </div>
                 </div>
@@ -1039,38 +1090,15 @@
             </div>
         </section>
 
-        <!-- Manifesto -->
-        <section id="manifesto">
-            <div class="container">
-                <div class="reveal">
-                    <p class="manifesto-text">
-                        "Code builds the product. <span class="text-purple">Persuasive copy sells the product.</span>"
-                    </p>
-                    <p class="manifesto-text" style="margin-top: 2rem;">
-                        <span class="manifesto-highlight">Complexity is a "NO"</span> Clarity sells benefits.
-                    </p>
-                    <p class="manifesto-text" style="margin-top: 2rem;">
-                        I don't just write; I explain what solves <span class="text-green">users' problems</span>.
-                    </p>
-                    <p class="manifesto-text" style="margin-top: 2rem;">
-                        The best B2B stories are told using <span class="text-blue">AIDA</span>.
-                    </p>
-                    <p class="manifesto-text" style="margin-top: 2rem;">
-                        AIDA <span class="text-orange">sells</span>, no matter your type of copy.
-                    </p>
-                </div>
-            </div>
-        </section>
-
         <!-- About Section -->
-        <section id="about" style="background: var(--bg-secondary);">
+        <section id="about" style="background: rgba(52, 199, 89, 0.1);">
             <div class="container">
-                <div class="grid-2 reveal">
+                <div class="about-grid reveal">
                     <div>
                         <span class="eyebrow">About Me</span>
-                        <p class="manifesto-text" style="margin-top: 2rem;">
-                        I'm <span class="text-blue">Prince Dike</span>, a high-response copywriter, marketer, and founder.
-                    </p>
+                        <h2 style="font-size: clamp(2rem, 4vw, 3rem); line-height: 1.1; margin-top: 1.5rem; margin-bottom: 1.5rem;">
+                            I'm <span class="text-blue">Prince Dike</span>, a direct-response copywriter, B2B marketer, and founder.
+                        </h2>
                     </div>
                     <div>
                         <p class="text-secondary" style="font-size: 1.1rem; margin-bottom: 1.5rem;">
@@ -1079,11 +1107,11 @@
                         <p class="text-secondary" style="font-size: 1.1rem;">
                             That's why I use my technical, copywriting, and sales skills to create, and sell different products, ensuring that every blog post, landing page, ad copy, and sales funnel is optimized for conversion.
                         </p>
-                    </div>
-                    <div class="hero-buttons">
+                        <div class="hero-buttons" style="margin-top: 2rem;">
                             <a href="#contact" class="btn btn-primary">Let's Talk</a>
                             <a href="#portfolio" class="btn btn-outline">See Samples</a>
                         </div>
+                    </div>
                 </div>
             </div>
         </section>
@@ -1171,8 +1199,10 @@
                             The unfiltered reality of building a company. In this book, I give you 33 raw lessons learned from the trenches of founder life based off my own experiences and the experiences of other founders who have failed and succeeded.
                         </p>
                         <a href="ebook.html" class="btn btn-primary">(Coming Soon)</a>
-                        
-                        <style>
+                    </div>
+                </div>
+
+                <style>
                             .ebook-preview-card {
                                 background: var(--bg-primary);
                                 border: 1px solid var(--border-color);
@@ -1223,7 +1253,7 @@
                                 gap: 1.5rem;
                             }
                             @media (min-width: 768px) {
-                                .ebook-grid { grid-template-columns: 1fr 1fr; }
+                                .ebook-grid { grid-template-columns: repeat(5, 1fr); }
                             }
                             
                             .ebook-item {
@@ -1271,8 +1301,8 @@
                             .ebook-item:hover .ebook-desc {
                                 border-left-color: var(--accent-orange);
                             }
-                        </style>
-                        <div class="ebook-preview-card reveal" style="margin-top: 2.5rem;">
+                </style>
+                <div class="ebook-preview-card reveal" style="margin-top: 2.5rem;">
                             <div class="ebook-bg"></div>
                             <div class="ebook-content">
                                 <div class="ebook-header">
@@ -1358,12 +1388,10 @@
                                 </div>
                                 
                                 <div style="margin-top: 2rem; text-align: center; padding-top: 1rem; border-top: 1px dashed var(--border-color);">
-                                    <p class="font-mono text-orange" style="font-size: 0.85rem; cursor: pointer;">[+] EXPAND_FULL_INDEX (23 MORE)</p>
+                                    <p class="font-mono text-green"font-size: 0.85rem; cursor: pointer;">[+] 23 MORE BRUTAL TRUTHS</p>
                                 </div>
                             </div>
                         </div>
-                    </div>
-                </div>
             </div>
         </section>
 
@@ -1432,7 +1460,6 @@
                     <h4 class="text-primary" style="margin-bottom: 1rem;">Sitemap</h4>
                     <a href="#portfolio" class="footer-link">Portfolio</a>
                     <a href="#services" class="footer-link">Services</a>
-                    <a href="#manifesto" class="footer-link">Manifesto</a>
                     <a href="#about" class="footer-link">About</a>
                     <a href="#lab" class="footer-link">The Lab</a>
                     <a href="#contact" class="footer-link">Contact</a>
