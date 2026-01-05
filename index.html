@@ -755,6 +755,19 @@
                 align-items: start;
             }
         }
+        .ebook-cover-img {
+            width: 100%;
+            height: auto;
+            border-radius: 4px;
+            border: 1px solid var(--border-color);
+            box-shadow: 0 20px 40px -10px rgba(0,0,0,0.2);
+        }
+        @media (min-width: 769px) {
+            .ebook-cover-img {
+                width: 50%;
+                margin: 0 auto;
+            }
+        }
     </style>
     
     <style>
@@ -1205,7 +1218,7 @@
             <div class="container">
                 <div class="grid-2 reveal" style="align-items: center;">
                     <div>
-                        <img src="assets/ebook1.jpg" alt="33 Brutal Truths Ebook Cover" style="width: 100%; height: auto; border-radius: 4px; border: 1px solid var(--border-color); box-shadow: 0 20px 40px -10px rgba(0,0,0,0.2);">
+                        <img src="assets/ebook1.jpg" alt="33 Brutal Truths Ebook Cover" class="ebook-cover-img">
                     </div>
                     <div>
                         <span class="eyebrow">For Early-Stage Founders</span>
