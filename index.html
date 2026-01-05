@@ -490,7 +490,7 @@
             opacity: 0.3;
             transition: all 0.3s ease;
         }
-        .card:hover .card-arrow { opacity: 1; transform: translate(3px, -3px); }
+        .card:hover .card-arrow, .contact-card:hover .card-arrow { opacity: 1; transform: translate(3px, -3px); }
 
         /* Skills Categorization */
         .skills-grid {
@@ -798,6 +798,7 @@
             color: inherit;
             transition: all 0.3s ease;
             position: relative;
+            cursor: pointer;
         }
         .contact-card:hover {
             transform: translateY(-5px);
@@ -1467,17 +1468,19 @@
         <section id="contact">
             <div class="container">
                 <div class="text-center">
-                    <span class="eyebrow">Let's Connect</span>
-                    <h2 class="reveal">Ready to Build Something Great?</h2>
+                    <span class="eyebrow">Contact Me</span>
+                    <h2 class="reveal">Have a project, a question, or an idea?</h2>
                     <p class="text-secondary reveal" style="max-width: 600px; margin: 0 auto 3rem auto; font-size: 1.1rem;">
-                        Have a project, a question, or an idea? My inbox is always open. Let's discuss how we can work together to achieve your goals.
+                        My inbox is always open. Let's discuss how we can work together to achieve your goals.
                     </p>
                     <div class="contact-cta-grid reveal">
                         <a href="mailto:prince.chidera.dike@gmail.com" class="contact-card">
+                            <svg class="card-arrow" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
                             <h3 class="font-mono text-blue">Send an Email</h3>
                             <p class="text-secondary">prince.chidera.dike@gmail.com</p>
                         </a>
                         <a href="https://wa.me/2349027231243" target="_blank" class="contact-card">
+                            <svg class="card-arrow" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
                             <h3 class="font-mono text-green">Chat on WhatsApp</h3>
                             <p class="text-secondary">+234 902 723 1243</p>
                         </a>
