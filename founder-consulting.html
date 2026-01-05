@@ -7,7 +7,7 @@
     <style>
         :root { --bg-primary: #FFFFFF; --bg-secondary: #F2F2F7; --border-color: #D1D1D6; --text-primary: #1C1C1E; --text-secondary: #3A3A3C; --accent-blue: #007AFF; --accent-green: #34C759; --accent-orange: #FF9500; --accent-purple: #5856D6; --font-main: 'Plus Jakarta Sans', sans-serif; --font-mono: 'Space Mono', monospace; --nav-bg: rgba(255, 255, 255, 0.95); --grid-color: rgba(0, 0, 0, 0.03); }
         [data-theme="dark"] { --bg-primary: #0A0A0B; --bg-secondary: #161618; --border-color: #2D2D30; --text-primary: #F2F2F2; --text-secondary: #A1A1AA; --nav-bg: rgba(10, 10, 11, 0.95); --grid-color: rgba(255, 255, 255, 0.05); }
-        body { font-family: 'Plus Jakarta Sans', sans-serif; margin: 0; color: #1C1C1E; line-height: 1.6; }
+        body { background-color: var(--bg-primary); color: var(--text-primary); font-family: var(--font-main); margin: 0; line-height: 1.6; overflow-x: hidden; }
         a { text-decoration: none; color: inherit; transition: color 0.3s ease; }
         .container { width: 90%; max-width: 1200px; margin: 0 auto; padding: 0 1rem; }
         .btn { display: inline-flex; align-items: center; justify-content: center; padding: 1rem 2rem; border-radius: 4px; font-weight: 700; font-family: var(--font-mono); text-transform: uppercase; letter-spacing: 0.05em; transition: all 0.3s ease; cursor: pointer; font-size: 0.875rem; }
