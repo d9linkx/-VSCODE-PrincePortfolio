@@ -238,7 +238,7 @@
                 </div>
             </div>
             <div style="margin-top: 4rem; text-align: center; border-top: 1px solid var(--border-color); padding-top: 2rem;">
-                <p class="text-secondary font-mono" style="font-size: 0.8rem;">© 2025 PRINCE DIKE. SYSTEM ALL SYSTEMS OPERATIONAL.</p>
+                <p class="text-secondary font-mono" style="font-size: 0.8rem;">© <span id="copyright-year"></span> PRINCE DIKE. SYSTEM ALL SYSTEMS OPERATIONAL.</p>
             </div>
         </div>
     </footer>
@@ -280,6 +280,9 @@
             html.setAttribute('data-theme', newTheme);
             localStorage.setItem('theme', newTheme);
         });
+
+        // Dynamic Copyright Year
+        document.getElementById('copyright-year').textContent = new Date().getFullYear();
     </script>
 </body>
 </html>
