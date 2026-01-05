@@ -76,6 +76,8 @@
                 color: #1a1a1a;
             }
         }
+        .logo img { content: url('assets/princedikelogo1.png'); }
+        [data-theme="dark"] .logo img { content: url('assets/princedikelogo2.png'); }
     </style>
 </head>
 <body>
@@ -83,7 +85,9 @@
     <div class="scanline"></div>
 
     <nav class="navbar">
-        <div class="logo"><a href="/">PD<span class="mint">.</span>_</a></div>
+        <a href="/" class="logo">
+            <img src="assets/princedikelogo1.png" alt="Prince Dike" style="height: 45px; width: auto;">
+        </a>
         <ul class="nav-links">
             <li><a href="/#skills">01. // SKILLS</a></li>
             <li><a href="/#about">02. // ABOUT</a></li>
@@ -139,7 +143,9 @@
         <div class="footer-container">
             <div class="footer-top">
                 <div class="footer-col brand-col">
-                    <div class="logo">PD<span class="mint">.</span>_</div>
+                    <a href="/" class="logo" style="display: block; margin-bottom: 1rem;">
+                        <img src="assets/princedikelogo1.png" alt="Prince Dike" style="height: 45px; width: auto;">
+                    </a>
                     <p class="footer-desc">Bridging the gap between human psychology and technical architecture.</p>
                 </div>
                 <div class="footer-col">

@@ -47,6 +47,8 @@
             --text-secondary: #A1A1AA;
             --nav-bg: rgba(10, 10, 11, 0.95);
         }
+        .logo img { content: url('assets/princedikelogo1.png'); }
+        [data-theme="dark"] .logo img { content: url('assets/princedikelogo2.png'); }
 
         /* Reset & Base */
         *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
@@ -147,7 +149,9 @@
     <nav class="navbar">
         <div class="container nav-container">
             <a href="index.html" class="logo">
-                style="display: flex; align-items: center; gap: 1.5rem;">
+                <img src="assets/princedikelogo1.png" alt="Prince Dike" style="height: 45px; width: auto;">
+            </a>
+            <div style="display: flex; align-items: center; gap: 1.5rem;">
                 <ul class="nav-links">
                     <li><a href="index.html#portfolio">Portfolio</a></li>
                     <li><a href="index.html#services">Services</a></li>
@@ -207,8 +211,10 @@
         <div class="container">
             <div class="grid-2" style="display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr)); gap: 3rem; align-items: start;">
                 <div>
-                    
-                    
+                    <a href="index.html" class="logo" style="display: block; margin-bottom: 1rem;">
+                        <img src="assets/princedikelogo1.png" alt="Prince Dike" style="height: 45px; width: auto;">
+                    </a>
+                    <p class="text-secondary">Bridging the gap between human psychology and technical architecture.</p>
                 </div>
                 <div>
                     <h4 class="text-primary" style="margin-bottom: 1rem;">Sitemap</h4>

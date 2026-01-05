@@ -9,6 +9,8 @@
         /* Shared Minimal CSS */
         :root { --bg-primary: #FFFFFF; --bg-secondary: #F2F2F7; --border-color: #D1D1D6; --text-primary: #1C1C1E; --text-secondary: #3A3A3C; --accent-blue: #007AFF; --accent-green: #34C759; --accent-orange: #FF9500; --accent-purple: #5856D6; --font-main: 'Plus Jakarta Sans', sans-serif; --font-mono: 'Space Mono', monospace; --nav-bg: rgba(255, 255, 255, 0.95); --grid-color: rgba(0, 0, 0, 0.03); }
         [data-theme="dark"] { --bg-primary: #0A0A0B; --bg-secondary: #161618; --border-color: #2D2D30; --text-primary: #F2F2F2; --text-secondary: #A1A1AA; --nav-bg: rgba(10, 10, 11, 0.95); --grid-color: rgba(255, 255, 255, 0.05); }
+        .logo img { content: url('assets/princedikelogo1.png'); }
+        [data-theme="dark"] .logo img { content: url('assets/princedikelogo2.png'); }
         body { background-color: var(--bg-primary); color: var(--text-primary); font-family: var(--font-main); margin: 0; line-height: 1.6; overflow-x: hidden; }
         a { text-decoration: none; color: inherit; transition: color 0.3s ease; }
         .container { width: 90%; max-width: 1200px; margin: 0 auto; padding: 0 1rem; }
@@ -96,7 +98,7 @@
     <nav class="navbar">
         <div class="container nav-container">
             <a href="index.html" class="logo">
-                <img src="assets/logo.png" alt="Prince Dike" style="height: 45px; width: auto;">
+                <img src="assets/princedikelogo1.png" alt="Prince Dike" style="height: 45px; width: auto;">
             </a>
             <div style="display: flex; align-items: center; gap: 1.5rem;">
                 <ul class="nav-links">
@@ -174,7 +176,7 @@
             <div class="footer-grid">
                 <div>
                     <a href="index.html" class="logo" style="display: block; margin-bottom: 1rem;">
-                        <img src="assets/logo.png" alt="Prince Dike" style="height: 45px; width: auto;">
+                        <img src="assets/princedikelogo1.png" alt="Prince Dike" style="height: 45px; width: auto;">
                     </a>
                     <p class="text-secondary">Bridging the gap between human psychology and technical architecture.</p>
                 </div>
