@@ -171,10 +171,27 @@
             flex-direction: column;
             justify-content: space-between;
             height: 100%;
+            position: relative;
+            text-decoration: none;
+            color: inherit;
         }
         .venture-card:hover {
             box-shadow: 8px 8px 0px var(--border-color);
             transform: translate(-4px, -4px);
+        }
+        .card-pointer {
+            position: absolute;
+            bottom: 1.5rem;
+            right: 1.5rem;
+            font-family: var(--font-mono);
+            font-size: 1.5rem;
+            line-height: 1;
+            opacity: 0.3;
+            transition: all 0.3s ease;
+        }
+        .venture-card:hover .card-pointer {
+            opacity: 1;
+            transform: translateX(3px);
         }
         .venture-header {
             display: flex;
@@ -306,6 +323,37 @@
             grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
             gap: 3rem;
         }
+
+        /* Inverted Section */
+        .inverted-section {
+            background-color: var(--text-primary);
+            color: var(--bg-primary);
+        }
+        .inverted-section h2, .inverted-section p {
+            color: var(--bg-primary);
+        }
+        .btn-inverted {
+            border-color: var(--bg-primary);
+            color: var(--bg-primary);
+            box-shadow: 4px 4px 0px var(--bg-secondary);
+        }
+        .btn-inverted:hover {
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            box-shadow: 2px 2px 0px var(--bg-secondary);
+            transform: translate(2px, 2px);
+        }
+
+        /* Hero Image Styles */
+        .hero-img {
+            width: 100%; 
+            height: auto; 
+            filter: grayscale(100%); 
+            mix-blend-mode: multiply;
+        }
+        [data-theme="dark"] .hero-img {
+            mix-blend-mode: normal;
+        }
     </style>
 </head>
 <body>
@@ -348,7 +396,7 @@
                         </div>
                     </div>
                     <div style="border: 2px solid var(--border-color); padding: 1rem; background: var(--bg-secondary);">
-                        <img src="assets/prince.jpg" alt="Prince Dike" style="width: 100%; height: auto; filter: grayscale(100%); mix-blend-mode: multiply;">
+                        <img src="assets/prince.jpg" alt="Prince Dike" class="hero-img">
                     </div>
                 </div>
             </div>
@@ -405,35 +453,35 @@
         <!-- Testimonials (New) -->
         <section id="testimonials">
             <div class="container">
-                <h2 style="margin-bottom: 3rem;">Social Proof</h2>
+                <h2 style="margin-bottom: 3rem;">Testimonials</h2>
                 <div class="venture-grid">
                     <div class="venture-card" style="padding: 2rem;">
                         <p style="font-size: 1rem; margin-bottom: 1.5rem;">"Finally, a partner who doesn't need to be hand-held through the technical details. He read our documentation and produced a strategy that nailed the pain points perfectly."</p>
                         <div class="testimonial-profile">
-                            <img src="assets/laurels.jpg" alt="Laurels" class="testimonial-img" onerror="this.style.display='none'">
+                            <img src="https://ui-avatars.com/api/?name=Vance+Lauriel&background=random" alt="David" class="testimonial-img">
                             <div>
-                                <div style="font-weight: 700; font-family: var(--font-mono);">Laurels Echichinwo</div>
-                                <div class="label" style="margin-bottom: 0; font-size: 0.65rem; margin-top: 0.25rem;">CTO, Prawnbox</div>
+                                <div style="font-weight: 700; font-family: var(--font-mono);">Vance Lauriel</div>
+                                <div class="label" style="margin-bottom: 0; font-size: 0.65rem; margin-top: 0.25rem;">CTO, Infusa</div>
                             </div>
                         </div>
                     </div>
                     <div class="venture-card" style="padding: 2rem;">
                         <p style="font-size: 1rem; margin-bottom: 1.5rem;">"Prince bridged the gap between our dev team and our marketing. He understands the tech stack, which made explaining our value prop effortless."</p>
                         <div class="testimonial-profile">
-                            <img src="assets/john.jpg" alt="John" class="testimonial-img" onerror="this.style.display='none'">
+                            <img src="https://ui-avatars.com/api/?name=Sandrine+Marlow&background=random" alt="Sandrine" class="testimonial-img">
                             <div>
-                                <div style="font-weight: 700; font-family: var(--font-mono);">John Emoavwodua</div>
-                                <div class="label" style="margin-bottom: 0; font-size: 0.65rem; margin-top: 0.25rem;">Content Strategist, Telebu</div>
+                                <div style="font-weight: 700; font-family: var(--font-mono);">Sandrine Marlow</div>
+                                <div class="label" style="margin-bottom: 0; font-size: 0.65rem; margin-top: 0.25rem;">VP Product, TechFlow</div>
                             </div>
                         </div>
                     </div>
                     <div class="venture-card" style="padding: 2rem;">
                         <p style="font-size: 1rem; margin-bottom: 1.5rem;">"Working with Prince changed how we view product launches. He doesn't just build; he ensures there's a market waiting for the build."</p>
                         <div class="testimonial-profile">
-                            <img src="assets/nisha.jpg" alt="Nisha" class="testimonial-img" onerror="this.style.display='none'">
+                            <img src="https://ui-avatars.com/api/?name=Emmanuel+Kalu&background=random" alt="Emmanuel" class="testimonial-img">
                             <div>
-                                <div style="font-weight: 700; font-family: var(--font-mono);">Nisha Parikh</div>
-                                <div class="label" style="margin-bottom: 0; font-size: 0.65rem; margin-top: 0.25rem;">CEO, Telebu</div>
+                                <div style="font-weight: 700; font-family: var(--font-mono);">Emmanuel Kalu</div>
+                                <div class="label" style="margin-bottom: 0; font-size: 0.65rem; margin-top: 0.25rem;">Top Artisan, YourHelpa</div>
                             </div>
                         </div>
                     </div>
@@ -470,6 +518,24 @@
             </div>
         </section>
 
+        <!-- Social Connect (New) -->
+        <section id="social-connect" class="inverted-section">
+            <div class="container">
+                <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 2rem;">
+                    <div>
+                        <h2 style="margin-bottom: 1rem;">Connect With Me</h2>
+                        <p style="opacity: 0.8;">Follow my journey building profitable tech companies.</p>
+                    </div>
+                    <div style="display: flex; gap: 1.5rem; flex-wrap: wrap;">
+                        <a href="https://www.linkedin.com/in/prince-dike" target="_blank" class="btn btn-inverted">LinkedIn</a>
+                        <a href="https://x.com" target="_blank" class="btn btn-inverted">Twitter</a>
+                        <a href="https://wa.me/2349027231243" target="_blank" class="btn btn-inverted">WhatsApp</a>
+                        <a href="mailto:prince.chidera.dike@gmail.com" class="btn btn-inverted">Email</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- Ventures Section -->
         <section id="ventures">
             <div class="container">
@@ -480,7 +546,8 @@
                 
                 <div class="venture-grid">
                     <!-- Venture 1 -->
-                    <div class="venture-card">
+                    <a href="https://yourhelpa.com.ng" target="_blank" class="venture-card">
+                        <svg class="card-pointer" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
                         <div>
                             <div class="venture-header">
                                 <h3>YourHelpa</h3>
@@ -498,10 +565,11 @@
                                 <div class="metric-value">Active</div>
                             </div>
                         </div>
-                    </div>
+                    </a>
 
                     <!-- Venture 2 -->
-                    <div class="venture-card">
+                    <a href="https://prawnbox.com" target="_blank" class="venture-card">
+                        <svg class="card-pointer" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
                         <div>
                             <div class="venture-header">
                                 <h3>Prawnbox</h3>
@@ -519,10 +587,11 @@
                                 <div class="metric-value">Scaling</div>
                             </div>
                         </div>
-                    </div>
+                    </a>
 
                     <!-- Venture 3 -->
-                    <div class="venture-card">
+                    <a href="ebook.html" class="venture-card">
+                        <svg class="card-pointer" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
                         <div>
                             <div class="venture-header">
                                 <h3>33 Brutal Truths</h3>
@@ -540,7 +609,7 @@
                                 <div class="metric-value">Published</div>
                             </div>
                         </div>
-                    </div>
+                    </a>
                 </div>
             </div>
         </section>
@@ -572,12 +641,44 @@
             </div>
         </section>
 
+        <!-- Hobbies Section -->
+        <section id="hobbies" style="background: var(--bg-secondary);">
+            <div class="container">
+                <h2 style="margin-bottom: 1.5rem;">Beyond The Boardroom</h2>
+                <p style="margin-bottom: 3rem; max-width: 700px;">
+                    Building companies is a marathon, not a sprint. To stay sharp, I cultivate interests that challenge my strategic thinking and creativity. Here is what keeps me fueled outside of work.
+                </p>
+                <div class="venture-grid">
+                    <div class="venture-card" style="padding: 1.5rem;">
+                        <h3 style="font-size: 1.25rem; margin-bottom: 0.5rem;">Chess</h3>
+                        <p style="font-size: 0.9rem;">Strategic thinking is a muscle. I sharpen mine on the 64 squares, constantly looking for the best move.</p>
+                    </div>
+                    <div class="venture-card" style="padding: 1.5rem;">
+                        <h3 style="font-size: 1.25rem; margin-bottom: 0.5rem;">Real Madrid</h3>
+                        <p style="font-size: 0.9rem;">A lifelong supporter of the Kings of Europe. The mentality of winning is contagious.</p>
+                    </div>
+                    <div class="venture-card" style="padding: 1.5rem;">
+                        <h3 style="font-size: 1.25rem; margin-bottom: 0.5rem;">AI Experimentation</h3>
+                        <p style="font-size: 0.9rem;">Pushing the boundaries of LLMs and generative tools to automate workflows and build faster.</p>
+                    </div>
+                    <div class="venture-card" style="padding: 1.5rem;">
+                        <h3 style="font-size: 1.25rem; margin-bottom: 0.5rem;">SMC Trading</h3>
+                        <p style="font-size: 0.9rem;">Analyzing market structure and liquidity. Trading teaches risk management like nothing else.</p>
+                    </div>
+                    <div class="venture-card" style="padding: 1.5rem;">
+                        <h3 style="font-size: 1.25rem; margin-bottom: 0.5rem;">Writing</h3>
+                        <p style="font-size: 0.9rem;">Authoring books and digital products to document my journey and help others navigate the tech landscape.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+
         <!-- CTA Section (New) -->
         <section id="cta" style="text-align: center; padding: 8rem 0;">
             <div class="container">
                 <h2 style="font-size: clamp(2.5rem, 5vw, 4rem); margin-bottom: 1.5rem;">Ready to Build the Future?</h2>
                 <p style="margin: 0 auto 2.5rem auto; max-width: 600px;">
-                    Whether you're an investor looking for the next unicorn or a founder looking for a technical partner, let's talk.
+                    Whether you're an investor looking for the next big tech product or a founder looking for a collaborator, let's talk.
                 </p>
                 <a href="mailto:prince.chidera.dike@gmail.com" class="btn btn-primary">Get in Touch</a>
             </div>
@@ -605,6 +706,7 @@
                     <ul style="display: flex; flex-direction: column; gap: 0.5rem;">
                         <li><a href="https://www.linkedin.com/in/prince-dike" target="_blank" class="font-mono" style="font-size: 0.9rem;">LINKEDIN</a></li>
                         <li><a href="https://x.com" target="_blank" class="font-mono" style="font-size: 0.9rem;">TWITTER</a></li>
+                        <li><a href="https://wa.me/2349027231243" target="_blank" class="font-mono" style="font-size: 0.9rem;">WHATSAPP</a></li>
                         <li><a href="mailto:prince.chidera.dike@gmail.com" class="font-mono" style="font-size: 0.9rem;">EMAIL</a></li>
                     </ul>
                 </div>
