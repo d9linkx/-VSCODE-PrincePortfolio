@@ -7,11 +7,11 @@
     <meta name="keywords" content="B2B SaaS Copywriter, Technical Content Writer, Software Developer, SEO Copywriting, AI Content Strategy, Tech Founder, Remote, Global">
     <meta name="author" content="Prince Dike">
     <meta name="robots" content="index, follow">
-    <link rel="canonical" href="https://princedike-portfolio.vercel.app/">
+    <link rel="canonical" href="https://princedike.com/">
     
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
-    <meta property="og:url" content="https://princedike-portfolio.vercel.app/">
+    <meta property="og:url" content="https://princedike.com/">
     <meta property="og:title" content="Prince Dike | B2B SaaS Copywriter & Software Developer">
     <meta property="og:description" content="Helping global B2B tech companies boost revenue through data-driven copy and software solutions.">
     <meta property="og:image" content="assets/og-image.jpg">
@@ -730,7 +730,7 @@
         @media (max-width: 768px) {
             .dropdown-content {
                 position: static;
-                display: block;
+                display: none;
                 background: transparent;
                 box-shadow: none;
                 border: none;
@@ -743,6 +743,7 @@
                 font-size: 0.8rem;
             }
             .dropdown-content a:hover { padding-left: 1rem; color: var(--accent-blue); }
+            .dropdown-content.show { display: block; }
         }
 
         /* About Section Optimization */
@@ -865,9 +866,10 @@
             <div style="display: flex; align-items: center; gap: 1.5rem;">
                 <ul class="nav-links">
                     <li><a href="#portfolio">Portfolio</a></li>
+                    <li><a href="founder.html">Founder Portfolio</a></li>
                     <li><a href="#lab">My Skills</a></li>
                     <li class="dropdown">
-                        <a href="#services">Services ▾</a>
+                        <a href="#services" class="dropdown-toggle">Services ▾</a>
                         <div class="dropdown-content">
                             <a href="saas-copywriting.html">SaaS Copywriting</a>
                             <a href="content-operations.html">Content Ops</a>
@@ -1553,6 +1555,7 @@
                 <div>
                     <h4 class="text-primary" style="margin-bottom: 1rem;">Sitemap</h4>
                     <a href="#portfolio" class="footer-link">Portfolio</a>
+                    <a href="founder.html" class="footer-link">Founder Portfolio</a>
                     <a href="#services" class="footer-link">Services</a>
                     <a href="#about" class="footer-link">About</a>
                     <a href="#lab" class="footer-link">The Lab</a>
@@ -1627,8 +1630,21 @@
 
         document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
 
+        // Mobile Dropdown Toggle
+        const dropdownToggle = document.querySelector('.dropdown-toggle');
+        if (dropdownToggle) {
+            dropdownToggle.addEventListener('click', (e) => {
+                if (window.innerWidth <= 768) {
+                    e.preventDefault();
+                    e.stopPropagation();
+                    const content = dropdownToggle.nextElementSibling;
+                    if (content) content.classList.toggle('show');
+                }
+            });
+        }
+
         // Close mobile menu on link click
-        document.querySelectorAll('.nav-links a').forEach(link => {
+        document.querySelectorAll('.nav-links a:not(.dropdown-toggle)').forEach(link => {
             link.addEventListener('click', () => {
                 const nav = document.querySelector('.nav-links');
                 const hamburger = document.querySelector('.hamburger');
