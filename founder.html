@@ -1,0 +1,490 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Prince Dike: Founder/CEO of YourHelpa, CPMO at Prawnbox, and Author. I build profitable tech companies and help others do the same.">
+    <meta name="keywords" content="Technical Founder, SaaS Builder, Startup Portfolio, Prince Dike, Software Engineer, Business Strategy, Venture Builder">
+    <meta name="author" content="Prince Dike">
+    <meta name="robots" content="index, follow">
+    <link rel="canonical" href="https://princedike.com/founder">
+    
+    <title>Prince Dike | Technical Founder & Builder</title>
+    
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@400;500;700;800&family=Space+Mono:ital,wght@0,400;0,700;1,400&display=swap" rel="stylesheet">
+    
+    <style>
+        :root {
+            /* High Contrast Founder Theme */
+            --bg-primary: #FFFFFF;
+            --bg-secondary: #F4F4F5;
+            --text-primary: #000000;
+            --text-secondary: #444444;
+            --border-color: #000000;
+            
+            --container-width: 1200px;
+            --section-spacing: 120px;
+            
+            --font-main: 'Plus Jakarta Sans', sans-serif;
+            --font-mono: 'Space Mono', monospace;
+        }
+
+        /* Dark Mode Support (Inverted High Contrast) */
+        [data-theme="dark"] {
+            --bg-primary: #000000;
+            --bg-secondary: #111111;
+            --text-primary: #FFFFFF;
+            --text-secondary: #CCCCCC;
+            --border-color: #FFFFFF;
+        }
+
+        /* Reset & Base */
+        *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+        
+        html { scroll-behavior: smooth; }
+        
+        body {
+            background-color: var(--bg-primary);
+            color: var(--text-primary);
+            font-family: var(--font-main);
+            line-height: 1.5;
+            overflow-x: hidden;
+            -webkit-font-smoothing: antialiased;
+        }
+
+        a { text-decoration: none; color: inherit; transition: all 0.2s ease; }
+        ul { list-style: none; }
+        img { max-width: 100%; display: block; }
+
+        /* Typography */
+        h1, h2, h3, h4 {
+            font-weight: 800;
+            letter-spacing: -0.04em;
+            line-height: 1.1;
+            color: var(--text-primary);
+        }
+
+        h1 { font-size: clamp(3.5rem, 8vw, 6rem); margin-bottom: 1.5rem; }
+        h2 { font-size: clamp(2.5rem, 5vw, 4rem); margin-bottom: 2rem; }
+        h3 { font-size: 1.5rem; margin-bottom: 0.5rem; }
+        
+        p {
+            font-size: 1.125rem;
+            color: var(--text-secondary);
+            max-width: 60ch;
+            line-height: 1.6;
+        }
+
+        .font-mono { font-family: var(--font-mono); letter-spacing: -0.02em; }
+        .uppercase { text-transform: uppercase; letter-spacing: 0.05em; }
+        .label {
+            font-family: var(--font-mono);
+            font-size: 0.75rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            border: 1px solid var(--border-color);
+            padding: 4px 8px;
+            display: inline-block;
+            margin-bottom: 1rem;
+        }
+
+        /* Layout */
+        .container {
+            width: 90%;
+            max-width: var(--container-width);
+            margin: 0 auto;
+            padding: 0 1rem;
+        }
+
+        section { padding: var(--section-spacing) 0; border-bottom: 1px solid var(--border-color); }
+        section:last-child { border-bottom: none; }
+
+        /* Navigation */
+        .navbar {
+            position: fixed; top: 0; left: 0; width: 100%; z-index: 1000;
+            background: var(--bg-primary);
+            border-bottom: 2px solid var(--border-color);
+            padding: 1.5rem 0;
+        }
+        .nav-container { display: flex; justify-content: space-between; align-items: center; }
+        .logo { font-weight: 800; font-size: 1.5rem; letter-spacing: -0.05em; display: flex; align-items: center; gap: 0.5rem; }
+        .logo span { font-family: var(--font-mono); font-size: 0.8rem; background: var(--text-primary); color: var(--bg-primary); padding: 2px 6px; }
+        
+        .nav-links { display: flex; gap: 2rem; }
+        .nav-links a { font-size: 0.9rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.05em; }
+        .nav-links a:hover { text-decoration: underline; text-decoration-thickness: 2px; }
+
+        /* Buttons */
+        .btn {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem 2.5rem;
+            font-weight: 700;
+            font-family: var(--font-mono);
+            text-transform: uppercase;
+            border: 2px solid var(--border-color);
+            background: transparent;
+            color: var(--text-primary);
+            cursor: pointer;
+            transition: all 0.2s ease;
+            box-shadow: 4px 4px 0px var(--border-color);
+        }
+        .btn:hover {
+            transform: translate(2px, 2px);
+            box-shadow: 2px 2px 0px var(--border-color);
+        }
+        .btn-primary {
+            background: var(--text-primary);
+            color: var(--bg-primary);
+        }
+
+        /* Hero */
+        .hero {
+            min-height: 90vh;
+            display: flex;
+            align-items: center;
+            padding-top: 120px;
+        }
+        .hero-content {
+            display: grid;
+            grid-template-columns: 1.2fr 0.8fr;
+            gap: 4rem;
+            align-items: center;
+        }
+
+        /* Venture Cards */
+        .venture-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            gap: 2rem;
+        }
+        .venture-card {
+            border: 2px solid var(--border-color);
+            padding: 2rem;
+            background: var(--bg-primary);
+            transition: all 0.3s ease;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            height: 100%;
+        }
+        .venture-card:hover {
+            box-shadow: 8px 8px 0px var(--border-color);
+            transform: translate(-4px, -4px);
+        }
+        .venture-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: flex-start;
+            margin-bottom: 1.5rem;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 1rem;
+        }
+        .venture-metrics {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 1rem;
+            margin-top: 2rem;
+            padding-top: 1rem;
+            border-top: 1px dashed var(--border-color);
+        }
+        .metric-label { font-family: var(--font-mono); font-size: 0.7rem; color: var(--text-secondary); margin-bottom: 0.25rem; }
+        .metric-value { font-weight: 700; font-size: 1.25rem; }
+
+        /* Stack Section */
+        .stack-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 3rem;
+        }
+        .stack-category h4 {
+            font-family: var(--font-mono);
+            text-transform: uppercase;
+            margin-bottom: 1.5rem;
+            border-bottom: 2px solid var(--border-color);
+            padding-bottom: 0.5rem;
+            display: inline-block;
+        }
+        .stack-list li {
+            margin-bottom: 0.75rem;
+            font-weight: 500;
+            display: flex;
+            align-items: center;
+        }
+        .stack-list li::before {
+            content: "→";
+            margin-right: 0.5rem;
+            font-family: var(--font-mono);
+        }
+
+        /* Philosophy */
+        .philosophy-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 4rem;
+        }
+        .philosophy-item {
+            margin-bottom: 3rem;
+        }
+        .philosophy-num {
+            font-family: var(--font-mono);
+            font-size: 3rem;
+            font-weight: 700;
+            opacity: 0.1;
+            line-height: 1;
+            margin-bottom: -1rem;
+            display: block;
+        }
+
+        /* Footer */
+        footer { padding: 4rem 0; background: var(--bg-primary); border-top: 2px solid var(--border-color); }
+
+        /* Mobile */
+        @media (max-width: 968px) {
+            .hero-content, .philosophy-grid { grid-template-columns: 1fr; gap: 3rem; }
+            h1 { font-size: 3rem; }
+            .nav-links { display: none; }
+            .hamburger { display: block; }
+        }
+
+        .hamburger { display: none; cursor: pointer; }
+        .hamburger span { display: block; width: 25px; height: 3px; background: var(--text-primary); margin: 5px 0; }
+
+        /* Theme Toggle */
+        .theme-toggle { background: transparent; border: none; cursor: pointer; color: var(--text-primary); }
+        .sun-icon { display: none; }
+        .moon-icon { display: block; }
+        [data-theme="dark"] .sun-icon { display: block; }
+        [data-theme="dark"] .moon-icon { display: none; }
+    </style>
+</head>
+<body>
+
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">PRINCE DIKE <span>/FOUNDER</span></a>
+            <div style="display: flex; align-items: center; gap: 2rem;">
+                <ul class="nav-links">
+                    <li><a href="index.html">Portfolio</a></li>
+                    <li><a href="#ventures">Ventures</a></li>
+                    <li><a href="#stack">Stack</a></li>
+                    <li><a href="#philosophy">Philosophy</a></li>
+                </ul>
+                <button id="theme-toggle" class="theme-toggle" aria-label="Toggle Dark Mode">
+                    <svg class="sun-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><circle cx="12" cy="12" r="5"></circle><line x1="12" y1="1" x2="12" y2="3"></line><line x1="12" y1="21" x2="12" y2="23"></line><line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line><line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line><line x1="1" y1="12" x2="3" y2="12"></line><line x1="21" y1="12" x2="23" y2="12"></line><line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line><line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line></svg>
+                    <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
+                </button>
+                <div class="hamburger">
+                    <span></span><span></span><span></span>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <main>
+        <!-- Hero Section -->
+        <section class="hero">
+            <div class="container">
+                <div class="hero-content">
+                    <div>
+                        <span class="label">BUILDER. EXECUTIVE. AUTHOR.</span>
+                        <h1>I Create Products That Solve Real Problems</h1>
+                        <p style="margin-bottom: 2.5rem;">
+                            Prince Dike: Founder & CEO of <strong>YourHelpa</strong>, Co-Founder, CPMO & Board Member at <strong>Prawnbox</strong>, & a Best-selling Author. I bridge the gap between the product and the customer.
+                        </p>
+                        <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
+                            <a href="#ventures" class="btn btn-primary">See My Work</a>
+                            <a href="index.html#contact" class="btn">Partner With Me</a>
+                        </div>
+                    </div>
+                    <div style="border: 2px solid var(--border-color); padding: 1rem; background: var(--bg-secondary);">
+                        <img src="assets/prince.jpg" alt="Prince Dike" style="width: 100%; height: auto; filter: grayscale(100%); mix-blend-mode: multiply;">
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Ventures Section -->
+        <section id="ventures">
+            <div class="container">
+                <div style="display: flex; justify-content: space-between; align-items: flex-end; margin-bottom: 3rem;">
+                    <h2>The Portfolio</h2>
+                    <span class="font-mono" style="display: none; @media(min-width: 768px){display:block;}">TRACK RECORD</span>
+                </div>
+                
+                <div class="venture-grid">
+                    <!-- Venture 1 -->
+                    <div class="venture-card">
+                        <div>
+                            <div class="venture-header">
+                                <h3>YourHelpa</h3>
+                                <span class="label">CEO & FOUNDER</span>
+                            </div>
+                            <p style="font-size: 0.95rem;">The service industry in Africa is fragmented. YourHelpa fixes it. We connect homeowners with verified artisans through an AI-driven platform. I lead the vision, the technology, and the operations.</p>
+                        </div>
+                        <div class="venture-metrics">
+                            <div>
+                                <div class="metric-label">FOCUS</div>
+                                <div class="metric-value">Marketplace</div>
+                            </div>
+                            <div>
+                                <div class="metric-label">STATUS</div>
+                                <div class="metric-value">Active</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Venture 2 -->
+                    <div class="venture-card">
+                        <div>
+                            <div class="venture-header">
+                                <h3>Prawnbox</h3>
+                                <span class="label">CPMO & BOARD MEMBER</span>
+                            </div>
+                            <p style="font-size: 0.95rem;">Logistics is the backbone of commerce. Prawnbox simplifies cross-border shipping for African businesses. As Chief Product & Marketing Officer, I drive the product roadmap and Go-To-Market strategy.</p>
+                        </div>
+                        <div class="venture-metrics">
+                            <div>
+                                <div class="metric-label">FOCUS</div>
+                                <div class="metric-value">Logistics</div>
+                            </div>
+                            <div>
+                                <div class="metric-label">STATUS</div>
+                                <div class="metric-value">Scaling</div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Venture 3 -->
+                    <div class="venture-card">
+                        <div>
+                            <div class="venture-header">
+                                <h3>33 Brutal Truths</h3>
+                                <span class="label">AUTHOR</span>
+                            </div>
+                            <p style="font-size: 0.95rem;">Most startup advice is fluff. I wrote the manual on the hard realities of building a tech company. "33 Brutal Truths No One Tells You Before You Start a Tech Startup" is the guide I wish I had.</p>
+                        </div>
+                        <div class="venture-metrics">
+                            <div>
+                                <div class="metric-label">FOCUS</div>
+                                <div class="metric-value">Education</div>
+                            </div>
+                            <div>
+                                <div class="metric-label">STATUS</div>
+                                <div class="metric-value">Published</div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Philosophy -->
+        <section id="philosophy">
+            <div class="container">
+                <div class="philosophy-grid">
+                    <div>
+                        <span class="label">The Methodology</span>
+                        <h2>The Full-Stack Executive.</h2>
+                        <p>
+                            To build a unicorn, you need more than just code. You need a holistic view of the business. I speak two languages: Engineering and Revenue. This allows me to build products that are technically sound and commercially viable.
+                        </p>
+                    </div>
+                    <div>
+                        <div class="philosophy-item">
+                            <span class="philosophy-num">01</span>
+                            <h3>Product Vision</h3>
+                            <p style="font-size: 1rem;">I don't just build features; I build solutions. Every line of code I write or approve must serve a clear business goal and solve a real user problem.</p>
+                        </div>
+                        <div class="philosophy-item">
+                            <span class="philosophy-num">02</span>
+                            <h3>Market Strategy</h3>
+                            <p style="font-size: 1rem;">A great product with poor distribution fails. As a CPMO, I bake marketing triggers into the product DNA from day one to ensure growth.</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- The Stack -->
+        <section id="stack" style="background: var(--bg-secondary);">
+            <div class="container">
+                <h2 style="margin-bottom: 3rem;">The Founder's Stack</h2>
+                <div class="stack-grid">
+                    <div class="stack-category">
+                        <h4>Engineering</h4>
+                        <ul class="stack-list">
+                            <li>JavaScript (ES6+)</li>
+                            <li>React / Next.js</li>
+                            <li>Node.js / Express</li>
+                            <li>Python</li>
+                            <li>PostgreSQL / MongoDB</li>
+                        </ul>
+                    </div>
+                    <div class="stack-category">
+                        <h4>Growth</h4>
+                        <ul class="stack-list">
+                            <li>SEO (Ahrefs/Semrush)</li>
+                            <li>Google Analytics 4</li>
+                            <li>Email Marketing</li>
+                            <li>LinkedIn Automation</li>
+                            <li>CRO</li>
+                        </ul>
+                    </div>
+                    <div class="stack-category">
+                        <h4>Operations</h4>
+                        <ul class="stack-list">
+                            <li>Notion (Systems)</li>
+                            <li>Linear (Project Mgmt)</li>
+                            <li>Stripe (Payments)</li>
+                            <li>Slack (Comms)</li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <div class="container">
+            <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 2rem;">
+                <div>
+                    <a href="index.html" class="logo" style="font-size: 1.2rem;">PRINCE DIKE</a>
+                    <p style="font-size: 0.9rem; margin-top: 0.5rem;">Bridging human psychology and technical architecture.</p>
+                </div>
+                <div style="display: flex; gap: 2rem;">
+                    <a href="https://www.linkedin.com/in/prince-dike" target="_blank" class="font-mono">LINKEDIN</a>
+                    <a href="https://x.com" target="_blank" class="font-mono">TWITTER</a>
+                    <a href="mailto:prince.chidera.dike@gmail.com" class="font-mono">EMAIL</a>
+                </div>
+            </div>
+            <div style="margin-top: 4rem; text-align: center;">
+                <p class="font-mono" style="font-size: 0.8rem; opacity: 0.5;">© <span id="year"></span> PRINCE DIKE. ALL SYSTEMS OPERATIONAL.</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Theme Toggle
+        const toggleButton = document.getElementById('theme-toggle');
+        const html = document.documentElement;
+        const savedTheme = localStorage.getItem('theme');
+        const systemTheme = window.matchMedia('(prefers-color-scheme: dark)').matches ? 'dark' : 'light';
+        
+        if (savedTheme) { html.setAttribute('data-theme', savedTheme); } else { html.setAttribute('data-theme', systemTheme); }
+
+        toggleButton.addEventListener('click', () => {
+            const currentTheme = html.getAttribute('data-theme');
+            const newTheme = currentTheme === 'dark' ? 'light' : 'dark';
+            html.setAttribute('data-theme', newTheme);
+            localStorage.setItem('theme', newTheme);
+        });
+
+        document.getElementById('year').textContent = new Date().getFullYear();
+    </script>
+</body>
+</html>
