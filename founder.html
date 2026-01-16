@@ -260,6 +260,30 @@
         .moon-icon { display: block; }
         [data-theme="dark"] .sun-icon { display: block; }
         [data-theme="dark"] .moon-icon { display: none; }
+
+        /* Testimonial Specifics */
+        .testimonial-profile {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            margin-top: auto;
+            padding-top: 1.5rem;
+        }
+        .testimonial-img {
+            width: 48px;
+            height: 48px;
+            border-radius: 50%;
+            background-color: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            object-fit: cover;
+        }
+        
+        /* Footer Grid */
+        .footer-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 3rem;
+        }
     </style>
 </head>
 <body>
@@ -292,9 +316,9 @@
                 <div class="hero-content">
                     <div>
                         <span class="label">BUILDER. EXECUTIVE. AUTHOR.</span>
-                        <h1>I Create Products That Solve Real Problems</h1>
+                        <h1>I Create Solutions To Real Problems</h1>
                         <p style="margin-bottom: 2.5rem;">
-                            Prince Dike: Founder & CEO of <strong>YourHelpa</strong>, Co-Founder, CPMO & Board Member at <strong>Prawnbox</strong>, & a Best-selling Author. I bridge the gap between the product and the customer.
+                            I am Prince Dike: Founder & CEO of <strong>YourHelpa</strong>, Co-Founder, CPMO & Board Member at <strong>Prawnbox</strong>, & a Best-selling Author. I bridge the gap between the product and the customer.
                         </p>
                         <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
                             <a href="#ventures" class="btn btn-primary">See My Work</a>
@@ -362,17 +386,33 @@
                 <h2 style="margin-bottom: 3rem;">Social Proof</h2>
                 <div class="venture-grid">
                     <div class="venture-card" style="padding: 2rem;">
-                        <p style="font-size: 1rem; margin-bottom: 1.5rem;">"Finally, a copywriter who doesn't need to be hand-held through the technical details. He read our documentation and produced a VSL script that nailed the pain points perfectly."</p>
-                        <div>
-                            <div style="font-weight: 700; font-family: var(--font-mono);">Laurels Echichinwo</div>
-                            <div class="label" style="margin-bottom: 0; font-size: 0.65rem; margin-top: 0.5rem;">CTO, Prawnbox</div>
+                        <p style="font-size: 1rem; margin-bottom: 1.5rem;">"Finally, a partner who doesn't need to be hand-held through the technical details. He read our documentation and produced a strategy that nailed the pain points perfectly."</p>
+                        <div class="testimonial-profile">
+                            <img src="assets/laurels.jpg" alt="Laurels" class="testimonial-img" onerror="this.style.display='none'">
+                            <div>
+                                <div style="font-weight: 700; font-family: var(--font-mono);">Laurels Echichinwo</div>
+                                <div class="label" style="margin-bottom: 0; font-size: 0.65rem; margin-top: 0.25rem;">CTO, Prawnbox</div>
+                            </div>
                         </div>
                     </div>
                     <div class="venture-card" style="padding: 2rem;">
                         <p style="font-size: 1rem; margin-bottom: 1.5rem;">"Prince bridged the gap between our dev team and our marketing. He understands the tech stack, which made explaining our value prop effortless."</p>
-                        <div>
-                            <div style="font-weight: 700; font-family: var(--font-mono);">John Emoavwodua</div>
-                            <div class="label" style="margin-bottom: 0; font-size: 0.65rem; margin-top: 0.5rem;">Content Strategist, Telebu</div>
+                        <div class="testimonial-profile">
+                            <img src="assets/john.jpg" alt="John" class="testimonial-img" onerror="this.style.display='none'">
+                            <div>
+                                <div style="font-weight: 700; font-family: var(--font-mono);">John Emoavwodua</div>
+                                <div class="label" style="margin-bottom: 0; font-size: 0.65rem; margin-top: 0.25rem;">Content Strategist, Telebu</div>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="venture-card" style="padding: 2rem;">
+                        <p style="font-size: 1rem; margin-bottom: 1.5rem;">"Working with Prince changed how we view product launches. He doesn't just build; he ensures there's a market waiting for the build."</p>
+                        <div class="testimonial-profile">
+                            <img src="assets/nisha.jpg" alt="Nisha" class="testimonial-img" onerror="this.style.display='none'">
+                            <div>
+                                <div style="font-weight: 700; font-family: var(--font-mono);">Nisha Parikh</div>
+                                <div class="label" style="margin-bottom: 0; font-size: 0.65rem; margin-top: 0.25rem;">CEO, Telebu</div>
+                            </div>
                         </div>
                     </div>
                 </div>
@@ -387,7 +427,7 @@
                         <span class="label">THE ALPHA</span>
                         <h2>Why Stakeholders Bet on Prince.</h2>
                         <p>
-                            In a world of specialized roles, I offer the efficiency of a full product team. I de-risk ventures by ensuring technical feasibility matches market demand from day one.
+                            I adapt to the venture's needs. At <strong>YourHelpa</strong>, I am the entire engine—building the tech, the business model, and the marketing. At <strong>Prawnbox</strong>, I partner with a CTO and Business Lead, focusing purely on Product & Marketing Strategy to scale faster. I fill the gaps that slow startups down.
                         </p>
                     </div>
                     <div>
@@ -524,15 +564,27 @@
 
     <footer>
         <div class="container">
-            <div style="display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 2rem;">
+            <div class="footer-grid">
                 <div>
                     <a href="index.html" class="logo" style="font-size: 1.2rem;">PRINCE DIKE</a>
                     <p style="font-size: 0.9rem; margin-top: 0.5rem;">Bridging human psychology and technical architecture.</p>
                 </div>
-                <div style="display: flex; gap: 2rem;">
-                    <a href="https://www.linkedin.com/in/prince-dike" target="_blank" class="font-mono">LINKEDIN</a>
-                    <a href="https://x.com" target="_blank" class="font-mono">TWITTER</a>
-                    <a href="mailto:prince.chidera.dike@gmail.com" class="font-mono">EMAIL</a>
+                <div>
+                    <h4 style="font-size: 1rem; margin-bottom: 1rem;">Navigation</h4>
+                    <ul style="display: flex; flex-direction: column; gap: 0.5rem;">
+                        <li><a href="#ventures" style="font-size: 0.9rem;">Ventures</a></li>
+                        <li><a href="#stack" style="font-size: 0.9rem;">The Stack</a></li>
+                        <li><a href="#philosophy" style="font-size: 0.9rem;">Philosophy</a></li>
+                        <li><a href="index.html" style="font-size: 0.9rem;">Main Portfolio</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 style="font-size: 1rem; margin-bottom: 1rem;">Connect</h4>
+                    <ul style="display: flex; flex-direction: column; gap: 0.5rem;">
+                        <li><a href="https://www.linkedin.com/in/prince-dike" target="_blank" class="font-mono" style="font-size: 0.9rem;">LINKEDIN</a></li>
+                        <li><a href="https://x.com" target="_blank" class="font-mono" style="font-size: 0.9rem;">TWITTER</a></li>
+                        <li><a href="mailto:prince.chidera.dike@gmail.com" class="font-mono" style="font-size: 0.9rem;">EMAIL</a></li>
+                    </ul>
                 </div>
             </div>
             <div style="margin-top: 4rem; text-align: center;">
