@@ -259,6 +259,7 @@
             display: flex;
             justify-content: center;
             align-items: center;
+            perspective: 1000px;
         }
 
         .smoke-effect {
@@ -290,6 +291,21 @@
             width: 100%;
             height: 100%;
             object-fit: cover;
+        }
+
+        .hero-image-container img {
+            border-radius: 13px;
+            box-shadow: 0 20px 50px -15px rgba(0, 0, 0, 0.949);
+            transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94), box-shadow 0.4s ease;
+        }
+
+        .hero-image-container:hover img {
+            transform: rotateX(3deg) rotateY(-3deg) scale(1.02);
+            box-shadow: 0 30px 60px -12px rgba(0, 0, 0, 0.8);
+        }
+
+        .hero-image-container:active img {
+            transform: scale(0.98);
         }
 
         @keyframes spin {
@@ -946,7 +962,7 @@
                             I'm Prince Dike, a direct-response copywriter and sales funnel expert. I combine paid ads, email automation, and CRM integration to build predictable revenue engines for B2B tech companies.
                         </p>
                         <div class="hero-buttons">
-                            <a href="#contact" class="btn btn-primary">Book a Strategy Call</a>
+                            <a href="mailto:prince.chidera.dike@gmail.com" class="btn btn-primary">Book a Strategy Call</a>
                             <a href="#case-study" class="btn btn-outline">See My Work</a>
                         </div>
                     </div>
