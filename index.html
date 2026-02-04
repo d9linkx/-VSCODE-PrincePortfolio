@@ -875,6 +875,55 @@
         .card:hover::before {
             opacity: 1;
         }
+
+        /* Case Study & Table Styles */
+        .results-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-top: 1.5rem;
+            font-size: 1rem;
+        }
+        .results-table th, .results-table td {
+            text-align: left;
+            padding: 1rem;
+            border-bottom: 1px solid var(--border-color);
+        }
+        .results-table th {
+            color: var(--text-secondary);
+            font-family: var(--font-mono);
+            font-weight: 700;
+            font-size: 0.75rem;
+            text-transform: uppercase;
+            letter-spacing: 0.05em;
+        }
+        .results-table td {
+            font-weight: 600;
+            color: var(--text-primary);
+        }
+        .results-table tr:last-child td {
+            border-bottom: none;
+        }
+
+        @media (max-width: 768px) {
+            #case-study .card {
+                padding: 1.5rem !important;
+            }
+            #case-study .grid-2 {
+                display: flex;
+                flex-direction: column;
+                gap: 2rem !important;
+            }
+            .results-table {
+                display: block;
+                width: 100%;
+                overflow-x: auto;
+                -webkit-overflow-scrolling: touch;
+                white-space: nowrap;
+            }
+            .results-table th, .results-table td {
+                padding: 0.75rem 0.5rem;
+            }
+        }
     </style>
 
     <!-- Schema.org JSON-LD for Google SEO -->
@@ -1102,34 +1151,6 @@
                     <div class="card">
                         <h4 class="font-mono text-green">Performance</h4>
                         <p class="text-secondary">This sequence consistently achieves a <strong>45%+ average open rate</strong> and a <strong>12% average click-through rate (CTR)</strong>, significantly outperforming industry benchmarks.</p>
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- International Market Strategy -->
-        <section id="international-strategy">
-            <div class="container">
-                <div class="text-center" style="max-width: 700px; margin: 0 auto 3rem auto;">
-                    <span class="eyebrow">Global Reach</span>
-                    <h2 class="reveal">International Market Strategy</h2>
-                    <p class="text-secondary reveal">I have direct experience crafting campaigns for North American and UK markets, adapting messaging to fit cultural nuances and regulatory environments.</p>
-                </div>
-                <div class="grid-3 reveal">
-                    <div class="card">
-                        <h4 class="font-mono text-blue">Market: USA</h4>
-                        <p class="text-secondary" style="margin-bottom: 1rem; font-style: italic;">"Stop letting outdated compliance software slow you down. Our AI-powered platform cuts reporting time by 80%, so you can focus on growth, not paperwork."</p>
-                        <p class="text-secondary" style="font-size: 0.9rem;"><strong>Context:</strong> The tone is aggressive and benefit-driven, focusing on speed and efficiency—key drivers in the competitive US tech market.</p>
-                    </div>
-                    <div class="card">
-                        <h4 class="font-mono text-purple">Market: UK</h4>
-                        <p class="text-secondary" style="margin-bottom: 1rem; font-style: italic;">"Ensure your business is fully compliant with the latest GDPR and FCA regulations. Our secure platform provides a reliable, all-in-one solution for your reporting needs."</p>
-                        <p class="text-secondary" style="font-size: 0.9rem;"><strong>Context:</strong> The messaging is more conservative, emphasizing security, reliability, and specific regulatory compliance (GDPR, FCA), which are major concerns for UK businesses.</p>
-                    </div>
-                    <div class="card">
-                        <h4 class="font-mono text-orange">Market: Canada</h4>
-                        <p class="text-secondary" style="margin-bottom: 1rem; font-style: italic;">"Trusted by over 5 Canadian brands. Our platform simplifies PIPEDA compliance and integrates seamlessly with your existing workflow. See why we're the top choice for SMEs."</p>
-                        <p class="text-secondary" style="font-size: 0.9rem;"><strong>Context:</strong> This copy builds trust by mentioning local adoption ("Canadian brands") and specific Canadian regulations (PIPEDA), appealing to a sense of community and local relevance.</p>
                     </div>
                 </div>
             </div>
@@ -1620,7 +1641,7 @@
                     <a href="#" class="logo" style="display: block; margin-bottom: 1rem;">
                         <img src="assets/princedikelogo1.png" alt="Prince Dike" style="height: 45px; width: auto;">
                     </a>
-                    <p class="text-secondary">Bridging the gap between human psychology and technical architecture.</p>
+                    <p class="text-secondary">Bridging the gap between your customer and your product/service.</p>
                 </div>
                 <div>
                     <h4 class="text-primary" style="margin-bottom: 1rem;">Sitemap</h4>
