@@ -924,6 +924,60 @@
                 padding: 0.75rem 0.5rem;
             }
         }
+
+        /* Testimonial Section Redesign */
+        #testimonials {
+            background-color: var(--accent-orange);
+        }
+        #testimonials .eyebrow,
+        #testimonials h2 {
+            color: #000000;
+            text-align: center;
+        }
+        #testimonials h2 {
+            margin-bottom: 3rem;
+        }
+        #testimonials .card {
+            background: #FFFFFF;
+            border: none;
+            border-radius: 8px;
+            box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+            padding: 2.5rem;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            transform: none; /* Reset base card hover */
+        }
+        #testimonials .card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+        }
+        #testimonials .card p {
+            font-size: 1.05rem;
+            color: #3A3A3C;
+            font-style: italic;
+            line-height: 1.7;
+            margin-bottom: 2rem;
+            position: relative;
+            padding-left: 2rem;
+        }
+        #testimonials .card p::before {
+            content: '“';
+            position: absolute;
+            left: 0;
+            top: -0.5rem;
+            font-size: 3rem;
+            font-family: Georgia, serif;
+            color: #000000;
+            opacity: 0.1;
+        }
+        #testimonials .card h4 { color: #1C1C1E; }
+        #testimonials .card .font-mono { color: #3A3A3C; opacity: 0.9; }
+
+        /* Dark mode adjustments for the cards */
+        [data-theme="dark"] #testimonials .card { background: #1C1C1E; }
+        [data-theme="dark"] #testimonials .card p,
+        [data-theme="dark"] #testimonials .card h4,
+        [data-theme="dark"] #testimonials .card .font-mono { color: #F2F2F2; }
+        [data-theme="dark"] #testimonials .card p::before { color: #FFFFFF; }
     </style>
 
     <!-- Schema.org JSON-LD for Google SEO -->
@@ -1181,11 +1235,6 @@
                         <h3 class="font-mono" style="font-size: 1.2rem; margin-bottom: 1rem;">How to Build a Customer Support Team</h3>
                         <p class="text-secondary">Strategic thought leadership piece positioning the brand as a partner in building effective support teams.</p>
                         <div class="card-tags"><span class="tag">Strategy</span><span class="tag">Thought Leadership</span></div>
-                    </a>
-                    <a href="https://www.telebusocial.com/blog/happy-easter-messages/" target="_blank" class="card" style="text-decoration: none; color: inherit;">
-                        <h3 class="font-mono" style="font-size: 1.2rem; margin-bottom: 1rem;">Happy Easter Messages for Business</h3>
-                        <p class="text-secondary">Viral TOFU asset designed for maximum reach, capturing seasonal search traffic and boosting brand awareness.</p>
-                        <div class="card-tags"><span class="tag">Viral SEO</span><span class="tag">Templates</span></div>
                     </a>
                     <a href="https://www.telebusocial.com/blog/telebusocial-vs-interakt/" target="_blank" class="card" style="text-decoration: none; color: inherit;">
                         <h3 class="font-mono" style="font-size: 1.2rem; margin-bottom: 1rem;">TelebuSocial vs Interakt</h3>
