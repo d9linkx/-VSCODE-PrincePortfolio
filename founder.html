@@ -403,6 +403,129 @@
             90% { opacity: 0.5; }
             100% { top: 100%; opacity: 0; }
         }
+
+        /* Futuristic Testimonials Section */
+        #testimonials {
+            background-color: #050505;
+            color: #ffffff;
+            position: relative;
+            overflow: hidden;
+            padding: 8rem 0;
+            border-top: 1px solid #222;
+            border-bottom: 1px solid #222;
+        }
+
+        #testimonials::before {
+            content: '';
+            position: absolute;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background-image: 
+                linear-gradient(rgba(255, 255, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(255, 255, 255, 0.03) 1px, transparent 1px);
+            background-size: 40px 40px;
+            mask-image: radial-gradient(circle at 50% 50%, black 40%, transparent 100%);
+            -webkit-mask-image: radial-gradient(circle at 50% 50%, black 40%, transparent 100%);
+            pointer-events: none;
+            z-index: 1;
+        }
+
+        .f-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+            gap: 3rem;
+            position: relative;
+            z-index: 2;
+        }
+
+        .f-card {
+            background: rgba(20, 20, 20, 0.4);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            padding: 3rem 2rem;
+            position: relative;
+            backdrop-filter: blur(10px);
+            transition: all 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+            clip-path: polygon(
+                20px 0, 100% 0, 
+                100% calc(100% - 20px), calc(100% - 20px) 100%, 
+                0 100%, 0 20px
+            );
+        }
+
+        .f-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            background: rgba(30, 30, 30, 0.8);
+            border-color: rgba(255, 255, 255, 0.4);
+            box-shadow: 0 20px 50px -10px rgba(0,0,0,0.5);
+        }
+
+        .f-card::after {
+            content: '';
+            position: absolute;
+            bottom: 0; right: 0;
+            width: 20px; height: 20px;
+            background: linear-gradient(135deg, transparent 50%, rgba(255, 255, 255, 0.2) 50%);
+            transition: all 0.3s ease;
+        }
+
+        .f-card:hover::after {
+            background: linear-gradient(135deg, transparent 50%, #fff 50%);
+        }
+
+        .f-quote {
+            font-size: 1.1rem;
+            color: #a0a0a0;
+            line-height: 1.6;
+            margin-bottom: 2rem;
+            position: relative;
+        }
+
+        .f-quote::before {
+            content: '"';
+            font-family: serif;
+            font-size: 4rem;
+            position: absolute;
+            top: -2rem;
+            left: -1rem;
+            color: rgba(255, 255, 255, 0.1);
+            line-height: 1;
+        }
+
+        .f-profile {
+            display: flex;
+            align-items: center;
+            gap: 1rem;
+            border-top: 1px solid rgba(255, 255, 255, 0.1);
+            padding-top: 1.5rem;
+        }
+
+        .f-img {
+            width: 48px; height: 48px;
+            border-radius: 50%;
+            border: 2px solid rgba(255, 255, 255, 0.1);
+            filter: grayscale(100%);
+            transition: all 0.3s ease;
+        }
+
+        .f-card:hover .f-img {
+            filter: grayscale(0%);
+            border-color: #fff;
+        }
+
+        .f-meta h4 {
+            color: #fff;
+            font-size: 1rem;
+            margin-bottom: 0.2rem;
+            font-family: var(--font-mono);
+            letter-spacing: 0.5px;
+        }
+
+        .f-meta span {
+            color: #666;
+            font-size: 0.7rem;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            font-family: var(--font-mono);
+        }
     </style>
 </head>
 <body>
@@ -509,35 +632,35 @@
         <!-- Testimonials (New) -->
         <section id="testimonials">
             <div class="container">
-                <h2 style="margin-bottom: 3rem;">Testimonials</h2>
-                <div class="venture-grid">
-                    <div class="venture-card" style="padding: 2rem;">
-                        <p style="font-size: 1rem; margin-bottom: 1.5rem;">"Finally, a partner who doesn't need to be hand-held through the technical details. He read our documentation and produced a strategy that nailed the pain points perfectly."</p>
-                        <div class="testimonial-profile">
-                            <img src="https://ui-avatars.com/api/?name=Vance+Lauriel&background=random" alt="David" class="testimonial-img">
-                            <div>
-                                <div style="font-weight: 700; font-family: var(--font-mono);">Vance Lauriel</div>
-                                <div class="label" style="margin-bottom: 0; font-size: 0.65rem; margin-top: 0.25rem;">CTO, Infusa</div>
+                <h2 style="margin-bottom: 4rem; color: #fff; text-align: center; position: relative; z-index: 2;">Testimonials</h2>
+                <div class="f-grid">
+                    <div class="f-card">
+                        <p class="f-quote">Finally, a partner who doesn't need to be hand-held through the technical details. He read our documentation and produced a strategy that nailed the pain points perfectly.</p>
+                        <div class="f-profile">
+                            <img src="https://ui-avatars.com/api/?name=Vance+Lauriel&background=000&color=fff" alt="Vance" class="f-img">
+                            <div class="f-meta">
+                                <h4>Vance Lauriel</h4>
+                                <span>CTO, Infusa</span>
                             </div>
                         </div>
                     </div>
-                    <div class="venture-card" style="padding: 2rem;">
-                        <p style="font-size: 1rem; margin-bottom: 1.5rem;">"Prince bridged the gap between our dev team and our marketing. He understands the tech stack, which made explaining our value prop effortless."</p>
-                        <div class="testimonial-profile">
-                            <img src="https://ui-avatars.com/api/?name=Sandrine+Marlow&background=random" alt="Sandrine" class="testimonial-img">
-                            <div>
-                                <div style="font-weight: 700; font-family: var(--font-mono);">Sandrine Marlow</div>
-                                <div class="label" style="margin-bottom: 0; font-size: 0.65rem; margin-top: 0.25rem;">VP Product, TechFlow</div>
+                    <div class="f-card">
+                        <p class="f-quote">Prince bridged the gap between our dev team and our marketing. He understands the tech stack, which made explaining our value prop effortless.</p>
+                        <div class="f-profile">
+                            <img src="https://ui-avatars.com/api/?name=Sandrine+Marlow&background=000&color=fff" alt="Sandrine" class="f-img">
+                            <div class="f-meta">
+                                <h4>Sandrine Marlow</h4>
+                                <span>VP Product, TechFlow</span>
                             </div>
                         </div>
                     </div>
-                    <div class="venture-card" style="padding: 2rem;">
-                        <p style="font-size: 1rem; margin-bottom: 1.5rem;">"Working with Prince changed how we view product launches. He doesn't just build; he ensures there's a market waiting for the build."</p>
-                        <div class="testimonial-profile">
-                            <img src="https://ui-avatars.com/api/?name=Emmanuel+Kalu&background=random" alt="Emmanuel" class="testimonial-img">
-                            <div>
-                                <div style="font-weight: 700; font-family: var(--font-mono);">Emmanuel Kalu</div>
-                                <div class="label" style="margin-bottom: 0; font-size: 0.65rem; margin-top: 0.25rem;">Top Artisan, YourHelpa</div>
+                    <div class="f-card">
+                        <p class="f-quote">Working with Prince changed how we view product launches. He doesn't just build; he ensures there's a market waiting for the build.</p>
+                        <div class="f-profile">
+                            <img src="https://ui-avatars.com/api/?name=Emmanuel+Kalu&background=000&color=fff" alt="Emmanuel" class="f-img">
+                            <div class="f-meta">
+                                <h4>Emmanuel Kalu</h4>
+                                <span>Top Artisan, YourHelpa</span>
                             </div>
                         </div>
                     </div>
