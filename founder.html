@@ -29,6 +29,11 @@
             
             --font-main: 'Canva Sans', sans-serif;
             --font-mono: 'Canva Sans', sans-serif;
+
+            --accent-blue: #007AFF;
+            --accent-green: #34C759;
+            --accent-orange: #FF9500;
+            --accent-purple: #5856D6;
         }
 
         /* Dark Mode Support (Inverted High Contrast) */
@@ -137,8 +142,8 @@
             box-shadow: 2px 2px 0px var(--border-color);
         }
         .btn-primary {
-            background: var(--text-primary);
-            color: var(--bg-primary);
+            background: #007AFF;
+            color: #FFFFFF;
         }
 
         /* Hero */
@@ -158,8 +163,32 @@
         /* Venture Cards */
         .venture-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(350px, 1fr));
+            grid-template-columns: 1fr;
             gap: 2rem;
+        }
+        @media (min-width: 768px) {
+            .venture-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        @media (min-width: 1024px) {
+            .venture-grid {
+                grid-template-columns: repeat(12, 1fr);
+                grid-auto-rows: minmax(200px, auto);
+                gap: 0.5rem 2rem;
+            }
+            .venture-card:nth-child(1) {
+                grid-column: span 8;
+            }
+            .venture-card:nth-child(2) {
+                grid-column: span 4;
+            }
+            .venture-card:nth-child(3) {
+                grid-column: span 5;
+            }
+            .venture-card:nth-child(4) {
+                grid-column: span 7;
+            }
         }
         .venture-card {
             border: 2px solid var(--border-color);
@@ -173,9 +202,10 @@
             position: relative;
             text-decoration: none;
             color: inherit;
+            box-shadow: 6px 6px 0px var(--accent-blue);
         }
         .venture-card:hover {
-            box-shadow: 8px 8px 0px var(--border-color);
+            box-shadow: 10px 10px 0px var(--border-color);
             transform: translate(-4px, -4px);
         }
         .card-pointer {
@@ -212,30 +242,45 @@
         .metric-value { font-weight: 700; font-size: 1.25rem; }
 
         /* Stack Section */
-        .stack-grid {
+        .skills-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-            gap: 3rem;
+            grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+            gap: 1.5rem;
         }
-        .stack-category h4 {
+        .skill-category {
+            background: var(--bg-primary);
+            border: 1px solid var(--border-color);
+            padding: 1.5rem;
+            transition: transform 0.3s ease;
+        }
+        .skill-category:hover { transform: translateY(-3px); box-shadow: 4px 4px 0px var(--border-color); }
+        .skill-category h4 {
             font-family: var(--font-mono);
+            font-size: 0.9rem;
             text-transform: uppercase;
-            margin-bottom: 1.5rem;
-            border-bottom: 2px solid var(--border-color);
-            padding-bottom: 0.5rem;
-            display: inline-block;
-        }
-        .stack-list li {
-            margin-bottom: 0.75rem;
-            font-weight: 500;
+            margin-bottom: 1rem;
             display: flex;
             align-items: center;
+            gap: 0.5rem;
         }
-        .stack-list li::before {
-            content: "→";
-            margin-right: 0.5rem;
-            font-family: var(--font-mono);
+        .skill-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+        .skill-tag {
+            font-size: 0.85rem;
+            padding: 0.4rem 0.8rem;
+            background: var(--bg-secondary);
+            border: 1px solid var(--border-color);
+            color: var(--text-primary);
+            font-weight: 500;
         }
+        .dot { width: 10px; height: 10px; border-radius: 50%; display: inline-block; }
+        .dot.blue { background: var(--accent-blue); }
+        .dot.green { background: var(--accent-green); }
+        .dot.orange { background: var(--accent-orange); }
+        .dot.purple { background: var(--accent-purple); }
+        .text-blue { color: var(--accent-blue); }
+        .text-green { color: var(--accent-green); }
+        .text-orange { color: var(--accent-orange); }
+        .text-purple { color: var(--accent-purple); }
 
         /* Philosophy */
         .philosophy-grid {
@@ -256,8 +301,47 @@
             display: block;
         }
 
+        /* Value Prop Cards */
+        .value-prop-grid {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+        .value-prop-card {
+            background: var(--bg-primary);
+            border: 1px solid var(--border-color);
+            padding: 2rem;
+            transition: all 0.3s ease;
+            border-left: 4px solid transparent;
+        }
+        .value-prop-card:hover {
+            border-color: var(--accent-blue);
+            border-left-color: var(--accent-blue);
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0, 122, 255, 0.1);
+        }
+        .value-prop-card h3 {
+            color: var(--accent-blue);
+            font-family: var(--font-mono);
+            font-size: 1.2rem;
+            margin-bottom: 0.75rem;
+        }
+
+        /* Section Image */
+        .section-image {
+            width: 100%;
+            height: auto;
+            margin-top: 2.5rem;
+            border: 1px solid var(--border-color);
+            background-color: var(--bg-secondary);
+            object-fit: cover;
+        }
+
         /* Footer */
         footer { padding: 4rem 0; background: var(--bg-primary); border-top: 2px solid var(--border-color); }
+
+        .hamburger { display: none; cursor: pointer; }
+        .hamburger span { display: block; width: 25px; height: 3px; background: var(--text-primary); margin: 5px 0; transition: all 0.3s ease; }
 
         /* Mobile & Tablet Navigation */
         @media (max-width: 1024px) {
@@ -288,9 +372,6 @@
             .hamburger.active span:nth-child(2) { opacity: 0; }
             .hamburger.active span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
         }
-
-        .hamburger { display: none; cursor: pointer; }
-        .hamburger span { display: block; width: 25px; height: 3px; background: var(--text-primary); margin: 5px 0; transition: all 0.3s ease; }
 
         /* Theme Toggle */
         .theme-toggle { background: transparent; border: none; cursor: pointer; color: var(--text-primary); }
@@ -352,6 +433,34 @@
         }
         [data-theme="dark"] .hero-img {
             mix-blend-mode: normal;
+        }
+
+        /* Hobbies Grid */
+        .hobby-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 1.5rem;
+        }
+        .hobby-card {
+            background: var(--bg-primary);
+            border: 1px solid var(--border-color);
+            padding: 2rem;
+            transition: all 0.3s ease;
+            border-left: 4px solid transparent;
+        }
+        .hobby-card:hover {
+            border-color: var(--accent-blue);
+            border-left-color: var(--accent-blue);
+            box-shadow: 0 10px 30px rgba(0, 122, 255, 0.15);
+            transform: translateY(-5px);
+            background: linear-gradient(to bottom right, var(--bg-primary), rgba(0, 122, 255, 0.03));
+        }
+        .hobby-card h3 {
+            color: var(--accent-blue);
+            font-family: var(--font-mono);
+            font-size: 1.1rem;
+            margin-bottom: 0.75rem;
+            text-transform: uppercase;
         }
 
         /* Futuristic Hero Frame */
@@ -535,10 +644,10 @@
             <a href="index.html" class="logo">PRINCE DIKE <span>/FOUNDER</span></a>
             <div style="display: flex; align-items: center; gap: 2rem;">
                 <ul class="nav-links">
-                    <li><a href="index.html">Home</a></li>
-                    <li><a href="founder.html">Portfolio</a></li>
+                    <li><a href="founder.html">Home</a></li>
+                    <li><a href="index.html">Marketing Portfolio</a></li>
                     <li><a href="#ventures">Ventures</a></li>
-                    <li><a href="#stack">Stack</a></li>
+                    <li><a href="#stack">Skill Set</a></li>
                     <li><a href="#philosophy">Philosophy</a></li>
                     <li><a href="#cta">Contact</a></li>
                 </ul>
@@ -547,7 +656,9 @@
                     <svg class="moon-icon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path></svg>
                 </button>
                 <div class="hamburger" onclick="toggleMenu()">
-                    <span></span><span></span><span></span>
+                    <span></span>
+                    <span></span>
+                    <span></span>
                 </div>
             </div>
         </div>
@@ -562,7 +673,7 @@
                         <span class="label">BUILDER. EXECUTIVE. AUTHOR.</span>
                         <h1>I Create Solutions To Real Problems</h1>
                         <p style="margin-bottom: 2.5rem;">
-                            I am Prince Dike: Founder & CEO of <strong>YourHelpa</strong>, Co-Founder (CPMO) & Board Director at <strong>Prawnbox</strong>, & a Best-Selling Author. I bridge the gap between the product and the customer.
+                            I am Prince Dike: Founder & CEO of <strong>YourHelpa</strong> and <strong>Avantaland Acaademy</strong>, Co-Founder (CPMO) & Board Director at <strong>Prawnbox</strong>, & a Best-Selling Author. I bridge the gap between the product and the customer.
                         </p>
                         <div style="display: flex; gap: 1rem; flex-wrap: wrap;">
                             <a href="#ventures" class="btn btn-primary">See My Work</a>
@@ -584,46 +695,76 @@
         <!-- The Stack (Moved) -->
         <section id="stack" style="background: var(--bg-secondary);">
             <div class="container">
-                <h2 style="margin-bottom: 3rem;">The Founder's Stack</h2>
-                <div class="stack-grid">
-                    <div class="stack-category">
-                        <h4>Engineering</h4>
-                        <ul class="stack-list">
-                            <li>JavaScript (ES6+)</li>
-                            <li>React / Next.js</li>
-                            <li>Node.js / Express</li>
-                            <li>Python</li>
-                            <li>PostgreSQL / MongoDB</li>
-                        </ul>
+                <h2 style="margin-bottom: 3rem;">My skillset</h2>
+                <div class="skills-grid">
+                    <!-- 1. Paid Media & Performance -->
+                    <div class="skill-category">
+                        <h4 class="text-blue"><span class="dot blue"></span> Paid Media & Performance</h4>
+                        <div class="skill-tags">
+                            <span class="skill-tag">Google Ads (Search/Display)</span>
+                            <span class="skill-tag">Meta Ads Manager</span>
+                            <span class="skill-tag">LinkedIn Ads</span>
+                            <span class="skill-tag">ROAS / CPL / CTR</span>
+                            <span class="skill-tag">CRO</span>
+                        </div>
                     </div>
-                    <div class="stack-category">
-                        <h4>Marketing</h4>
-                        <ul class="stack-list">
-                            <li>SEO & Programmatic</li>
-                            <li>Direct Response Copy</li>
-                            <li>Content Strategy</li>
-                            <li>Paid Acquisition (PPC)</li>
-                            <li>CRO & Analytics</li>
-                        </ul>
+
+                    <!-- 2. CRM & Email Automation -->
+                    <div class="skill-category">
+                        <h4 class="text-purple"><span class="dot purple"></span> CRM & Automation</h4>
+                        <div class="skill-tags">
+                            <span class="skill-tag">Zoho CRM (Lead Mapping)</span>
+                            <span class="skill-tag">HubSpot</span>
+                            <span class="skill-tag">Salesforce</span>
+                            <span class="skill-tag">Zoho Campaigns</span>
+                            <span class="skill-tag">Lifecycle Automation</span>
+                            <span class="skill-tag">Segmented Nurture Drips</span>
+                        </div>
                     </div>
-                    <div class="stack-category">
-                        <h4>Sales & GTM</h4>
-                        <ul class="stack-list">
-                            <li>Cold Outreach Systems</li>
-                            <li>CRM Architecture</li>
-                            <li>Funnel Building</li>
-                            <li>Offer Structuring</li>
-                            <li>Pricing Strategy</li>
-                        </ul>
+
+                    <!-- 3. Copywriting & Strategy -->
+                    <div class="skill-category">
+                        <h4 class="text-orange"><span class="dot orange"></span> Copywriting & Strategy</h4>
+                        <div class="skill-tags">
+                            <span class="skill-tag">Direct Response Copy</span>
+                            <span class="skill-tag">B2B SaaS Copy</span>
+                            <span class="skill-tag">Brand Storytelling</span>
+                            <span class="skill-tag">Audience Research</span>
+                            <span class="skill-tag">AnswerThePublic</span>
+                            <span class="skill-tag">VSL Scripting</span>
+                        </div>
                     </div>
-                    <div class="stack-category">
-                        <h4>Operations</h4>
-                        <ul class="stack-list">
-                            <li>Notion (Systems)</li>
-                            <li>Linear (Project Mgmt)</li>
-                            <li>Stripe (Payments)</li>
-                            <li>Slack (Comms)</li>
-                        </ul>
+
+                    <!-- 4. SEO & Analytics -->
+                    <div class="skill-category">
+                        <h4 class="text-green"><span class="dot green"></span> SEO & Analytics</h4>
+                        <div class="skill-tags">
+                            <span class="skill-tag">Keyword Research (Ahrefs)</span>
+                            <span class="skill-tag">Content Strategy</span>
+                            <span class="skill-tag">Google Analytics 4</span>
+                            <span class="skill-tag">AI-driven SEO</span>
+                        </div>
+                    </div>
+
+                    <!-- 5. Web Ops & Dev -->
+                    <div class="skill-category">
+                        <h4 class="text-blue"><span class="dot blue"></span> Web Ops & Dev</h4>
+                        <div class="skill-tags">
+                            <span class="skill-tag">WordPress / Elementor</span>
+                            <span class="skill-tag">WooCommerce</span>
+                            <span class="skill-tag">HTML5 / CSS3</span>
+                            <span class="skill-tag">JavaScript</span>
+                        </div>
+                    </div>
+
+                    <!-- 6. Creative & Design -->
+                    <div class="skill-category">
+                        <h4 class="text-purple"><span class="dot purple"></span> Creative & Design</h4>
+                        <div class="skill-tags">
+                            <span class="skill-tag">Figma</span>
+                            <span class="skill-tag">Canva</span>
+                            <span class="skill-tag">UI/UX Design</span>
+                        </div>
                     </div>
                 </div>
             </div>
@@ -673,24 +814,25 @@
             <div class="container">
                 <div class="philosophy-grid">
                     <div>
-                        <span class="label">THE ALPHA</span>
-                        <h2>Why Stakeholders Bet on Prince.</h2>
+                        <span class="label">TESTED & TRUSTED</span>
+                        <h2>Why stakeholders bet on Prince</h2>
                         <p>
-                            I adapt to the venture's needs. At <strong>YourHelpa</strong>, I am the entire engine—building the tech, the business model, and the marketing. At <strong>Prawnbox</strong>, I partner with a CTO and Business Lead, focusing purely on Product & Marketing Strategy to scale faster. I fill the gaps that slow startups down.
+                            I adapt my role to fit the specific needs of each venture. At <strong>YourHelpa</strong>, I operate as the full-stack engine, handling everything from the technology to the business model and marketing. Conversely, at <strong>Prawnbox</strong>, I partner with a CTO to focus exclusively on Product and Marketing Strategy for scale, while at <strong>Avantaland</strong>, I teach these exact sales skills to others, filling the critical gaps that often slow startups down.
                         </p>
+                        <img src="https://via.placeholder.com/500x350.png/F4F4F5/111111?text=Value+Image" alt="Illustration of strategic value" class="section-image">
                     </div>
-                    <div>
-                        <div class="philosophy-item">
+                    <div class="value-prop-grid">
+                        <div class="value-prop-card">
                             <h3>Speed of Execution</h3>
-                            <p style="font-size: 1rem;">I don't wait for developers; I build the MVP. I don't wait for marketers; I write the copy. This reduces time-to-market by 50%.</p>
+                            <p style="font-size: 1rem;">Instead of waiting for a marketing team to catch up with development, I write the copy and build the campaigns myself. For <strong>YourHelpa</strong>, this meant I could launch the platform and the advertising simultaneously, effectively cutting our time-to-market in half by removing the friction between product and promotion.</p>
                         </div>
-                        <div class="philosophy-item">
+                        <div class="value-prop-card">
                             <h3>Capital Efficiency</h3>
-                            <p style="font-size: 1rem;">I bootstrap products to profitability using organic growth engines, reducing the need for dilutive early-stage capital.</p>
+                            <p style="font-size: 1rem;">I focus on bootstrapping products to profitability by building organic growth engines early on, rather than relying on paid ads. With <strong>Prawnbox</strong>, we utilized a content-led SEO strategy to acquire customers, which significantly reduced our burn rate and eliminated the immediate need for dilutive venture capital.</p>
                         </div>
-                        <div class="philosophy-item">
+                        <div class="value-prop-card">
                             <h3>Product-Market Fit</h3>
-                            <p style="font-size: 1rem;">I use data-driven SEO and direct-response principles to validate ideas before writing a single line of code.</p>
+                            <p style="font-size: 1rem;">I validate every business idea using data-driven SEO and direct-response testing before writing a single line of code. For <strong>Avantaland</strong>, I tested the core offer using Video Sales Letters (VSLs) first, ensuring there was a hungry market ready to buy before I invested time in building the full curriculum.</p>
                         </div>
                     </div>
                 </div>
@@ -775,10 +917,10 @@
                         <svg class="card-pointer" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
                         <div>
                             <div class="venture-header">
-                                <h3>33 Brutal Truths</h3>
+                                <h3>33 Brutal Hacks</h3>
                                 <span class="label">AUTHOR</span>
                             </div>
-                            <p style="font-size: 0.95rem;">Most startup advice is fluff. I wrote the manual on the hard realities of building a tech company. "33 Brutal Truths No One Tells You Before You Start a Tech Startup" is the guide I wish I had.</p>
+                            <p style="font-size: 0.95rem;">Most startup advice is fluff. I wrote the manual on the hard realities of building a tech company. "33 Brutal Hacks To Help You Make Sales No Matter Your Product or Service" is the guide I wish I had.</p>
                         </div>
                         <div class="venture-metrics">
                             <div>
@@ -788,6 +930,28 @@
                             <div>
                                 <div class="metric-label">STATUS</div>
                                 <div class="metric-value">Published</div>
+                            </div>
+                        </div>
+                    </a>
+
+                    <!-- Venture 4 -->
+                    <a href="https://avantaland.vercel.app" target="_blank" class="venture-card">
+                        <svg class="card-pointer" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
+                        <div>
+                            <div class="venture-header">
+                                <h3>Avantaland Academy</h3>
+                                <span class="label">FOUNDER</span>
+                            </div>
+                            <p style="font-size: 0.95rem;">A hub for skill acquisition and digital services. We teach sales and marketing to individuals, while providing founders with elite services like copywriting, ad management, and SMC trading.</p>
+                        </div>
+                        <div class="venture-metrics">
+                            <div>
+                                <div class="metric-label">FOCUS</div>
+                                <div class="metric-value">EdTech & Agency</div>
+                            </div>
+                            <div>
+                                <div class="metric-label">STATUS</div>
+                                <div class="metric-value">Active</div>
                             </div>
                         </div>
                     </a>
@@ -805,6 +969,7 @@
                         <p>
                             To build a unicorn, you need more than just code. You need a holistic view of the business. I speak two languages: Engineering and Revenue. This allows me to build products that are technically sound and commercially viable.
                         </p>
+                        <img src="https://via.placeholder.com/500x350.png/FFFFFF/111111?text=Philosophy+Image" alt="Illustration of methodology" class="section-image">
                     </div>
                     <div>
                         <div class="philosophy-item">
@@ -829,25 +994,25 @@
                 <p style="margin-bottom: 3rem; max-width: 700px;">
                     Building companies is a marathon, not a sprint. To stay sharp, I cultivate interests that challenge my strategic thinking and creativity. Here is what keeps me fueled outside of work.
                 </p>
-                <div class="venture-grid">
-                    <div class="venture-card" style="padding: 1.5rem;">
-                        <h3 style="font-size: 1.25rem; margin-bottom: 0.5rem;">Chess</h3>
+                <div class="hobby-grid">
+                    <div class="hobby-card">
+                        <h3>Chess</h3>
                         <p style="font-size: 0.9rem;">Strategic thinking is a muscle. I sharpen mine on the 64 squares, constantly looking for the best move.</p>
                     </div>
-                    <div class="venture-card" style="padding: 1.5rem;">
-                        <h3 style="font-size: 1.25rem; margin-bottom: 0.5rem;">Real Madrid</h3>
+                    <div class="hobby-card">
+                        <h3>Real Madrid</h3>
                         <p style="font-size: 0.9rem;">A lifelong supporter of the Kings of Europe. The mentality of winning is contagious.</p>
                     </div>
-                    <div class="venture-card" style="padding: 1.5rem;">
-                        <h3 style="font-size: 1.25rem; margin-bottom: 0.5rem;">AI Experimentation</h3>
+                    <div class="hobby-card">
+                        <h3>AI Experimentation</h3>
                         <p style="font-size: 0.9rem;">Pushing the boundaries of LLMs and generative tools to automate workflows and build faster.</p>
                     </div>
-                    <div class="venture-card" style="padding: 1.5rem;">
-                        <h3 style="font-size: 1.25rem; margin-bottom: 0.5rem;">SMC Trading</h3>
+                    <div class="hobby-card">
+                        <h3>SMC Trading</h3>
                         <p style="font-size: 0.9rem;">Analyzing market structure and liquidity. Trading teaches risk management like nothing else.</p>
                     </div>
-                    <div class="venture-card" style="padding: 1.5rem;">
-                        <h3 style="font-size: 1.25rem; margin-bottom: 0.5rem;">Writing</h3>
+                    <div class="hobby-card">
+                        <h3>Writing</h3>
                         <p style="font-size: 0.9rem;">Authoring books and digital products to document my journey and help others navigate the tech landscape.</p>
                     </div>
                 </div>
