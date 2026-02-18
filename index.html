@@ -533,39 +533,42 @@
         }
 
         .skill-category {
-            background: var(--glass-bg);
-            backdrop-filter: var(--glass-blur);
-            border: 1px solid var(--glass-border);
-            box-shadow: var(--glass-shadow);
-            padding: 1.5rem;
+            padding: 2rem;
             border-radius: 16px;
-            transition: transform 0.3s ease;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            color: #FFFFFF;
+            border: none;
+            text-align: left;
         }
         
-        .skill-category:hover { transform: translateY(-3px); }
+        .skill-category:hover { 
+            transform: translateY(-5px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        }
 
         .skill-category h4 {
             font-family: var(--font-mono);
             font-size: 0.9rem;
             text-transform: uppercase;
-            margin-bottom: 1rem;
+            margin-bottom: 1.5rem;
             display: flex;
             align-items: center;
-            gap: 0.5rem;
+            gap: 0.75rem;
+            color: #FFFFFF !important;
         }
 
-        .skill-tags { display: flex; flex-wrap: wrap; gap: 0.5rem; }
+        .skill-tags { display: flex; flex-wrap: wrap; gap: 0.75rem; }
 
         .skill-tag {
             font-size: 0.85rem;
             padding: 0.4rem 0.8rem;
-            background: var(--bg-primary);
-            border: 1px solid var(--border-color);
-            border-radius: 4px;
-            color: var(--text-secondary);
+            background: rgba(255, 255, 255, 0.1);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            border-radius: 6px;
+            color: rgba(255, 255, 255, 0.9);
         }
         
-        [data-theme="dark"] .skill-tag { background: rgba(255,255,255,0.05); }
+        [data-theme="dark"] .skill-tag { background: rgba(255,255,255,0.1); }
 
         /* Engine Room (Tech Stack) */
         .tech-item {
@@ -1010,6 +1013,51 @@
             box-shadow: 0 20px 40px rgba(0, 0, 0, 0.15);
         }
         
+        /* Email Flow Section */
+        .email-flow-grid {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            gap: 1.5rem;
+            align-items: stretch;
+        }
+        .email-card {
+            padding: 2rem;
+            border-radius: 16px;
+            color: #FFFFFF;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            border: none;
+        }
+        .email-card:hover {
+            transform: translateY(-8px);
+            box-shadow: 0 20px 40px rgba(0,0,0,0.2);
+        }
+        .email-card h5 {
+            font-size: 0.9rem;
+            font-family: var(--font-mono);
+            margin-bottom: 0.75rem;
+            opacity: 0.8;
+            color: #FFFFFF;
+        }
+        .email-card p {
+            font-size: 1rem;
+            line-height: 1.5;
+            color: rgba(255,255,255,0.9);
+        }
+        .flow-arrow { display: none; }
+
+        @media (max-width: 992px) {
+            .email-flow-grid {
+                display: flex;
+                overflow-x: auto;
+                padding: 0.5rem;
+                scroll-snap-type: x mandatory;
+            }
+            .email-card { flex: 0 0 80%; max-width: 320px; scroll-snap-align: start; }
+        }
+
         /* Ensure cards remain left-aligned while sections are centered */
         #content-samples .card,
         #founder .card,
@@ -1232,8 +1280,7 @@
         <!-- Testimonials -->
         <section id="testimonials">
             <div class="container">
-                <span class="eyebrow">Social Proof</span>
-                <h2 class="reveal">Testimonials</h2>
+                <h2 class="reveal">What others like you are saying about me</h2>
                 <div class="grid-3 reveal">
                     <div class="card">
                         <div style="margin-bottom: 1.5rem;">
@@ -1279,33 +1326,30 @@
                 </div>
 
                 <div class="email-flow-grid reveal">
-                    <div class="email-card card">
+                    <div class="email-card" style="background: #007AFF;">
                         <h5>[Day 0] Welcome & Asset Delivery</h5>
                         <p>Instantly delivers the promised whitepaper and introduces the brand's core value proposition.</p>
                     </div>
-                    <div class="flow-arrow">→</div>
-                    <div class="email-card card">
+                    <div class="email-card" style="background: #006de5;">
                         <h5>[Day 2] Problem Agitation</h5>
                         <p>A short, text-based email that highlights the key pain point the software solves, using a customer story.</p>
                     </div>
-                    <div class="flow-arrow">→</div>
-                    <div class="email-card card">
+                    <div class="email-card" style="background: #005fcc;">
                         <h5>[Day 4] The "Aha!" Moment</h5>
                         <p>Introduces the core mechanism of the solution and links to a short video demo or case study.</p>
                     </div>
-                    <div class="flow-arrow">→</div>
-                    <div class="email-card card">
+                    <div class="email-card" style="background: #0051b2;">
                         <h5>[Day 6] The Hard CTA</h5>
                         <p>A direct call-to-action to book a 15-minute demo, overcoming common objections.</p>
                     </div>
                 </div>
 
                 <div class="grid-2 reveal" style="margin-top: 3rem; max-width: 900px; margin-left: auto; margin-right: auto;">
-                    <div class="card">
+                    <div class="card" style="border-left: 4px solid var(--accent-blue);">
                         <h4 class="font-mono text-blue">Strategy Note</h4>
                         <p class="text-secondary">I used <strong>Zoho Campaigns</strong> to build this flow. Leads were segmented by country (US vs. Canada) to adjust currency and testimonial examples, making the content more relevant.</p>
                     </div>
-                    <div class="card">
+                    <div class="card" style="border-left: 4px solid var(--accent-green);">
                         <h4 class="font-mono text-green">Performance</h4>
                         <p class="text-secondary">This sequence consistently achieves a <strong>45%+ average open rate</strong> and a <strong>12% average click-through rate (CTR)</strong>, significantly outperforming industry benchmarks.</p>
                     </div>
@@ -1316,7 +1360,7 @@
         <!-- Content Writing Samples -->
         <section id="content-samples" style="text-align: center;">
             <div class="container">
-                <span class="eyebrow">I also write persuasive content </span>
+                <span class="eyebrow">I also write blog content & landing page copy</span>
                 <h2 class="reveal">Content Writing Samples</h2>
                 <div class="grid-3 reveal">
                     <a href="https://www.smscountry.com/blog/what-mfa/" target="_blank" class="card" style="text-decoration: none; color: inherit;">
@@ -1387,14 +1431,14 @@
         <section id="toolbox" style="background: transparent; text-align: center;">
             <div class="container">
                 <span class="eyebrow">Hands-On Expertise</span>
-                <h2 class="reveal">My Toolbox</h2>
+                <h2 class="reveal">My Skillset</h2>
                 <div class="grid-2 reveal" style="margin-bottom: 3rem;">
                 </div>
                 <div class="skills-grid reveal">
 
                     <!-- 1. Paid Media & Performance -->
-                    <div class="skill-category">
-                        <h4 class="text-blue"><span class="dot blue"></span> Paid Media & Performance</h4>
+                    <div class="skill-category" style="background: #1C1C1E;">
+                        <h4><span class="dot blue"></span> Paid Media & Performance</h4>
                         <div class="skill-tags">
                             <span class="skill-tag">Google Ads (Search/Display)</span>
                             <span class="skill-tag">Meta Ads Manager</span>
@@ -1405,8 +1449,8 @@
                     </div>
 
                     <!-- 2. CRM & Email Automation -->
-                    <div class="skill-category">
-                        <h4 class="text-purple"><span class="dot purple"></span> CRM & Automation</h4>
+                    <div class="skill-category" style="background: #2C2C2E;">
+                        <h4><span class="dot purple"></span> CRM & Automation</h4>
                         <div class="skill-tags">
                             <span class="skill-tag">Zoho CRM (Lead Mapping)</span>
                             <span class="skill-tag">HubSpot</span>
@@ -1418,8 +1462,8 @@
                     </div>
 
                     <!-- 3. Copywriting & Strategy -->
-                    <div class="skill-category">
-                        <h4 class="text-orange"><span class="dot orange"></span> Copywriting & Strategy</h4>
+                    <div class="skill-category" style="background: #3A3A3C;">
+                        <h4><span class="dot orange"></span> Copywriting & Strategy</h4>
                         <div class="skill-tags">
                             <span class="skill-tag">Direct Response Copy</span>
                             <span class="skill-tag">B2B SaaS Copy</span>
@@ -1431,8 +1475,8 @@
                     </div>
 
                     <!-- 4. SEO & Analytics -->
-                    <div class="skill-category">
-                        <h4 class="text-green"><span class="dot green"></span> SEO & Analytics</h4>
+                    <div class="skill-category" style="background: #48484A;">
+                        <h4><span class="dot green"></span> SEO & Analytics</h4>
                         <div class="skill-tags">
                             <span class="skill-tag">Keyword Research (Ahrefs)</span>
                             <span class="skill-tag">Content Strategy</span>
@@ -1442,8 +1486,8 @@
                     </div>
 
                     <!-- 5. Web Ops & Dev -->
-                    <div class="skill-category">
-                        <h4 class="text-blue"><span class="dot blue"></span> Web Ops & Dev</h4>
+                    <div class="skill-category" style="background: #565659;">
+                        <h4><span class="dot blue"></span> Web Ops & Dev</h4>
                         <div class="skill-tags">
                             <span class="skill-tag">WordPress / Elementor</span>
                             <span class="skill-tag">WooCommerce</span>
@@ -1453,8 +1497,8 @@
                     </div>
 
                     <!-- 6. Creative & Design -->
-                    <div class="skill-category">
-                        <h4 class="text-purple"><span class="dot purple"></span> Creative & Design</h4>
+                    <div class="skill-category" style="background: #636366;">
+                        <h4><span class="dot purple"></span> Creative & Design</h4>
                         <div class="skill-tags">
                             <span class="skill-tag">Figma</span>
                             <span class="skill-tag">Canva</span>
@@ -1474,15 +1518,15 @@
                     Most copywriters have never built a product. I have. I build, launch, and scale my own tech ventures. This means I understand the pressure of meeting payroll and the thrill of the first sale.
                 </p>
                 <div class="grid-2 reveal">
-                    <a href="https://yourhelpa.com.ng" target="_blank" class="card" data-category="startup" data-id="ST-001">
-                        <h3 class="font-mono">YourHelpa AI</h3>
-                        <p class="text-secondary" style="margin: 1rem 0;">I founded this. I architected the entire platform using AI matching logic to connect artisans with homeowners via WhatsApp. <strong>Status:</strong> <span class="text-green">Live</span></p>
-                        <div class="card-tags"><span class="tag">Founded</span><span class="tag">HTML/CSS/JS/TYPESCRIPT/etc.</span></div>
+                    <a href="https://avantaland.vercel.app" target="_blank" class="card" data-category="startup" data-id="ST-001" style="background: var(--accent-blue); color: #FFFFFF; border: none;">
+                        <h3 class="font-mono" style="color: #FFFFFF;">Avantaland</h3>
+                        <p style="margin: 1rem 0; color: rgba(255, 255, 255, 0.9);">An online skill acquisition platform for ambitious freelancers and business owners to learn how to make more money in legit ways, 5X better, and faster. <strong>Status:</strong> <span style="color: #FFFFFF; font-weight: bold;">Live</span></p>
+                        <div class="card-tags"><span class="tag" style="background: rgba(255,255,255,0.2); color: #FFFFFF; border: 1px solid rgba(255,255,255,0.3);">Founded</span><span class="tag" style="background: rgba(255,255,255,0.2); color: #FFFFFF; border: 1px solid rgba(255,255,255,0.3);">HTML/CSS/JS/TYPESCRIPT/etc.</span></div>
                     </a>
-                    <a href="https://prawnbox.com" target="_blank" class="card" data-category="startup" data-id="ST-002">
-                        <h3 class="font-mono">Prawnbox</h3>
-                        <p class="text-secondary" style="margin: 1rem 0;">I co-founded this logistics startup. I lead the Product and Marketing teams, driving our Go-To-Market strategy and user acquisition. <strong>Status:</strong> <span class="text-green">Scaling</span></p>
-                        <div class="card-tags"><span class="tag">Co-Founded</span><span class="tag">GTM Strategy</span></div>
+                    <a href="https://prawnbox.com" target="_blank" class="card" data-category="startup" data-id="ST-002" style="background: #f44708; color: #FFFFFF; border: none;">
+                        <h3 class="font-mono" style="color: #FFFFFF;">Prawnbox</h3>
+                        <p style="margin: 1rem 0; color: rgba(255, 255, 255, 0.9);">I co-founded this logistics startup. I lead the Product and Marketing teams, driving our Go-To-Market strategy and user acquisition. <strong>Status:</strong> <span style="color: #FFFFFF; font-weight: bold;">Scaling</span></p>
+                        <div class="card-tags"><span class="tag" style="background: rgba(255,255,255,0.2); color: #FFFFFF; border: 1px solid rgba(255,255,255,0.3);">Co-Founded</span><span class="tag" style="background: rgba(255,255,255,0.2); color: #FFFFFF; border: 1px solid rgba(255,255,255,0.3);">GTM Strategy</span></div>
                     </a>
                 </div>
             </div>
@@ -1582,15 +1626,15 @@
             <div class="container">
                 <div class="grid-2 reveal" style="align-items: center;">
                     <div>
-                        <img src="assets/ebook1.jpg" alt="33 Brutal Truths Ebook Cover" class="ebook-cover-img">
+                        <img src="assets/33hacks.png" alt="33 Sales Hacks Cover" class="ebook-cover-img">
                     </div>
                     <div>
-                        <span class="eyebrow">For Early-Stage Founders</span>
-                        <h2>33 Brutal Truths No One Tells You Before You Start a Startup</h2>
+                        <span class="eyebrow">For Business Owners</span>
+                        <h2>33 Hacks To Help You Make Sales No Matter Your Product or Service</h2>
                         <p class="text-secondary" style="margin-bottom: 1.5rem; font-size: 1.1rem;">
-                            The unfiltered reality of building a company. In this book, I give you 33 raw lessons learned from the trenches of founder life based off my own experiences and the experiences of other founders who have failed and succeeded.
+                            It's 2026, and you're still broke. Little to no sales, customers don't buy from you again... I want you to know that YOU ARE NOT THE PROBLEM. You just don't have the right strategy. But today, I’m handing you the 33 Sales Hacks course to help you sell ANY product or service over and over again. Hidden psychological cheat codes that force people to pay you, regardless of what you sell.
                         </p>
-                        <a href="#" class="btn btn-primary">(Coming Soon)</a>
+                        <a href="#" class="btn btn-primary">Claim your $3 spot today</a>
                     </div>
                 </div>
 
@@ -1698,7 +1742,7 @@
                             <div class="ebook-bg"></div>
                             <div class="ebook-content">
                                 <div class="ebook-header">
-                                    <span class="font-mono text-secondary" style="font-size: 0.8rem;">// INSIDE THE E-BOOK</span>
+                                    <span class="font-mono text-secondary" style="font-size: 0.8rem;">// INSIDE THE COURSE</span>
                                     <div style="display: flex; gap: 0.5rem;">
                                         <span class="dot red"></span>
                                         <span class="dot yellow"></span>
@@ -1710,77 +1754,56 @@
                                     <div class="ebook-item">
                                         <div class="ebook-item-header">
                                             <span class="ebook-num">01</span>
-                                            <span class="ebook-title">The "Survey Lie"</span>
+                                            <span class="ebook-title">The "Polite Lie"</span>
                                         </div>
-                                        <p class="ebook-desc">Why users lie to you and how to find the real truth.</p>
+                                        <p class="ebook-desc">How to get rid of polite lies from friends and family who won't patronize you, and find customers who will.</p>
                                     </div>
                                     <div class="ebook-item">
                                         <div class="ebook-item-header">
                                             <span class="ebook-num">02</span>
-                                            <span class="ebook-title">The 'Friend' Trap</span>
+                                            <span class="ebook-title">Targeting Pain</span>
                                         </div>
-                                        <p class="ebook-desc">Why your inner circle is your most dangerous feedback loop.</p>
+                                        <p class="ebook-desc">How to target customers in immediate pain who are desperate to pay you.</p>
                                     </div>
                                     <div class="ebook-item">
                                         <div class="ebook-item-header">
                                             <span class="ebook-num">03</span>
-                                            <span class="ebook-title">The Hiring Gamble</span>
+                                            <span class="ebook-title">Dream Results</span>
                                         </div>
-                                        <p class="ebook-desc">Why hiring too early is the #1 path to bankruptcy.</p>
+                                        <p class="ebook-desc">How to stop selling features and start selling the dream results people crave.</p>
                                     </div>
                                     <div class="ebook-item">
                                         <div class="ebook-item-header">
                                             <span class="ebook-num">04</span>
-                                            <span class="ebook-title">The Perfection Killer</span>
+                                            <span class="ebook-title">Instant Revenue</span>
                                         </div>
-                                        <p class="ebook-desc">Why "polishing" your product is actually just procrastination.</p>
+                                        <p class="ebook-desc">How to start making money today, even before your product is ready.</p>
                                     </div>
                                     <div class="ebook-item">
                                         <div class="ebook-item-header">
                                             <span class="ebook-num">05</span>
-                                            <span class="ebook-title">The Ego Trap</span>
+                                            <span class="ebook-title">Hungry Buyers</span>
                                         </div>
-                                        <p class="ebook-desc">Why your "unique" idea is already being built by someone else.</p>
+                                        <p class="ebook-desc">How to find and dominate a small group of hungry buyers and take them away from your competitors.</p>
                                     </div>
                                     <div class="ebook-item">
                                         <div class="ebook-item-header">
                                             <span class="ebook-num">06</span>
-                                            <span class="ebook-title">The Niche Secret</span>
+                                            <span class="ebook-title">Pre-Payment</span>
                                         </div>
-                                        <p class="ebook-desc">Why owning a tiny market is more profitable than "going big."</p>
+                                        <p class="ebook-desc">How to force people to pay you the money before you create your product.</p>
                                     </div>
                                     <div class="ebook-item">
                                         <div class="ebook-item-header">
                                             <span class="ebook-num">07</span>
-                                            <span class="ebook-title">Pre-sell Mastery</span>
+                                            <span class="ebook-title">Doubt to Energy</span>
                                         </div>
-                                        <p class="ebook-desc">How to get traction before you write a single line of code.</p>
-                                    </div>
-                                    <div class="ebook-item">
-                                        <div class="ebook-item-header">
-                                            <span class="ebook-num">08</span>
-                                            <span class="ebook-title">The UX Engine</span>
-                                        </div>
-                                        <p class="ebook-desc">The silent design shift that drives 10x more organic growth.</p>
-                                    </div>
-                                    <div class="ebook-item">
-                                        <div class="ebook-item-header">
-                                            <span class="ebook-num">09</span>
-                                            <span class="ebook-title">Outcome Selling</span>
-                                        </div>
-                                        <p class="ebook-desc">Why customers don't buy features, and what they buy instead.</p>
-                                    </div>
-                                    <div class="ebook-item">
-                                        <div class="ebook-item-header">
-                                            <span class="ebook-num">10</span>
-                                            <span class="ebook-title">The Mentor Goldmine</span>
-                                        </div>
-                                        <p class="ebook-desc">How to find the one person who can shave years off your curve.</p>
+                                        <p class="ebook-desc">How to turn people’s doubt into the raw energy you need to sell to them.</p>
                                     </div>
                                 </div>
                                 
                                 <div style="margin-top: 2rem; text-align: center; padding-top: 1rem; border-top: 1px dashed var(--border-color);">
-                                    <p class="font-mono text-green"font-size: 0.85rem; cursor: pointer;">[+] 23 MORE BRUTAL TRUTHS</p>
+                                    <p class="font-mono text-green" style="font-size: 0.85rem; cursor: pointer;">[+] 26 MORE SALES HACKS</p>
                                 </div>
                             </div>
                         </div>
@@ -1797,15 +1820,15 @@
                         My inbox is always open. Let's discuss how we can work together to achieve your goals.
                     </p>
                     <div class="contact-cta-grid reveal">
-                        <a href="mailto:prince.chidera.dike@gmail.com" class="contact-card">
+                        <a href="mailto:prince.chidera.dike@gmail.com" class="contact-card" style="background: var(--accent-blue); color: #FFFFFF; border: none;">
                             <svg class="card-arrow" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
-                            <h3 class="font-mono text-blue">Send an Email</h3>
-                            <p class="text-secondary">prince.chidera.dike@gmail.com</p>
+                            <h3 class="font-mono" style="color: #FFFFFF;">Send an Email</h3>
+                            <p style="color: rgba(255, 255, 255, 0.9);">prince.chidera.dike@gmail.com</p>
                         </a>
-                        <a href="https://wa.me/2349027231243" target="_blank" class="contact-card">
+                        <a href="https://wa.me/2349027231243" target="_blank" class="contact-card" style="background: var(--accent-blue); color: #FFFFFF; border: none;">
                             <svg class="card-arrow" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><line x1="7" y1="17" x2="17" y2="7"></line><polyline points="7 7 17 7 17 17"></polyline></svg>
-                            <h3 class="font-mono text-green">Chat on WhatsApp</h3>
-                            <p class="text-secondary">+234 902 723 1243</p>
+                            <h3 class="font-mono" style="color: #FFFFFF;">Chat on WhatsApp</h3>
+                            <p style="color: rgba(255, 255, 255, 0.9);">+234 902 723 1243</p>
                         </a>
                     </div>
                     <div class="reveal" style="margin-top: 4rem;">
