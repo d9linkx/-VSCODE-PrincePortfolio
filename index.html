@@ -812,46 +812,71 @@
 
         /* About Section Split BG */
         #about {
-            padding: 0;
+            padding: 2rem 0;
+            background: transparent;
         }
+        
         #about .container {
-            max-width: 100%;
-            width: 100%;
-            padding: 0;
+            width: 95%;
+            max-width: var(--container-width);
+            padding: 0 1rem;
         }
+
         #about .about-grid {
-            gap: 0;
+            display: grid;
+            gap: 1.5rem;
         }
+
         #about .about-grid > div {
-            padding: var(--section-spacing) 5vw;
+            padding: 3rem 2rem;
+            border-radius: 24px;
         }
+
+        /* First Card (Dark) */
         #about .about-grid > div:first-child {
-            background: rgba(10, 10, 11, 0.9);
+            background: rgba(10, 10, 11, 0.95);
             backdrop-filter: blur(10px);
             color: #FFFFFF;
-            border-radius: 16px;
         }
         #about .about-grid > div:first-child .eyebrow,
-        #about .about-grid > div:first-child h2 {
-            color: #FFFFFF;
-        }
+        #about .about-grid > div:first-child h2 { color: #FFFFFF; }
+
+        /* Second Card (Light) */
         #about .about-grid > div:last-child {
-            background: rgba(211, 211, 211, 0.3);
+            background: rgba(242, 242, 247, 0.8);
             backdrop-filter: blur(10px);
-            border-radius: 16px;
+            color: #1C1C1E;
+            text-align: left;
         }
         #about .about-grid > div:last-child p,
-        #about .about-grid > div:last-child h4 {
-            color: #1C1C1E;
-        }
-        #about .about-grid > div:last-child .btn-primary {
-            background: #000000;
-            color: #FFFFFF;
-            border-color: #000000;
-        }
-        #about .about-grid > div:last-child .btn-outline {
-            color: #000000;
-            border-color: #000000;
+        #about .about-grid > div:last-child h4 { color: #1C1C1E; }
+        #about .about-grid > div:last-child .btn-primary { background: #000000; color: #FFFFFF; border-color: #000000; }
+        #about .about-grid > div:last-child .btn-outline { color: #000000; border-color: #000000; }
+
+        /* Desktop split view */
+        @media (min-width: 769px) {
+            #about {
+                padding: 0;
+            }
+            #about .container {
+                max-width: 90%;
+                width: 90%;
+                padding: 0;
+            }
+            #about .about-grid {
+                grid-template-columns: 0.8fr 1.2fr;
+                gap: 0;
+            }
+            #about .about-grid > div {
+                padding: var(--section-spacing) 5vw;
+                border-radius: 0;
+            }
+            #about .about-grid > div:first-child {
+                border-radius: 16px 0 0 16px;
+            }
+            #about .about-grid > div:last-child {
+                border-radius: 0 16px 16px 0;
+            }
         }
 
     </style>
